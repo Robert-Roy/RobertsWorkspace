@@ -53,7 +53,7 @@ if(is_object($array)){
         Organization: <?=$org?><br>
         As Number/Name: <?=$as?>
         <?php }else{
-            ?>An error has occurred. It has been logged.<?php
+            ?>An error has occurred. It has been logged.<?php //TODO Log error
         } ?>
     </p>
 </div>
