@@ -46,7 +46,7 @@ util::printheader("My Degree is in Business");
 <div class="contentdiv">
     <p>This website uses:</p>
     <ul>
-        <li>PHP (<?=phpversion();?>)</li>
+        <li>PHP (<?= phpversion(); ?>)</li>
         <li>JavaScript</li>
         <li>jQuery</li>
     </ul>

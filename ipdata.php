@@ -10,51 +10,52 @@ $IP = htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITI
 
 $json = file_get_contents("http://ip-api.com/json/$IP");
 $array = json_decode($json);
-if(is_object($array)){
+if (is_object($array)) {
     $status = htmlspecialchars(\filter_var(\trim($array->status), FILTER_SANITIZE_STRING));
-    if($status != "fail"){
+    if ($status != "fail") {
         $country = htmlspecialchars(\filter_var(\trim($array->country), FILTER_SANITIZE_STRING));
         $countryCode = htmlspecialchars(\filter_var(\trim($array->countryCode), FILTER_SANITIZE_STRING));
         $region = htmlspecialchars(\filter_var(\trim($array->region), FILTER_SANITIZE_STRING));
         $regionName = htmlspecialchars(\filter_var(\trim($array->regionName), FILTER_SANITIZE_STRING));
-        $city = htmlspecialchars(\filter_var(\trim($array->city ), FILTER_SANITIZE_STRING));
-        $zip = htmlspecialchars(\filter_var(\trim($array->zip ), FILTER_SANITIZE_STRING));
-        $lat = htmlspecialchars(\filter_var(\trim($array->lat ), FILTER_SANITIZE_STRING));
-        $lon = htmlspecialchars(\filter_var(\trim($array->lon ), FILTER_SANITIZE_STRING));
-        $timezone = htmlspecialchars(\filter_var(\trim($array->timezone ), FILTER_SANITIZE_STRING));
-        $isp = htmlspecialchars(\filter_var(\trim($array->isp ), FILTER_SANITIZE_STRING));
-        $org = htmlspecialchars(\filter_var(\trim($array->org ), FILTER_SANITIZE_STRING));
-        $as = htmlspecialchars(\filter_var(\trim($array->as ), FILTER_SANITIZE_STRING));
+        $city = htmlspecialchars(\filter_var(\trim($array->city), FILTER_SANITIZE_STRING));
+        $zip = htmlspecialchars(\filter_var(\trim($array->zip), FILTER_SANITIZE_STRING));
+        $lat = htmlspecialchars(\filter_var(\trim($array->lat), FILTER_SANITIZE_STRING));
+        $lon = htmlspecialchars(\filter_var(\trim($array->lon), FILTER_SANITIZE_STRING));
+        $timezone = htmlspecialchars(\filter_var(\trim($array->timezone), FILTER_SANITIZE_STRING));
+        $isp = htmlspecialchars(\filter_var(\trim($array->isp), FILTER_SANITIZE_STRING));
+        $org = htmlspecialchars(\filter_var(\trim($array->org), FILTER_SANITIZE_STRING));
+        $as = htmlspecialchars(\filter_var(\trim($array->as), FILTER_SANITIZE_STRING));
     }
-}else{
+} else {
     $apierror = true;
 }
 ?>
 <div class="contentdiv" style="text-align:center">
-    <p>Your IP:<br><?=$IP?></p>
+    <p>Your IP:<br><?= $IP ?></p>
 </div>
 <br>
 <div class="contentdiv">
     <p>
-        <?php 
-        if($apierror === true){
+        <?php
+        if ($apierror === true) {
             ?>Unable to make connection to ip-api.com.<?php
-        }elseif($status === "fail"){
+        } elseif ($status === "fail") {
             ?>An error has occurred. It has been logged.<?php
-        }elseif($status === "success"){
+        } elseif ($status === "success") {
             ?>
-        Country: <?=$country?> (<?=$countryCode?>)<br>
-        Region: <?=$regionName?> (<?=$region?>)<br>
-        City: <?=$city?><br>
-        Zip: <?=$zip?><br>
-        Coordinates: (<?=$lat?>, <?=$lon?>)<br>
-        Time Zone: <?=$timezone?><br>
-        Internet Service Provider: <?=$isp?><br>
-        Organization: <?=$org?><br>
-        As Number/Name: <?=$as?>
-        <?php }else{
+            Country: <?= $country ?> (<?= $countryCode ?>)<br>
+            Region: <?= $regionName ?> (<?= $region ?>)<br>
+            City: <?= $city ?><br>
+            Zip: <?= $zip ?><br>
+            Coordinates: (<?= $lat ?>, <?= $lon ?>)<br>
+            Time Zone: <?= $timezone ?><br>
+            Internet Service Provider: <?= $isp ?><br>
+            Organization: <?= $org ?><br>
+            As Number/Name: <?= $as ?>
+        <?php } else {
             ?>An error has occurred. It has been logged.<?php //TODO Log error
-        } ?>
+    }
+        ?>
     </p>
 </div>
 <br>

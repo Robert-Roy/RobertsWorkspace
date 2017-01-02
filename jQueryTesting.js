@@ -7,43 +7,44 @@ var pathname = window.location.pathname;
 var $defaultHighlighted //gets set after pageload
 var blnCorrectHighlight = false;   // a bln that notes whether or not something has moved the navbar unusually
 
-function navpop(){
+function navpop() {
     //hamburger icon click onClick, toggles navbar open/shut
     $('#navtop').toggleClass('open');
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
     //hamburger clicking anywhere on the screen except the
     // navbar links and burger closes
     //the navtop menu once opened
     //hamburger closes with another function above
-    $('body').click(function(event){
+    $('body').click(function (event) {
         $target = $(event.target);
-        if(!$target.hasClass('header_link')
+        if (!$target.hasClass('header_link')
                 && !$target.hasClass('burger')
-                && $('#navtop').hasClass('open')){
+                && $('#navtop').hasClass('open')) {
             $('#navtop').removeClass('open');
-        };
-        
-    });
-    
-    
+        }
+        ;
 
-   $('body').css("background-image", "url(img/Sample.jpg)") ;
-   $defaultHighlighted = $('#sitename');// $defaultHighlighted is where the header highlighter goes when not actively covering something
+    });
+
+
+
+    $('body').css("background-image", "url(img/Sample.jpg)");
+    $defaultHighlighted = $('#sitename');// $defaultHighlighted is where the header highlighter goes when not actively covering something
 
     setHighlightedLink(true); // check path on pageload and place highlighter
-    $(window).resize(function(){
-        if(window.innerWidth<520){
-            if(!$defaultHighlighted.is($('#sitename'))){
+    $(window).resize(function () {
+        if (window.innerWidth < 520) {
+            if (!$defaultHighlighted.is($('#sitename'))) {
                 //move highlighter to sitename if it isn't there
                 $defaultHighlighted = $('#sitename');
                 $('#highlighter').stop();
                 animateTo($('#highlighter'), $defaultHighlighted, 0);
                 blnCorrectHighlight = false;
             }
-        }else{
-            if(!blnCorrectHighlight){
+        } else {
+            if (!blnCorrectHighlight) {
                 //if the page resizes large enough and the path has not been checked
                 //since $defaultHighlighted has been chosen last
                 //check the path to verify correct header element is in fact chosen
@@ -53,33 +54,33 @@ $(document).ready(function(){
             $('#navtop').removeClass('open');
         }
     });
-   
-   $('.header_link').hover(function(){
-       //fancy highlighting of header links
-       $(this).finish();
-       $(this).fadeTo(75, 0.75, 'swing');
-       $(this).fadeTo(125, 0.85, 'swing');
-   }, function(){
-       //fancy highlighting of header links
-       $(this).finish();
-       $(this).fadeTo(200, 1, 'swing');
-   });
-   $('.header_link, #sitename').hover(function(){
-      //highlighting header links on hover
-       $('#highlighter').stop(true); //needs two to compensate for delay
-       if($('body').width() > 520){
+
+    $('.header_link').hover(function () {
+        //fancy highlighting of header links
+        $(this).finish();
+        $(this).fadeTo(75, 0.75, 'swing');
+        $(this).fadeTo(125, 0.85, 'swing');
+    }, function () {
+        //fancy highlighting of header links
+        $(this).finish();
+        $(this).fadeTo(200, 1, 'swing');
+    });
+    $('.header_link, #sitename').hover(function () {
+        //highlighting header links on hover
+        $('#highlighter').stop(true); //needs two to compensate for delay
+        if ($('body').width() > 520) {
             animateTo($('#highlighter'), $(this), 0);
-       }
-   }, function(){
-       animateTo($('#highlighter'), $defaultHighlighted, 500);
-   });
+        }
+    }, function () {
+        animateTo($('#highlighter'), $defaultHighlighted, 500);
+    });
 });
 
-function animateTo($moved, $newParent, intDelayMS){
+function animateTo($moved, $newParent, intDelayMS) {
     //moves an absolute position element to the position of another element,
     //regardless of parent container. Also changes size of moving object to fit 
     //other object + 10px on each side
-    
+
 
     marginLeft = $newParent.css('margin-left');
     marginLeft = Number(marginLeft.replace("px", ""));
@@ -88,11 +89,11 @@ function animateTo($moved, $newParent, intDelayMS){
     $moved.delay(intDelayMS).animate({left: paddingLeft + marginLeft + $newParent.position().left
                 + $newParent.parent().offset().left - $moved.parent().offset().left
                 - 10,
-                width:$newParent.width() +20}, 200);
+        width: $newParent.width() + 20}, 200);
 
 }
 
-function validateContactForm(){
+function validateContactForm() {
     //clientside check, just makes sure fields are not overlooked
     //no validation occurs client-side on data integrity
     //TODO make this prettier
@@ -107,75 +108,78 @@ function validateContactForm(){
     inputmessage = document.getElementsByName("message")[0];
     strmessage = inputmessage.value;
     blnvalidinput = true;
-    
-    if(strname===""){
-        blnvalidinput=false;
-        $(inputname).css("background","#ffb3b3");
-    }else{
-        $(inputname).css("background","#b3ffb3");
+
+    if (strname === "") {
+        blnvalidinput = false;
+        $(inputname).css("background", "#ffb3b3");
+    } else {
+        $(inputname).css("background", "#b3ffb3");
     }
-    if(stremail===""){
-        blnvalidinput=false;
-        $(inputemail).css("background-color","#ffb3b3");
-    }else{
-        $(inputemail).css("background","#b3ffb3");
+    if (stremail === "") {
+        blnvalidinput = false;
+        $(inputemail).css("background-color", "#ffb3b3");
+    } else {
+        $(inputemail).css("background", "#b3ffb3");
     }
-    if(strphone===""){
-        blnvalidinput=false;
-        $(inputphone).css("background-color","#ffb3b3");
-    }else{
-        $(inputphone).css("background","#b3ffb3");
+    if (strphone === "") {
+        blnvalidinput = false;
+        $(inputphone).css("background-color", "#ffb3b3");
+    } else {
+        $(inputphone).css("background", "#b3ffb3");
     }
-    if(strmessage===""){
-        blnvalidinput=false;
-        $(inputmessage).css("background-color","#ffb3b3");
-    }else{
-        $(inputmessage).css("background","#b3ffb3");
+    if (strmessage === "") {
+        blnvalidinput = false;
+        $(inputmessage).css("background-color", "#ffb3b3");
+    } else {
+        $(inputmessage).css("background", "#b3ffb3");
     }
-    
-    if(blnvalidinput===false){
+
+    if (blnvalidinput === false) {
         return false;
     }
-    
-};
 
-function setHighlightedLink(blnSnapTo){
+}
+;
+
+function setHighlightedLink(blnSnapTo) {
     // function checks whether the highlighter should set $defaultHighlighted
     //to something other than the #sitename. blnSnapTo causes the function
     //to send the highlighter instantly to its destination, usually for page loads
-   if(window.innerWidth>=520){
-       //check header only if screen is large enough to display full header
-        if(pathname.includes("projects")){
+    if (window.innerWidth >= 520) {
+        //check header only if screen is large enough to display full header
+        if (pathname.includes("projects")) {
             $defaultHighlighted = $('.header_link:contains("Projects")');
-            if($defaultHighlighted === null){
+            if ($defaultHighlighted === null) {
                 $defaultHighlighted = $('#sitename');
             }
             $('#highlighter').stop();
             animateTo($('#highlighter'), $defaultHighlighted, 0);
-            if(blnSnapTo){
+            if (blnSnapTo) {
                 $('#highlighter').finish();
             }
-        }else if(pathname.includes("contact")){
+        } else if (pathname.includes("contact")) {
             $defaultHighlighted = $('.header_link:contains("Contact")');
-            if($defaultHighlighted === null){
+            if ($defaultHighlighted === null) {
                 $defaultHighlighted = $('#sitename');
             }
             $('#highlighter').stop();
             animateTo($('#highlighter'), $defaultHighlighted, 0);
-            if(blnSnapTo){
+            if (blnSnapTo) {
                 $('#highlighter').finish();
             }
-        };
-   }else{
-       //checkpath later when the screen is bigger
-       blnCorrectHighlight = false;
-   }
+        }
+        ;
+    } else {
+        //checkpath later when the screen is bigger
+        blnCorrectHighlight = false;
+    }
 }
 
-if(!String.prototype.includes) {
+if (!String.prototype.includes) {
     //because ie/opera/safari don't have .includes
-    String.prototype.includes = function() {
+    String.prototype.includes = function () {
         'use strict';
         return String.prototype.indexOf.apply(this, arguments) !== -1;
     };
-};
+}
+;
