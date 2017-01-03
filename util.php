@@ -18,13 +18,13 @@ Class util {
     public static $IPDATA = "ipdata.php";
     public static $CSS = "default.css";
     public static $WWW = "img/WWW.jpg";
+    public static $PRIVACY = "privacy.php";
 
     //TODO: Language constants
     //TODO: SQL Demonstration page
     //TODO: anti injection of sql
     //TODO: admin page to delete sql posts
     //TODO: About page
-    //todo: set header bar to sit over current page
 
     public static function printheader($title) {
         //Prints the page header, title (as string), printed in title format
@@ -72,6 +72,7 @@ Class util {
                     //Prints the page footer
                     //used at the bottom of every page
                     ?>          <div id="footerdiv">
+                        <a href="<?= util::$PRIVACY ?>">Privacy Policy</a>
                         <a href="<?= util::$CONTACT ?>">Get in touch with Robert</a>
                     </div>
                 </div>

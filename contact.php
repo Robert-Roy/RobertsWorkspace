@@ -4,17 +4,8 @@ All rights reserved. Copyright Robert Roy 2016.
 -->
 
 <?php
-//todo res
-//todo autoresize text area
 //error hover messages
-//todo calendar practice
-//practice numerical inputs
-//input patern validation
-// create a password project
-//location practice
 //hover/focus change appearance
-//swipe left/right program
-// practice even tlisteners in javascript, especially adding them
 
 include("util.php");
 util::printheader("Send Robert a Message");
