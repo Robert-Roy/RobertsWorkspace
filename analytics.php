@@ -1,4 +1,5 @@
 <?php
+//todo Log This Serverside
 $page = $_SERVER['PHP_SELF'];
 $time = date("Y-m-d H:i:s");
 $IP = htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITIZE_STRING));
@@ -20,9 +21,9 @@ Information about this ip:
     Organization: $org
     ");
     } else {
-        mail('robertproy@live.com', "Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 2");
+        mail('robertproy@live.com', "Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 2"); //TODO Log error locally
     }
 } else {
-    mail('robertproy@live.com', "Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 1");
+    mail('robertproy@live.com', "Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 1"); //TODO Log error locally
 }
 ?>

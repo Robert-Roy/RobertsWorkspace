@@ -72,7 +72,7 @@ Class util {
                     //Prints the page footer
                     //used at the bottom of every page
                     ?>          <div id="footerdiv">
-                        <a href="<?= util::$PRIVACY ?>">Privacy Policy</a>
+                        <a id="privacy" href="<?= util::$PRIVACY ?>">Privacy</a>
                         <a href="<?= util::$CONTACT ?>">Get in touch with Robert</a>
                     </div>
                 </div>
