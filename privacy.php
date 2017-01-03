@@ -26,12 +26,11 @@ util::printheader("Privacy Policy");
         <li>Your state</li>
         <li>Your country</li>
         <li>Your organization</li>
+        <li>Any information you enter</li>
     </ul>
     <br>
     <br>
-    <p>This website will share non-identifying information with other users.
-    At that time, a mechanism will be created to delete information about your
-    IP address. Your IP address will not be shared with other users.</p>
+    <p>This website will share non-identifying information with other users.</p>
     <br>
     <p>No identifying information will be sold, rented, or given away except
         as required by government entities.</p>
