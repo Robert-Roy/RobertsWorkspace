@@ -49,9 +49,14 @@ util::printheader("My Degree is in Business");
         <li>PHP (<?= phpversion(); ?>)</li>
         <li>JavaScript</li>
         <li>jQuery</li>
-        <li>Git (<a href=<?=util::GITHUB?>>Code Here</a>)</li>
+        <li>Git</li>
     </ul>
 </div>
+<br>
+<div class="contentdiv">
+    <p><a href=<?= util::$GITHUB?>>Click here for code</a></p>
+</div>
+
 <?php
 util::printfooter();
 ?>
