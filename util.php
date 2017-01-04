@@ -19,6 +19,7 @@ Class util {
     public static $CSS = "default.css";
     public static $WWW = "img/WWW.jpg";
     public static $PRIVACY = "privacy.php";
+    public static $GITHUB = "github.php";
 
     //TODO: Language constants
     //TODO: SQL Demonstration page

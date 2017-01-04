@@ -49,7 +49,7 @@ util::printheader("My Degree is in Business");
         <li>PHP (<?= phpversion(); ?>)</li>
         <li>JavaScript</li>
         <li>jQuery</li>
-        <li>Git</li>
+        <li>Git (<a href=<?=util::GITHUB?>>Code Here</a>)</li>
     </ul>
 </div>
 <?php
