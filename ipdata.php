@@ -38,10 +38,10 @@ if (is_object($array)) {
     <p>
         <?php
         if ($apierror === true) {
-            util::mailadmin("Page Error", "ipdata.php caused an error CODE 1");
+            util::handleerror("35878693671");
             ?>Unable to make connection to ip-api.com.<?php
         } elseif ($status === "fail") {
-            util::mailadmin("Page Error", "ipdata.php caused an error CODE 2");
+            util::handleerror("68735357732");
             ?>An error has occurred. It has been logged.<?php
         } elseif ($status === "success") {
             ?>
@@ -55,7 +55,7 @@ if (is_object($array)) {
             Organization: <?= $org ?><br>
             As Number/Name: <?= $as ?>
         <?php } else {
-            util::mailadmin("Page Error", "ipdata.php caused an error CODE 3");
+            util::handleerror("2531432154235123");
             ?>An error has occurred. It has been logged.<?php //TODO Log error
     }
         ?>

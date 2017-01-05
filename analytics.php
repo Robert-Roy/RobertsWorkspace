@@ -22,9 +22,9 @@ Information about this ip:
     Organization: $org
     ");
     } else {
-        util::mailadmin("Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 2"); //TODO Log error locally
+        util::handleerror("Analytics failed for some reason at $time for $IP CODE 2"); //TODO Log error locally
     }
 } else {
-    util::mailadmin("Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 1"); //TODO Log error locally
+    util::handleerror( "Analytics failed for some reason at $time for $IP CODE 1"); //TODO Log error locally
 }
 ?>

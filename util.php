@@ -7,7 +7,6 @@ Class util {
     public static $HAMBURGER = "img/hamburgerwhite.png";
     public static $MCSLOGO = "img/mcs-logo.jpg";
     public static $HOME = "index.php";
-    public static $S404 = "404me.php";
     public static $ICO = "favicon.ico";
     public static $CONTACT = "contact.php";
     public static $PROJECTS = "projects.php";
@@ -29,8 +28,13 @@ Class util {
     //TODO: About page
     public static function mailadmin($subject, $message) {
         if($_SERVER['SERVER_ADDR']!="::1"){
+            //Less than ideal method for preventing mail errors
+            //Will suffice for now
             mail(util::$ADMINEMAIL, $subject, $message);
         }
+    }
+    public static function handleerror($errorcode){
+        mailadmin("Site Error", "Error " . $errorcode . " occurred on " . $_SERVER['PHP_SELF'] . ".");
     }
     public static function printheader($title) {
         //Prints the page header, title (as string), printed in title format
