@@ -34,7 +34,7 @@ Class util {
         }
     }
     public static function handleerror($errorcode){
-        mailadmin("Site Error", "Error " . $errorcode . " occurred on " . $_SERVER['PHP_SELF'] . ".");
+        util::mailadmin("Site Error", "Error " . $errorcode . " occurred on " . $_SERVER['PHP_SELF'] . ".");
     }
     public static function printheader($title) {
         //Prints the page header, title (as string), printed in title format
