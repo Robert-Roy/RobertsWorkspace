@@ -3,7 +3,7 @@
 All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
-include("util.php");
+include_once "util.php";
 util::printheader("My Degree is in Business");
 //todo GIT links
 //todo Fix "I have used" section to resize better

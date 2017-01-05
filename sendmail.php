@@ -10,7 +10,7 @@ All rights reserved. Copyright Robert Roy 2016.
 //TODO validate ability to mail
 //todo android button design
 //todo confirm send page
-include("util.php");
+include_once "util.php";
 util::printheader("Delivery");
 ?>                            
 <div class="contentdiv">
@@ -47,7 +47,7 @@ util::printheader("Delivery");
         $strInvalidReasons = $strInvalidReasons . "</ul>";
 
         if ($blnvalidinput) {
-            mail('robertproy@live.com', 'Contact Form Inquiry', $finalmessage, "From: noreply@robertsworkspace.com");
+            util::mailadmin('robertproy@live.com', 'Contact Form Inquiry', $finalmessage, "From: noreply@robertsworkspace.com");
             ?><p>Your message has been successfully sent. Thank you.</p><?php
             } else {
                 ?><p>Your message was not for the following reasons:

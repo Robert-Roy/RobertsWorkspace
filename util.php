@@ -20,13 +20,18 @@ Class util {
     public static $WWW = "img/WWW.jpg";
     public static $PRIVACY = "privacy.php";
     public static $GITHUB = "github.php";
+    public static $ADMINEMAIL = "robertproy@live.com";
 
     //TODO: Language constants
     //TODO: SQL Demonstration page
     //TODO: anti injection of sql
     //TODO: admin page to delete sql posts
     //TODO: About page
-
+    public static function mailadmin($subject, $message) {
+        if($_SERVER['SERVER_ADDR']!="::1"){
+            mail(util::$ADMINEMAIL, $subject, $message);
+        }
+    }
     public static function printheader($title) {
         //Prints the page header, title (as string), printed in title format
         //used at the top of every page

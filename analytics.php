@@ -1,4 +1,5 @@
 <?php
+include_once "util.php";
 //todo Log This Serverside
 $page = $_SERVER['PHP_SELF'];
 $time = date("Y-m-d H:i:s");
@@ -12,7 +13,7 @@ if (is_object($array)) {
         $regionName = htmlspecialchars(\filter_var(\trim($array->regionName), FILTER_SANITIZE_STRING));
         $city = htmlspecialchars(\filter_var(\trim($array->city), FILTER_SANITIZE_STRING));
         $org = htmlspecialchars(\filter_var(\trim($array->org), FILTER_SANITIZE_STRING));
-        mail('robertproy@live.com', "Pageload Logged", "$IP loaded $page at $time
+        util::mailadmin("Pageload Logged", "$IP loaded $page at $time
         
 Information about this ip:
     Country: $country
@@ -21,9 +22,9 @@ Information about this ip:
     Organization: $org
     ");
     } else {
-        mail('robertproy@live.com', "Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 2"); //TODO Log error locally
+        util::mailadmin("Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 2"); //TODO Log error locally
     }
 } else {
-    mail('robertproy@live.com', "Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 1"); //TODO Log error locally
+    util::mailadmin("Analytics Failure", "Analytics failed for some reason at $time for $IP CODE 1"); //TODO Log error locally
 }
 ?>

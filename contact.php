@@ -7,7 +7,7 @@ All rights reserved. Copyright Robert Roy 2016.
 //error hover messages
 //hover/focus change appearance
 
-include("util.php");
+include_once "util.php";
 util::printheader("Send Robert a Message");
 ?>
 <div class="contentdiv contactdiv">  

@@ -3,7 +3,7 @@
 All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
-include("util.php");
+include_once "util.php";
 util::printheader("Privacy Policy");
 ?>
 <div class="contentdiv">

@@ -3,7 +3,7 @@
 All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
-include("util.php");
+include_once "util.php";
 util::printheader("What your IP says about you:");
 $apierror = false; //this will tell me if i could not get the json file from ip-api.com
 $IP = htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITIZE_STRING));
@@ -38,8 +38,10 @@ if (is_object($array)) {
     <p>
         <?php
         if ($apierror === true) {
+            util::mailadmin("Page Error", "ipdata.php caused an error CODE 1");
             ?>Unable to make connection to ip-api.com.<?php
         } elseif ($status === "fail") {
+            util::mailadmin("Page Error", "ipdata.php caused an error CODE 2");
             ?>An error has occurred. It has been logged.<?php
         } elseif ($status === "success") {
             ?>
@@ -53,6 +55,7 @@ if (is_object($array)) {
             Organization: <?= $org ?><br>
             As Number/Name: <?= $as ?>
         <?php } else {
+            util::mailadmin("Page Error", "ipdata.php caused an error CODE 3");
             ?>An error has occurred. It has been logged.<?php //TODO Log error
     }
         ?>

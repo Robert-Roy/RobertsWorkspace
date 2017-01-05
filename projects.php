@@ -3,7 +3,7 @@
 All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
-include("util.php");
+include_once "util.php";
 util::printheader("Robert's Project Portfolio");
 //TODO: programatically generate list from some sort of database
 //TODO: Wider text, wider images (doesn't look good atm)
