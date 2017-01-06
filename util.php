@@ -1,7 +1,9 @@
 <?php
 
 Class util {
-
+    //If uninitialized, static functions are useful all over the website.
+    //If initialized, creates a mysql connection ($conn) using sqlconnector.php
+    //For security reasons, sqlconnector.php is not included in this repository.
     public static $BACKGROUND = "img/Sample.jpg";
     public static $UNDERCONSTRUCTION = "img/under-const.png";
     public static $HAMBURGER = "img/hamburgerwhite.png";
@@ -20,7 +22,12 @@ Class util {
     public static $PRIVACY = "privacy.php";
     public static $GITHUB = "github.php";
     public static $ADMINEMAIL = "robertproy@live.com";
-
+    private $conn = false;
+    
+    public function __construct(){
+        include_once("sqlconnector.php");
+        $this->conn = SQLConnector::Conn();
+    }
     //TODO: Language constants
     //TODO: SQL Demonstration page
     //TODO: anti injection of sql
