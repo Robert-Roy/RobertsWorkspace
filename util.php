@@ -30,13 +30,9 @@ Class util {
     }
     //TODO: Language constants
     //TODO: SQL Demonstration page
-    //TODO: anti injection of sql
     //TODO: admin page to delete sql posts
-    //TODO: About page
     public static function mailadmin($subject, $message) {
         if($_SERVER['SERVER_ADDR']!="::1"){
-            //Less than ideal method for preventing mail errors
-            //Will suffice for now
             mail(util::$ADMINEMAIL, $subject, $message);
         }
     }

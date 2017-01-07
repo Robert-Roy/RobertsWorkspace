@@ -3,12 +3,9 @@
 All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
-//TODO resources
 //TODO better validate information before sending email
 //TODO block banned IPs
 //TODO banip page
-//TODO validate ability to mail
-//todo android button design
 //todo confirm send page
 include_once "util.php";
 util::printheader("Delivery");

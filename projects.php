@@ -6,11 +6,7 @@ All rights reserved. Copyright Robert Roy 2016.
 include_once "util.php";
 util::printheader("Robert's Project Portfolio");
 //TODO: programatically generate list from some sort of database
-//TODO: Wider text, wider images (doesn't look good atm)
 //TODO: Responsive images/load images
-//TODO: Swappy layout
-//TODO: clean up
-//TODO: collapsible margin expiriments
 ?>
 
 <div class="centered" style="max-width:1280px;margin-top:15px;">

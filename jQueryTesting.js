@@ -2,7 +2,6 @@
  * All rights reserved. Copyright Robert Roy 2016.
  */
 
-//todo close toggle on click anywhere
 var pathname = window.location.pathname;
 var $defaultHighlighted //gets set after pageload
 var blnCorrectHighlight = false;   // a bln that notes whether or not something has moved the navbar unusually
