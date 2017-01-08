@@ -11,14 +11,13 @@ util::printheader("Robert's Project Portfolio");
 
 <div class="centered" style="max-width:1280px;margin-top:15px;">
     <div class="contentdiv projectcontainer">
-        <a class='flexFull' href="<?= util::$HOME ?>">
+        <a class='flexFull' href="<?= util::$GITHUB ?>">
             <div class='imagediv'>
-                <div class="projectsquare"style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
+                <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
                     <div class='contentdiv projectimage'>
                         <div class='flexFull'><h3>RobertsWorkspace.com</h3></div>
                         <p>This website was created to showcase my programming.
-                            Right now it doesn't do me much justice.
-                            When past and future projects are added, it will form a more complete picture.</p>
+                            Code is available on GitHub. Click here to see it.</p>
                     </div>
                 </div>
             </div>
@@ -27,9 +26,9 @@ util::printheader("Robert's Project Portfolio");
     <div class="contentdiv projectcontainer">
         <a class='flexFull' href="<?= util::$IPDATA ?>">
             <div class='imagediv'>
-                <div class="projectsquare"style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
+                <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
                     <div class='contentdiv projectimage'>
-                        <div class='flexFull'><h3>Robert's Analytics</h3></div>
+                        <div class='flexFull'><h3>About You</h3></div>
                         <p>I've been playing around with some IP geolocating APIs.
                             If you're curious what websites can see about you,
                             click here!</p>
@@ -40,7 +39,7 @@ util::printheader("Robert's Project Portfolio");
     </div>
     <div class="contentdiv projectcontainer">
         <a class='flexFull'  href="http://www.mymoneyfees.com">
-            <div class="projectsquare"style="background-image:url(<?= util::$WWW ?>);" align="center">
+            <div class="projectsquare" style="background-image:url(<?= util::$WWW ?>);" align="center">
                 <div class='contentdiv projectimage'>
                     <div class='flexFull'><h3>MyMoneyFees.com</h3></div>
                     <p>I did substantial work on this website before I had
