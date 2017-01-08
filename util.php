@@ -28,12 +28,27 @@ Class util {
         include_once("sqlconnector.php");
         $this->conn = SQLConnector::Conn();
     }
+    public function &getConn(){
+        return $this->conn;
+    }
+    public function query($query){
+        //Avoid use of this if at all possible. Use prepared statements.
+        $return = false;
+        try{
+            $return = $this->conn->query($query);
+        } catch (Exception $e) {
+            util::handleerror("PDO: " . $e->getMessage());
+        }
+        return $return;
+    }
     //TODO: Language constants
     //TODO: SQL Demonstration page
     //TODO: admin page to delete sql posts
     public static function mailadmin($subject, $message) {
         if($_SERVER['SERVER_ADDR']!="::1"){
             mail(util::$ADMINEMAIL, $subject, $message);
+        }else{
+            echo $subject . "<br>" . $message . "<br>";
         }
     }
     public static function handleerror($errorcode){
