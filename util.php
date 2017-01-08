@@ -1,6 +1,7 @@
 <?php
 
 Class util {
+
     //If uninitialized, static functions are useful all over the website.
     //If initialized, creates a mysql connection ($conn) using sqlconnector.php
     //For security reasons, sqlconnector.php is not included in this repository.
@@ -23,40 +24,45 @@ Class util {
     public static $GITHUB = "github.php";
     public static $ADMINEMAIL = "robertproy@live.com";
     private $conn = false;
-    
-    public function __construct(){
+
+    public function __construct() {
         include_once("sqlconnector.php");
         $this->conn = SQLConnector::Conn();
-        if($this->conn === null){
+        if ($this->conn === null) {
             util::handleerror("Could not make SQL connection");
         }
     }
-    public function &getConn(){
+
+    public function &getConn() {
         return $this->conn;
     }
-    public function query($query){
+
+    public function query($query) {
         //Avoid use of this if at all possible. Use prepared statements.
         $return = false;
-        try{
+        try {
             $return = $this->conn->query($query);
         } catch (Exception $e) {
             util::handleerror("PDO: " . $e->getMessage());
         }
         return $return;
     }
+
     //TODO: Language constants
     //TODO: SQL Demonstration page
     //TODO: admin page to delete sql posts
     public static function mailadmin($subject, $message) {
-        if($_SERVER['SERVER_ADDR']!="::1"){
+        if ($_SERVER['SERVER_ADDR'] != "::1") {
             mail(util::$ADMINEMAIL, $subject, $message);
-        }else{
+        } else {
             echo $subject . "<br>" . $message . "<br>";
         }
     }
-    public static function handleerror($errorcode){
+
+    public static function handleerror($errorcode) {
         util::mailadmin("Site Error", "Error " . $errorcode . " occurred on " . $_SERVER['PHP_SELF'] . ".");
     }
+
     public static function printheader($title) {
         //Prints the page header, title (as string), printed in title format
         //used at the top of every page
@@ -114,4 +120,4 @@ Class util {
 }
 
 include_once "analytics.php"
-?>
+            ?>

@@ -53,7 +53,7 @@ util::printheader("My Degree is in Business");
 </div>
 <br>
 <div class="contentdiv">
-    <p><a href=<?= util::$GITHUB?>>Click here for code</a></p>
+    <p><a href=<?= util::$GITHUB ?>>Click here for code</a></p>
 </div>
 
 <?php

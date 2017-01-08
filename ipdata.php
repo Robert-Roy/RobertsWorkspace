@@ -54,10 +54,12 @@ if (is_object($array)) {
             Internet Service Provider: <?= $isp ?><br>
             Organization: <?= $org ?><br>
             As Number/Name: <?= $as ?>
-        <?php } else {
+        <?php
+        } else {
             util::handleerror("2531432154235123");
-            ?>An error has occurred. It has been logged.<?php //TODO Log error
-    }
+            ?>An error has occurred. It has been logged.<?php
+            //TODO Log error
+        }
         ?>
     </p>
 </div>
