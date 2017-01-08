@@ -115,7 +115,14 @@ h3{
     color:white;
     text-decoration:none;
 }
-
+#pageviews{
+    display:box;
+    position:fixed;
+    right:0;
+    padding-right:8px;
+    bottom:0;
+    padding-bottom:38px;
+}
 #namebar{
     z-index:1;
     width:100%;

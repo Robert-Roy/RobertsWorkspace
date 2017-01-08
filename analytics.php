@@ -45,18 +45,6 @@ try {
         } else {
             util::handleerror("Analytics failed for some reason at $time for $IP CODE 1");
         }
-    }else{
-        //Find out how many times IP has viewed current page
-        $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ? and IP = ?');
-        $statement->execute([$page, $IP]);
-        $viewsonthispage = $statement->fetch(PDO::FETCH_NUM)[0];
-        
-        //Find out how many tips IP has viewed ALL pages
-        $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE IP = ?');
-        $statement->execute([$IP]);
-        $allviews = $statement->fetch(PDO::FETCH_NUM)[0];
-        
-        //TODO: Display this information somehow
     }
 } catch (Exception $ex) {
     util::handleerror("Analytics failed for some reason at $time for $IP CODE 4 " . $ex->getMessage());

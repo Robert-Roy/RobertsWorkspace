@@ -48,6 +48,24 @@ Class util {
         return $return;
     }
 
+    public function printviews($page, $IP) {
+        //Find out how many times IP has viewed current page
+        $statement = $this->conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ? and IP = ?');
+        $statement->execute([$page, $IP]);
+        $viewsonthispage = $statement->fetch(PDO::FETCH_NUM)[0];
+
+        //Find out how many times page has been viewed
+        $statement = $this->conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ?');
+        $statement->execute([$page]);
+        $allviews = $statement->fetch(PDO::FETCH_NUM)[0];
+
+        //TODO: Display this information somehow
+        ?>
+        <div id="pageviews">Your views on this page: <?= $viewsonthispage ?>
+            <br>Total views on this page: <?= $allviews ?></div>
+        <?php
+    }
+
     //TODO: Language constants
     //TODO: SQL Demonstration page
     //TODO: admin page to delete sql posts
@@ -120,4 +138,4 @@ Class util {
 }
 
 include_once "analytics.php"
-            ?>
+?>
