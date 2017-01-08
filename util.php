@@ -69,6 +69,20 @@ Class util {
     //TODO: Language constants
     //TODO: SQL Demonstration page
     //TODO: admin page to delete sql posts
+
+
+    public static function getUserIP() {
+        return htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITIZE_STRING));
+    }
+
+    public static function getPage() {
+        return $page = htmlspecialchars(\filter_var(\trim($_SERVER['PHP_SELF']), FILTER_SANITIZE_STRING));
+    }
+
+    public static function getTime() {
+        return $time = date("Y-m-d H:i:s");
+    }
+
     public static function mailadmin($subject, $message) {
         if ($_SERVER['SERVER_ADDR'] != "::1") {
             mail(util::$ADMINEMAIL, $subject, $message);
@@ -137,5 +151,5 @@ Class util {
 
 }
 
-include_once "analytics.php"
+include_once util::$ANALYTICS;
 ?>

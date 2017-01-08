@@ -7,12 +7,12 @@ include_once "util.php";
 
 $util = new util();
 $conn = $util->getConn();
-$page = htmlspecialchars(\filter_var(\trim($_SERVER['PHP_SELF']), FILTER_SANITIZE_STRING));
-$time = date("Y-m-d H:i:s");
-$IP = htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITIZE_STRING));
+$page = util::getPage();
+$time = util::getTime();
+$IP = util::getIP();
 
 try {
-    //Log Pageview
+//Log Pageview
     $statement = $conn->prepare('INSERT INTO PageViews VALUES (?, ?, NOW())');
     $statement->execute([$IP, $page]);
 } catch (Exception $ex) {
