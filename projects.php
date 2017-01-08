@@ -51,13 +51,15 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
-        <a class='flexFull'  href="http://www.mymoneyfees.com">
+        <a class='flexFull'  href="http://web.archive.org/web/20160312232628/http://mymoneyfees.com/">
             <div class="projectsquare" style="background-image:url(<?= util::$WWW ?>);" align="center">
                 <div class='contentdiv projectimage'>
                     <div class='flexFull'><h3>MyMoneyFees.com</h3></div>
                     <p>I did substantial work on this website before I had
                         researched responsive design. The website was designed
-                        on a WordPress platform.</p>
+                        on a WordPress platform. The current version has been heavily
+                        modified since then. An archived version is linked here courtesy
+                        of archive.org.</p>
                 </div>
             </div>
         </a>
