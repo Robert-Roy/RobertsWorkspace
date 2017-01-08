@@ -4,6 +4,7 @@ include_once "util.php";
 
 //TODO: Add a date to table so that if an IP visits again 6 months after the first
 //visit, it gets its information rechecked
+
 $util = new util();
 $conn = $util->getConn();
 $page = htmlspecialchars(\filter_var(\trim($_SERVER['PHP_SELF']), FILTER_SANITIZE_STRING));
@@ -17,6 +18,7 @@ try {
 } catch (Exception $ex) {
     util::handleerror("Analytics failed for some reason at $time for $IP CODE 3");
 }
+
 try {
     //Check if IP is unique, add to unique IP table if so.
     $statement = $conn->prepare('SELECT ID FROM UniqueIPs where IP = ?');
@@ -40,9 +42,9 @@ try {
             } else {
                 util::handleerror("Analytics failed for some reason at $time for $IP CODE 2");
             }
+        } else {
+            util::handleerror("Analytics failed for some reason at $time for $IP CODE 1");
         }
-    } else {
-        util::handleerror("Analytics failed for some reason at $time for $IP CODE 1");
     }
 } catch (Exception $ex) {
     util::handleerror("Analytics failed for some reason at $time for $IP CODE 4");
