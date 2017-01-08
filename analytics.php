@@ -9,7 +9,7 @@ $util = new util();
 $conn = $util->getConn();
 $page = util::getPage();
 $time = util::getTime();
-$IP = util::getIP();
+$IP = util::getUserIP();
 
 try {
 //Log Pageview
