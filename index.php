@@ -34,7 +34,7 @@ util::printheader("My Degree is in Business");
         <li>Java</li>
         <li>JavaScript</li>
         <li>Python</li>
-        <li>MSSQL</li>
+        <li>MySQL</li>
         <li>VB.NET</li>
         <li>GIMP 2</li>
         <li>jQuery</li>
@@ -49,6 +49,7 @@ util::printheader("My Degree is in Business");
         <li>JavaScript</li>
         <li>jQuery</li>
         <li>Git</li>
+        <li>MySQL (PDO)</li>
     </ul>
 </div>
 <br>
