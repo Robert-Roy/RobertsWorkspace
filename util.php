@@ -13,6 +13,7 @@ Class util {
     public static $ICO = "favicon.ico";
     public static $CONTACT = "contact.php";
     public static $PROJECTS = "projects.php";
+    public static $ROBERTSANALYTICS = "dashboard.php";
     public static $ANALYTICS = "analytics.php";
     public static $ABOUT = "about.php";
     public static $PHONE = "555-555-5555";

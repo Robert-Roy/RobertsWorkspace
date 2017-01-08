@@ -4,36 +4,46 @@ All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
 include_once "util.php";
-util::printheader("Privacy Policy");
+$util = new util();
+$conn = $util->getConn();
+$IP = $util->getUserIP();
+$page = $util->getPage();
+util::printheader("Robert's Analytics");
 ?>
 <div class="contentdiv">
-    <p>As of 1/2/2017:</p>
-    <br>
-    <p>This website collects, but does not store:</p>
-    <ul>
-        <li>Your zip code</li>
-        <li>Your (inexact) IP geolocated coordinates</li>
-        <li>Your time zone</li>
-        <li>Your ISP</li>
-        <li>Your as name/number</li>
-    </ul>
-    <br>
-    <br>
-    <p>This website stores:</p>
-    <ul>
-        <li>Your IP address</li>
-        <li>Your city</li>
-        <li>Your state</li>
-        <li>Your country</li>
-        <li>Your organization</li>
-        <li>Any information you enter</li>
-    </ul>
-    <br>
-    <br>
-    <p>This website will share non-identifying information with other users.</p>
-    <br>
-    <p>No identifying information will be sold, rented, or given away except
-        as required by government entities.</p>
+    <p>This page is still in development.</p>
+</div>
+<br>
+<div class="contentdiv">
+        <?php
+        //Find out how many times IP has viewed current page
+        $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ? and IP = ?');
+        $statement->execute([$page, $IP]);
+        $userviewsonthispage = $statement->fetch(PDO::FETCH_NUM)[0];
+
+        //Find out how many times page has been viewed
+        $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ?');
+        $statement->execute([$page]);
+        $allviewsonthispage = $statement->fetch(PDO::FETCH_NUM)[0];
+
+        //Find out how many times all pages have been viewed
+        $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE IP = ?');
+        $statement->execute([$IP]);
+        $userviewsonallpages = $statement->fetch(PDO::FETCH_NUM)[0];
+        
+        //Find out how many times page has been viewed
+        $statement = $conn->prepare('SELECT * FROM PageViews');
+        $statement->execute();
+        $allviewsonallpages = $statement->rowCount();
+        //TODO: Display this information somehow
+        ?>
+        <p>
+            Your views on this page: <?= $userviewsonthispage ?>
+        <br>Total views on this page: <?= $allviewsonthispage ?>
+        <br>
+        <br>Your views on all pages: <?= $userviewsonallpages ?>
+        <br>Total views on all pages: <?= $allviewsonallpages ?>
+        </p>
 </div>
 <?php
 util::printfooter();

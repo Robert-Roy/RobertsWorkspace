@@ -24,6 +24,19 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
+        <a class='flexFull' href="<?= util::$ROBERTSANALYTICS ?>">
+            <div class='imagediv'>
+                <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
+                    <div class='contentdiv projectimage'>
+                        <div class='flexFull'><h3>About You</h3></div>
+                        <p>This page displays analytics information gathered on this website.
+                            It is going to supply more information in the very near future.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="contentdiv projectcontainer">
         <a class='flexFull' href="<?= util::$IPDATA ?>">
             <div class='imagediv'>
                 <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
