@@ -15,7 +15,8 @@ util::printheader("Robert's Analytics");
 </div>
 <br>
 <div class="contentdiv">
-        <?php
+    <?php
+    try {
         //Find out how many times IP has viewed current page
         $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ? and IP = ?');
         $statement->execute([$page, $IP]);
@@ -30,7 +31,7 @@ util::printheader("Robert's Analytics");
         $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE IP = ?');
         $statement->execute([$IP]);
         $userviewsonallpages = $statement->fetch(PDO::FETCH_NUM)[0];
-        
+
         //Find out how many times page has been viewed
         $statement = $conn->prepare('SELECT * FROM PageViews');
         $statement->execute();
@@ -39,11 +40,18 @@ util::printheader("Robert's Analytics");
         ?>
         <p>
             Your views on this page: <?= $userviewsonthispage ?>
-        <br>Total views on this page: <?= $allviewsonthispage ?>
-        <br>
-        <br>Your views on all pages: <?= $userviewsonallpages ?>
-        <br>Total views on all pages: <?= $allviewsonallpages ?>
-        </p>
+            <br>Total views on this page: <?= $allviewsonthispage ?>
+            <br>
+            <br>Your views on all pages: <?= $userviewsonallpages ?>
+            <br>Total views on all pages: <?= $allviewsonallpages ?>
+        </p> 
+        <?php
+    } catch (Exception $ex) {
+        Echo "An error occurred. It has been reported.";
+        util::handleerror("Error occurred on " .
+                $page . " at " . $time . ". " . $ex->getmesage);
+    }
+    ?>
 </div>
 <?php
 util::printfooter();
