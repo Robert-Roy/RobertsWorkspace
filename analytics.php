@@ -31,14 +31,7 @@ if (is_object($array)) {
             //Check if IP is unique, add to unique IP table if so.
             $statement = $conn->prepare('SELECT ID FROM UniqueIPs where IP = ?');
             $result = $statement->execute([$IP]);
-            $instance = false;
-            if (is_array($result) || is_object($result)) {
-                foreach ($result as $row) {
-                    $instance = true;
-                    break;
-                }
-            }
-            if ($instance === false) {
+            if($statement->rowcount() === 0){
                 $statement = $conn->prepare("INSERT INTO UniqueIPs (IP, COUNTRY, STATE, CITY, ORGANIZATION) VALUES (?, ?, ?, ?, ?)");
                 $statement->execute([$IP, $country, $regionName, $city, $org]);
             }

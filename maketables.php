@@ -1,13 +1,13 @@
 <?php
 
-/* 
+/*
  * All rights reserved. Copyright Robert Roy 2016.
  */
 
 include_once "util.php";
 $util = new util();
 //Initialize SQL Tables
-try{
+try {
     $util->query("CREATE TABLE UniqueIPs ("
             . "ID INT NOT NULL AUTO_INCREMENT, "
             . "IP TEXT, "
@@ -21,15 +21,14 @@ try{
     //Do nothing
     echo "ERROR ERROR ERROR ERROR eeg";
 }
-try{
+try {
     $util->query("CREATE TABLE PageViews ("
-        . "IP TEXT, "
-        . "PAGE TEXT, "
-        . "TIME DATETIME"
-        . ")");
+            . "IP TEXT, "
+            . "PAGE TEXT, "
+            . "TIME DATETIME"
+            . ")");
 } catch (Exception $ex) {
     //Do nothing
     echo "ERROR ERROR ERROR ERROR";
 }
-
 ?>
