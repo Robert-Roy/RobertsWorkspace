@@ -27,6 +27,9 @@ Class util {
     public function __construct(){
         include_once("sqlconnector.php");
         $this->conn = SQLConnector::Conn();
+        if($this->conn === null){
+            util::handleerror("Could not make SQL connection");
+        }
     }
     public function &getConn(){
         return $this->conn;
