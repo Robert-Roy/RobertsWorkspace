@@ -8,6 +8,16 @@ $time = date("Y-m-d H:i:s");
 $IP = htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITIZE_STRING));
 $json = file_get_contents("http://ip-api.com/json/$IP");
 $array = json_decode($json);
+
+try {
+    //Log Pageview
+    $conn->prepare('INSERT INTO PageViews VALUES (?, ?, NOW())');
+    $conn->execute([$IP, $page]);
+} catch (Exception $ex) {
+    util::handleerror("Analytics failed for some reason at $time for $IP CODE 3");
+}
+
+
 if (is_object($array)) {
     $status = htmlspecialchars(\filter_var(\trim($array->status), FILTER_SANITIZE_STRING));
     if ($status === "success") {
@@ -16,6 +26,7 @@ if (is_object($array)) {
         $regionName = htmlspecialchars(\filter_var(\trim($array->regionName), FILTER_SANITIZE_STRING));
         $city = htmlspecialchars(\filter_var(\trim($array->city), FILTER_SANITIZE_STRING));
         $org = htmlspecialchars(\filter_var(\trim($array->org), FILTER_SANITIZE_STRING));
+
         try {
             //Check if IP is unique, add to unique IP table if so.
             $conn->prepare('SELECT ID FROM UniqueIPs where IP = ?');
@@ -30,15 +41,9 @@ if (is_object($array)) {
                 $test->execute([$IP, $country, $regionName, $city, $org]);
             }
         } catch (Exception $ex) {
-        util::handleerror("Analytics failed for some reason at $time for $IP CODE 4");
+            util::handleerror("Analytics failed for some reason at $time for $IP CODE 4");
         }
-        try {
-            //Log Pageview
-            $conn->prepare('INSERT INTO PageViews VALUES (?, ?, NOW())');
-            $conn->execute([$IP, $page]);
-        } catch (Exception $ex) {
-        util::handleerror("Analytics failed for some reason at $time for $IP CODE 3");
-        }
+        
     } else {
         util::handleerror("Analytics failed for some reason at $time for $IP CODE 2");
     }
