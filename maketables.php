@@ -26,7 +26,7 @@ try{
     $util->query("CREATE TABLE PageViews ("
         . "IP TEXT, "
         . "PAGE TEXT, "
-        . "TIME TIMESTAMP"
+        . "TIME DATETIME"
         . ")");
 } catch (Exception $ex) {
     //Do nothing
