@@ -30,19 +30,19 @@ if (is_object($array)) {
                 $test->execute([$IP, $country, $regionName, $city, $org]);
             }
         } catch (Exception $ex) {
-            util::handleerror("Analytics failure code 2 at $time");
+        util::handleerror("Analytics failed for some reason at $time for $IP CODE 4");
         }
         try {
             //Log Pageview
             $conn->prepare('INSERT INTO PageViews VALUES (?, ?, NOW())');
             $conn->execute([$IP, $page]);
         } catch (Exception $ex) {
-            util::handleerror("Analytics failure code 2 at $time");
+        util::handleerror("Analytics failed for some reason at $time for $IP CODE 3");
         }
     } else {
-        util::handleerror("Analytics failed for some reason at $time for $IP CODE 2"); //TODO Log error locally
+        util::handleerror("Analytics failed for some reason at $time for $IP CODE 2");
     }
 } else {
-    util::handleerror("Analytics failed for some reason at $time for $IP CODE 1"); //TODO Log error locally
+    util::handleerror("Analytics failed for some reason at $time for $IP CODE 1");
 }
 ?>
