@@ -44,7 +44,7 @@ util::printheader("Delivery");
         $strInvalidReasons = $strInvalidReasons . "</ul>";
 
         if ($blnvalidinput) {
-            util::mailadmin('robertproy@live.com', 'Contact Form Inquiry', $finalmessage, "From: noreply@robertsworkspace.com");
+            util::mailadmin('Contact Form Inquiry', $finalmessage);
             ?><p>Your message has been successfully sent. Thank you.</p><?php
             } else {
                 ?><p>Your message was not for the following reasons:
