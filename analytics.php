@@ -32,9 +32,11 @@ if (is_object($array)) {
             $statement = $conn->prepare('SELECT ID FROM UniqueIPs where IP = ?');
             $result = $statement->execute([$IP]);
             $instance = false;
-            foreach ($result as $row) {
-                $instance = true;
-                break;
+            if (is_array($result) || is_object($result)) {
+                foreach ($result as $row) {
+                    $instance = true;
+                    break;
+                }
             }
             if ($instance === false) {
                 $statement = $conn->prepare("INSERT INTO UniqueIPs (IP, COUNTRY, STATE, CITY, ORGANIZATION) VALUES (?, ?, ?, ?, ?)");
@@ -43,7 +45,6 @@ if (is_object($array)) {
         } catch (Exception $ex) {
             util::handleerror("Analytics failed for some reason at $time for $IP CODE 4");
         }
-        
     } else {
         util::handleerror("Analytics failed for some reason at $time for $IP CODE 2");
     }
