@@ -6,7 +6,6 @@
 
 include_once "util.php";
 $util = new util();
-$conn = $util->getConn();
 //Initialize SQL Tables
 try{
     $util->query("CREATE TABLE UniqueIPs ("
