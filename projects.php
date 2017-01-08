@@ -28,7 +28,7 @@ util::printheader("Robert's Project Portfolio");
             <div class='imagediv'>
                 <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
                     <div class='contentdiv projectimage'>
-                        <div class='flexFull'><h3>About You</h3></div>
+                        <div class='flexFull'><h3>Robert's Analytics</h3></div>
                         <p>This page displays analytics information gathered on this website.
                             It is going to supply more information in the very near future.</p>
                     </div>
