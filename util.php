@@ -152,5 +152,7 @@ Class util {
 
 }
 
-include_once util::$ANALYTICS;
+if ($_SERVER['SERVER_ADDR'] != "::1") {
+    include_once util::$ANALYTICS;
+}
 ?>
