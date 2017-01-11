@@ -6,12 +6,12 @@ All rights reserved. Copyright Robert Roy 2016.
 include_once "util.php";
 util::printheader("My Degree is in Business");
 //todo Fix "I have used" section to resize better
-?>                    
+?>              
 <div class="contentdiv">
-    <p>I also know how to program.</p>
-</div>
-<br>
-<div class="contentdiv">
+    <div class="centered">
+        <p>I also know how to program.</p>
+    </div>
+    <br>
     <p>Ask any hiring manager in this industry what they need,
         and they will tell you,</p>
     <br>
