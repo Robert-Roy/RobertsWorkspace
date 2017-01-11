@@ -3,7 +3,7 @@
  */
 
 var pathname = window.location.pathname;
-var $defaultHighlighted; //gets set after pageload
+var $defaultHighlighted //gets set after pageload
 var blnCorrectHighlight = false;   // a bln that notes whether or not something has moved the navbar unusually
 
 function navpop() {
