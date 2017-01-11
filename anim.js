@@ -20,27 +20,23 @@ $(document).ready(function () {
     H = $('body').height();
     canvas.width = W;
     canvas.height = H;
-
-    var mp = 600;
+    var mp = 250;
     var particles = [];
     for (var i = 0; i < mp; i++) {
         particles.push({
             x: W / 2,
             y: H / 2,
-            r: Math.random() * 4 + 1,
-            d: Math.random() * 25 + 5,
+            r: Math.random() * 4 + 2,
+            d: Math.random() * 25 + 1,
             a: Math.random() * (Math.PI * 2)
         });
     }
 
-    function draw()
-    {
+    function draw() {
         context.clearRect(0, 0, W, H);
-
-        context.fillStyle = "rgba(255, 255, 255, .8)";
+        context.fillStyle = "rgba(255, 255, 255, 1)";
         context.beginPath();
-        for (var i = 0; i < mp; i++)
-        {
+        for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
             context.moveTo(p.x, p.y);
             context.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
@@ -50,11 +46,9 @@ $(document).ready(function () {
     }
 
     var speed = 0;
-    function update()
-    {
-        speed += 0.01;
-        for (var i = 0; i < mp; i++)
-        {
+    function update() {
+        speed += 0.05;
+        for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
             p.y += speed * Math.cos(p.a) * p.d;//+ p.d + 1 + p.r / 2;
 
@@ -68,15 +62,14 @@ $(document).ready(function () {
                  d: p.d,
                  a: Math.random() * (Math.PI * 2)
                  };*/
-                particles.slice(i, 1);
-            }
-            ;
+                //particles.splice(i, 1); Causes performance issues
+            };
         }
     }
-    setInterval(draw, 33);
+    var intervalID = setInterval(draw, 33);
     $(window).resize(function () {
         W = $canvas.width();
-        H = $canvas.width();
+        H = $canvas.height();
         //canvas.width = W;
         //canvas.height = H;
     });
