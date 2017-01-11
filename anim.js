@@ -1,39 +1,32 @@
-//This page currently experiences issues when the browser
-//changes from a small to a large window. Removing to avoid
-//artifacts.
 var $canvas;
-var W = window.innerWidth;
-var H = window.innerHeight;
-var context;
-var canvas;
 $(document).ready(function () {
     $('#main').append("<canvas id='canvas'\n\style='\n\
         position:fixed;\n\
         display:block;\n\
-        height:" + window.innerHeight + "px;\n\
+        height: 100%;\n\
         z-index:0;\n\
-        left:0;\n\
-        bottom:0;\n\
-        top:0;\n\
-        width:" + window.innerWidth + "px;'></canvas>");
+        top:50%;\n\
+        left:50%;\n\
+        -webkit-transform:translate(-50%, -50%);\n\
+        transform:translate(-50%, -50%);\n\
+        width: 100%;'></canvas>");
     //canvas init
     $canvas = $('#canvas');
-    canvas = document.getElementById("canvas");
-    context = canvas.getContext("2d");
-    //canvas dimensions
-    W = $('body').width();
-    H = $('body').height();
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var W = $canvas.width();
+    var H = $canvas.height();
     canvas.width = W;
     canvas.height = H;
     var mp = 250;
     var particles = [];
     for (var i = 0; i < mp; i++) {
         particles.push({
-            x: W / 2,
-            y: H / 2,
-            r: Math.random() * 4 + 2,
-            d: Math.random() * 25 + 1,
-            a: Math.random() * (Math.PI * 2)
+            x: W / 2, //start X
+            y: H / 2, //start Y
+            r: Math.random() * 4 + 2, //radius
+            d: Math.random() * 25 + 2, //density
+            a: Math.random() * (Math.PI * 2) // angle
         });
     }
 
@@ -52,7 +45,7 @@ $(document).ready(function () {
 
     var speed = 0;
     function update() {
-        speed += 0.05;
+        speed = speed + .05;
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
             p.y += speed * Math.cos(p.a) * p.d;//+ p.d + 1 + p.r / 2;
@@ -67,17 +60,12 @@ $(document).ready(function () {
                  d: p.d,
                  a: Math.random() * (Math.PI * 2)
                  };*/
-                //particles.splice(i, 1); Causes performance issues
+                particles.splice(i, 1);// Causes performance issues
+                i--;
             };
         }
     }
-    var intervalID = setInterval(draw, 33);
-    $(window).resize(function () {
-        W = $canvas.width();
-        H = $canvas.height();
-        //canvas.width = W;
-        //canvas.height = H;
-    });
+    setInterval(draw, 33);
 });
 
 
