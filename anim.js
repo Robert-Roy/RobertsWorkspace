@@ -1,20 +1,25 @@
-
+//This page currently experiences issues when the browser
+//changes from a small to a large window. Removing to avoid
+//artifacts.
 var $canvas;
 var W = window.innerWidth;
 var H = window.innerHeight;
+var context;
+var canvas;
 $(document).ready(function () {
     $('#main').append("<canvas id='canvas'\n\style='\n\
-        position:absolute;\n\
+        position:fixed;\n\
         display:block;\n\
         height:" + window.innerHeight + "px;\n\
         z-index:0;\n\
         left:0;\n\
+        bottom:0;\n\
         top:0;\n\
         width:" + window.innerWidth + "px;'></canvas>");
     //canvas init
     $canvas = $('#canvas');
-    var canvas = document.getElementById("canvas");
-    var context = canvas.getContext("2d");
+    canvas = document.getElementById("canvas");
+    context = canvas.getContext("2d");
     //canvas dimensions
     W = $('body').width();
     H = $('body').height();
