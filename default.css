@@ -1,6 +1,8 @@
 /*
 */
 *{
+    z-index:1;
+    position:relative;
     color:white;
     padding:0px;
     margin:0px;
@@ -35,6 +37,7 @@ body, html{
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow-x:hidden;
+    z-index: -1
 }
 #footerdiv{
     position:fixed;
@@ -70,6 +73,7 @@ body, html{
     box-shadow: 0px 0px 5px black;
     position:relative;
     display:block;
+    z-index:4;
 }
 #navwrapper{
     position:relative;
@@ -90,7 +94,7 @@ h3{
     margin-bottom:5px;
 }
 #navtop{
-    z-index:2;
+    z-index:3;
     position:absolute;
     -webkit-transform: translate(100%, 0%);
     transform:translate(100%, 0%);
@@ -99,7 +103,6 @@ h3{
     width:100%;
 }
 #navtop.open{
-    display:absolute;
     -webkit-transform:translate(0, 0);
     transform:translate(0, 0);
     background: rgba(0, 0, 0, .75);
@@ -107,6 +110,8 @@ h3{
     width:100%;
 }
 .header_link{
+    z-index:4;
+    position:relative;
     border-left:1px solid white;
     border-bottom:1px solid #444444;
     display:flex;
@@ -124,7 +129,7 @@ h3{
     padding-bottom:38px;
 }
 #namebar{
-    z-index:1;
+    z-index:2;
     width:100%;
     display:flex;
     flex-wrap:wrap;
