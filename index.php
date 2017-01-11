@@ -6,7 +6,7 @@ All rights reserved. Copyright Robert Roy 2016.
 include_once "util.php";
 util::printheader("My Degree is in Business");
 //todo Fix "I have used" section to resize better
-?>              
+?>
 <div class="contentdiv">
     <div class="centered">
         <p>I also know how to program.</p>

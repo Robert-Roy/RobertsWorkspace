@@ -1,5 +1,7 @@
 <?php
 
+//TODO: Only show animation for first pageload of the day
+
 Class util {
     //If uninitialized, static functions are useful all over the website.
     //If initialized, creates a mysql connection ($conn) using sqlconnector.php

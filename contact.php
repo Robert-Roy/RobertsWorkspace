@@ -4,8 +4,7 @@ All rights reserved. Copyright Robert Roy 2016.
 -->
 
 <?php
-//error hover messages
-//hover/focus change appearance
+//TODO error hover messages
 
 include_once "util.php";
 util::printheader("Send Robert a Message");
