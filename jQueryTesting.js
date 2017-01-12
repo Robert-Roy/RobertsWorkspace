@@ -29,7 +29,7 @@ $(document).ready(function () {
 
 
 
-    $('body').css("background-image", "url(img/Sample.jpg)");
+    $('body').css("background-image", "url(img/spiral.jpg)");
     $defaultHighlighted = $('#sitename');// $defaultHighlighted is where the header highlighter goes when not actively covering something
 
     setHighlightedLink(true); // check path on pageload and place highlighter
