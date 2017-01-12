@@ -24,6 +24,20 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
+        <a class='flexFull' href="http://robertsworkspace.com/animations/space.php">
+            <div class='imagediv'>
+                <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
+                    <div class='contentdiv projectimage'>
+                        <div class='flexFull'><h3>Light Speed!</h3></div>
+                        <p>An animation I spent a little while making. It looks like
+                            you are cruising through space. Check it out, if you're
+                            interested.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="contentdiv projectcontainer">
         <a class='flexFull' href="<?= util::$ROBERTSANALYTICS ?>">
             <div class='imagediv'>
                 <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
