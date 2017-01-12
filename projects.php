@@ -24,7 +24,7 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
-        <a class='flexFull' href="http://robertsworkspace.com/animations/space.php">
+        <a class='flexFull' href="http://robertsworkspace.com/lightspeed/space.php">
             <div class='imagediv'>
                 <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
                     <div class='contentdiv projectimage'>

@@ -62,7 +62,7 @@ $(document).ready(function () {
                  d: p.d,
                  a: Math.random() * (Math.PI * 2)
                  };*/
-                particles.splice(i, 1);// Causes performance issues
+                particles.splice(i, 1);
                 i--;
             }
             ;
