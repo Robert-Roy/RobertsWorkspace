@@ -6,10 +6,9 @@ Class util {
     //If uninitialized, static functions are useful all over the website.
     //If initialized, creates a mysql connection ($conn) using sqlconnector.php
     //For security reasons, sqlconnector.php is not included in this repository.
-    public static $BACKGROUND = "img/Sample.jpg";
-    public static $UNDERCONSTRUCTION = "img/under-const.png";
-    public static $HAMBURGER = "img/hamburgerwhite.png";
-    public static $MCSLOGO = "img/mcs-logo.jpg";
+    public static $BACKGROUND = "img/spiral.jpg";
+    public static $UNDERCONSTRUCTION = "img/sign.png";
+    public static $HAMBURGER = "img/hamburger.png";
     public static $HOME = "index.php";
     public static $ICO = "favicon.ico";
     public static $CONTACT = "contact.php";
@@ -21,7 +20,7 @@ Class util {
     public static $TITLE = "Robert's Workspace";
     public static $IPDATA = "ipdata.php";
     public static $CSS = "default.css";
-    public static $WWW = "img/WWW.jpg";
+    public static $WWW = "img/www.jpg";
     public static $PRIVACY = "privacy.php";
     public static $GITHUB = "github.php";
     public static $ADMINEMAIL = "robertproy@live.com";
