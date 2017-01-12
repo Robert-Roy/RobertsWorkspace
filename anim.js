@@ -26,13 +26,13 @@ $(document).ready(function () {
             y: H / 2, //start Y
             r: Math.random() * 4 + 2, //radius
             d: Math.random() * 25 + 2, //density
-            a: Math.random() * (Math.PI * 2) // angle
+            a: Math.random() * (Math.PI * 2), // angle
         });
     }
 
     function draw() {
         context.clearRect(0, 0, W, H);
-        context.fillStyle = "rgba(255, 255, 255, 1)";
+        context.fillStyle = "rgba(0, 0, 0, 1)";
         context.beginPath();
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
@@ -44,8 +44,10 @@ $(document).ready(function () {
     }
 
     var speed = 0;
+    var runcounter = 0;
     function update() {
-        speed = speed + .05;
+        speed +=.05;
+        runcounter++;
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
             p.y += speed * Math.cos(p.a) * p.d;//+ p.d + 1 + p.r / 2;
@@ -62,10 +64,11 @@ $(document).ready(function () {
                  };*/
                 particles.splice(i, 1);// Causes performance issues
                 i--;
-            };
+            }
+            ;
         }
     }
-    setInterval(draw, 33);
+    setTimeout(setInterval(draw, 33), 50);
 });
 
 
