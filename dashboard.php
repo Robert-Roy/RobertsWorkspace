@@ -21,17 +21,17 @@ util::printheader("Robert's Analytics");
         $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ? and IP = ?');
         $statement->execute([$page, $IP]);
         $userviewsonthispage = $statement->fetch(PDO::FETCH_NUM)[0];
-
+        
         //Find out how many times page has been viewed
         $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ?');
         $statement->execute([$page]);
         $allviewsonthispage = $statement->fetch(PDO::FETCH_NUM)[0];
-
+        
         //Find out how many times all pages have been viewed
         $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE IP = ?');
         $statement->execute([$IP]);
         $userviewsonallpages = $statement->fetch(PDO::FETCH_NUM)[0];
-
+        
         //Find out how many times page has been viewed
         $statement = $conn->prepare('SELECT * FROM PageViews');
         $statement->execute();
