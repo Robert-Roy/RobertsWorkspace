@@ -1,16 +1,12 @@
 <?php
-
 include_once "util.php";
-
 //TODO: Add a date to table so that if an IP visits again 6 months after the first
 //visit, it gets its information rechecked
-
 $util = new util();
 $conn = $util->getConn();
 $page = util::getPage();
 $time = util::getTime();
 $IP = util::getUserIP();
-
 try {
 //Log Pageview
     $statement = $conn->prepare('INSERT INTO PageViews VALUES (?, ?, NOW())');
@@ -18,7 +14,6 @@ try {
 } catch (Exception $ex) {
     util::handleerror("Analytics failed for some reason at $time for $IP CODE 3");
 }
-
 try {
     //Check if IP is unique, add to unique IP table if so.
     $statement = $conn->prepare('SELECT ID FROM UniqueIPs where IP = ?');
