@@ -20,11 +20,12 @@ img{
     text-align: center;
 }
 ul{
+    display:block;
     margin-top:10px;
+    margin-bottom:10px;
     margin-left:30px;
-    display:inline-block;
     text-align:left;
-    width:calc(100% - 30px);
+    /*width:calc(100% - 30px);*/
 }
 html{
     height:100%;

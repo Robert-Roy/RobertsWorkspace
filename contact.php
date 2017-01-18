@@ -17,7 +17,6 @@ util::printheader("Send Robert a Message");
         <input type="text" name="email" autocomplete="email" placeholder="johndoe@gmail.com">
         <label class="label"  for="phone">What is your phone number?</label>
         <input type="text" name="phone" autocomplete="tel" placeholder="555-555-5555">
-
         <label class="label" for="message">What would you like to say to me?</label>
         <textarea type="text" rows="4" name="message" placeholder="Hey, Robert. Nice website!"></textarea><br>
         <input class="crispbutton" style="margin-top:3px" type="submit" value="Send Message">
