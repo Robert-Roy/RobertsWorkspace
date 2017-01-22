@@ -39,9 +39,9 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
-        <a class='flexFull' href="<?= util::$GITHUB ?>">
+        <a class='flexFull' href="http://clockpuncher.robertsworkspace.com">
             <div class='imagediv'>
-                <div class="projectsquare" style="background-image:url(<?="http://clockpuncher.robertsworkspace.com"?>);" align="center">
+                <div class="projectsquare" style="background-image:url(<?= util::$WWW ?>);" align="center">
                     <div class='contentdiv projectimage'>
                         <div class='flexFull'><h3>Clock Puncher</h3></div>
                         <p>A website I'm collaborating with some friends on. So far
