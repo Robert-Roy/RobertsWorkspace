@@ -2,6 +2,7 @@
 /*
  * All rights reserved. Copyright Robert Roy 2016.
  */
+//todo make this its own site
 ?>
 
 <link rel="stylesheet" href=default.css>
