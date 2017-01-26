@@ -39,14 +39,14 @@ include_once('header.php')
     </div>
     <br>
     <span class="colorwhite">Not Robert?</span>
-    <a class="colorwhite" href="admin.php">Go Away</a>
+    <a class="colorwhite" href="../index.php">Click Here</a>
 </div>
 <?php
 
 function showForm($message) {
     ?>
 
-    <img id="loginbanner" src="img/sign.png"/>
+    <img id="loginbanner" src="../img/sign.png"/>
     <br>
     <br>
     <br>

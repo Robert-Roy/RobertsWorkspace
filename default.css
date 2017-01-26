@@ -61,6 +61,16 @@ body, html{
     padding-top:10px;
     padding-bottom:10px;
 }
+#admin{
+    position:fixed;
+    bottom:0;
+    right:0;
+    font-size:10px;
+    padding-right:10px;
+    padding-bottom:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
 #footerdiv>a{
     margin-left:auto;
     margin-right:auto;

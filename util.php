@@ -22,6 +22,7 @@ Class util {
     public static $CSS = "default.css";
     public static $WWW = "img/www.jpg";
     public static $PRIVACY = "privacy.php";
+    public static $ADMIN = "admin/admin.php";
     public static $GITHUB = "github.php";
     public static $ADMINEMAIL = "robertproy@live.com";
     private $conn = false;
@@ -145,6 +146,7 @@ Class util {
                     ?>          <div id="footerdiv">
                         <a id="privacy" href="<?= util::$PRIVACY ?>">Privacy</a>
                         <a href="<?= util::$CONTACT ?>">Get in touch with Robert</a>
+                        <a id="admin" href="<?= util::$ADMIN ?>">Admin</a>
                     </div>
                 </div>
             </body>
