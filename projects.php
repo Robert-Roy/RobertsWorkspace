@@ -52,7 +52,7 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
-        <a class='flexFull' href="lightspeed/space.php">
+        <a class='flexFull' href="http://lightspeed.robertsworkspace.com">
             <div class='imagediv'>
                 <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
                     <div class='contentdiv projectimage'>
