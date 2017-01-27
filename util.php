@@ -1,5 +1,5 @@
 <?php
-
+include_once 'forcehttps.php';
 //TODO: Only show animation for first pageload of the day
 
 Class util {

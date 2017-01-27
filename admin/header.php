@@ -1,7 +1,7 @@
 <!--
 All rights reserved. Copyright Robert Roy 2016.
 -->
-
+<?php include_once '../forcehttps.php';?>
 <html>
     <head>
         <meta charset="UTF-8">
