@@ -1,8 +1,10 @@
 <?php
 include_once 'forcehttps.php';
+
 //TODO: Only show animation for first pageload of the day
 
 Class util {
+
     //If uninitialized, static functions are useful all over the website.
     //If initialized, creates a mysql connection ($conn) using sqlconnector.php
     //For security reasons, sqlconnector.php is not included in this repository.
@@ -107,6 +109,7 @@ Class util {
                 <title><?= util::$TITLE; ?></title>
                 <link rel="icon" href=<?= util::$ICO; ?>>
                 <link rel="stylesheet" href=<?= util::$CSS; ?>>
+                <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
                 <script src="jQueryTesting.js"></script>
                 <script src="anim.js"></script>
@@ -121,7 +124,7 @@ Class util {
                                 <a id="sitename" href="<?= util::$HOME ?>"><?= util::$TITLE ?></a>
 
                                 <a id="header_burger" href="#" onClick="navpop();return false;">
-                                    <img class='burger' src="<?= util::$HAMBURGER ?>"/>
+                                    <div class='burger'>Menu</div>
                                 </a>
                             </div>
                             <nav id="navtop">
@@ -134,7 +137,7 @@ Class util {
 
                     </div>
                     <div class="contentdiv titlediv">
-                        <h2><?= $title ?></h2>
+                        <h1><?= $title ?></h1>
                     </div>
                     <br>
                     <?php

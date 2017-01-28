@@ -9,6 +9,7 @@ var blnCorrectHighlight = false;   // a bln that notes whether or not something 
 function navpop() {
     //hamburger icon click onClick, toggles navbar open/shut
     $('#navtop').toggleClass('open');
+    $('#header_burger').toggleClass('open');
 }
 
 $(document).ready(function () {
@@ -22,6 +23,7 @@ $(document).ready(function () {
                 && !$target.hasClass('burger')
                 && $('#navtop').hasClass('open')) {
             $('#navtop').removeClass('open');
+            $('#header_burger').removeClass('open');
         }
         ;
 
@@ -29,15 +31,15 @@ $(document).ready(function () {
 
 
 
-    $('body').css("background-image", "url(img/spiral.jpg)");
-    $defaultHighlighted = $('#sitename');// $defaultHighlighted is where the header highlighter goes when not actively covering something
+    //$('body').css("background-image", "url(img/untitled2muted.jpg)");
+    $defaultHighlighted = $('.header_link:contains("Home")');// $defaultHighlighted is where the header highlighter goes when not actively covering something
 
     setHighlightedLink(true); // check path on pageload and place highlighter
     $(window).resize(function () {
         if (window.innerWidth < 520) {
-            if (!$defaultHighlighted.is($('#sitename'))) {
+            if (!$defaultHighlighted.is($('.header_link:contains("Home")'))) {
                 //move highlighter to sitename if it isn't there
-                $defaultHighlighted = $('#sitename');
+                $defaultHighlighted = $('.header_link:contains("Home")');
                 $('#highlighter').stop();
                 animateTo($('#highlighter'), $defaultHighlighted, 0);
                 blnCorrectHighlight = false;
@@ -48,23 +50,13 @@ $(document).ready(function () {
                 //since $defaultHighlighted has been chosen last
                 //check the path to verify correct header element is in fact chosen
                 blnCorrectHighlight = !blnCorrectHighlight;
-                setHighlightedLink(false);
+                setHighlightedLink(true);
             }
             $('#navtop').removeClass('open');
+            $('#header_burger').removeClass('open');
         }
     });
-
     $('.header_link').hover(function () {
-        //fancy highlighting of header links
-        $(this).finish();
-        $(this).fadeTo(75, 0.75, 'swing');
-        $(this).fadeTo(125, 0.85, 'swing');
-    }, function () {
-        //fancy highlighting of header links
-        $(this).finish();
-        $(this).fadeTo(200, 1, 'swing');
-    });
-    $('.header_link, #sitename').hover(function () {
         //highlighting header links on hover
         $('#highlighter').stop(true); //needs two to compensate for delay
         if ($('body').width() > 520) {
@@ -87,8 +79,8 @@ function animateTo($moved, $newParent, intDelayMS) {
     paddingLeft = Number(paddingLeft.replace("px", ""));
     $moved.delay(intDelayMS).animate({left: paddingLeft + marginLeft + $newParent.position().left
                 + $newParent.parent().offset().left - $moved.parent().offset().left
-                - 10,
-        width: $newParent.width() + 20}, 200);
+                - 2,
+        width: $newParent.width() + 4}, 200);
 
 }
 
@@ -149,7 +141,7 @@ function setHighlightedLink(blnSnapTo) {
         if (pathname.includes("projects")) {
             $defaultHighlighted = $('.header_link:contains("Projects")');
             if ($defaultHighlighted === null) {
-                $defaultHighlighted = $('#sitename');
+                $defaultHighlighted = $('.header_link:contains("Home")');
             }
             $('#highlighter').stop();
             animateTo($('#highlighter'), $defaultHighlighted, 0);
@@ -159,8 +151,15 @@ function setHighlightedLink(blnSnapTo) {
         } else if (pathname.includes("contact")) {
             $defaultHighlighted = $('.header_link:contains("Contact")');
             if ($defaultHighlighted === null) {
-                $defaultHighlighted = $('#sitename');
+                $defaultHighlighted = $('.header_link:contains("Home")');
             }
+            $('#highlighter').stop();
+            animateTo($('#highlighter'), $defaultHighlighted, 0);
+            if (blnSnapTo) {
+                $('#highlighter').finish();
+            }
+        } else {
+            $defaultHighlighted = $('.header_link:contains("Home")');
             $('#highlighter').stop();
             animateTo($('#highlighter'), $defaultHighlighted, 0);
             if (blnSnapTo) {

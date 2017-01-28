@@ -17,8 +17,6 @@ util::printheader("Privacy Policy");
         <li>Your ISP</li>
         <li>Your as name/number</li>
     </ul>
-    <br>
-    <br>
     <p>This website stores:</p>
     <ul>
         <li>Your IP address</li>
@@ -28,8 +26,6 @@ util::printheader("Privacy Policy");
         <li>Your organization</li>
         <li>Any information you enter</li>
     </ul>
-    <br>
-    <br>
     <p>This website will share non-identifying information with other users.</p>
     <br>
     <p>No identifying information will be sold, rented, or given away except

@@ -4,7 +4,7 @@ All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
 include_once "util.php";
-util::printheader("About Me");
+util::printheader("<div style='display:inline-block'>Web Development</div> <div style='display:inline-block'>Done Right</div>");
 ?>
 <div class="contentdiv">
     <p>I have used:</p>
