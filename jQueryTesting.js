@@ -12,7 +12,7 @@ function navpop() {
     $('#header_burger').toggleClass('open');
 }
 
-$(document).ready(function () {
+$(window).load(function () {
     //hamburger clicking anywhere on the screen except the
     // navbar links and burger closes
     //the navtop menu once opened
@@ -81,6 +81,7 @@ function animateTo($moved, $newParent, intDelayMS) {
                 + $newParent.parent().offset().left - $moved.parent().offset().left
                 - 2,
         width: $newParent.width() + 4}, 200);
+    alert($newParent.width());
 
 }
 
@@ -165,8 +166,7 @@ function setHighlightedLink(blnSnapTo) {
             if (blnSnapTo) {
                 $('#highlighter').finish();
             }
-        }
-        ;
+        };
     } else {
         //checkpath later when the screen is bigger
         blnCorrectHighlight = false;
