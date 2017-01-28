@@ -81,7 +81,6 @@ function animateTo($moved, $newParent, intDelayMS) {
                 + $newParent.parent().offset().left - $moved.parent().offset().left
                 - 2,
         width: $newParent.width() + 4}, 200);
-    alert($newParent.width());
 
 }
 
