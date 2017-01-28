@@ -13,7 +13,7 @@ util::printheader("Robert's Project Portfolio");
     <div class="contentdiv projectcontainer">
         <a class='flexFull' href="<?= util::$GITHUB ?>">
             <div class='imagediv'>
-                <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
+                <div class="projectsquare">
                     <div class='contentdiv projectimage'>
                         <div class='flexFull'><h3>RobertsWorkspace.com</h3></div>
                         <p>This website was created to showcase my programming.
@@ -24,9 +24,23 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
+        <a class='flexFull'  href="http://web.archive.org/web/20160312232628/http://mymoneyfees.com/">
+            <div class="projectsquare">
+                <div class='contentdiv projectimage'>
+                    <div class='flexFull'><h3>MyMoneyFees.com</h3></div>
+                    <p>I did substantial work on this website before I had
+                        researched responsive design. The website was designed
+                        on a WordPress platform. The current version has been heavily
+                        modified since then. An archived version is linked here courtesy
+                        of archive.org.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="contentdiv projectcontainer">
         <a class='flexFull' href="http://www.numbersintowords.com">
             <div class='imagediv'>
-                <div class="projectsquare" style="background-image:url(<?= util::$WWW ?>);" align="center">
+                <div class="projectsquare">
                     <div class='contentdiv projectimage'>
                         <div class='flexFull'><h3>NumbersIntoWords.com</h3></div>
                         <p>This website takes (almost) any numerical input and outputs
@@ -39,22 +53,9 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
-        <a class='flexFull' href="http://clockpuncher.robertsworkspace.com">
-            <div class='imagediv'>
-                <div class="projectsquare" style="background-image:url(<?= util::$WWW ?>);" align="center">
-                    <div class='contentdiv projectimage'>
-                        <div class='flexFull'><h3>Clock Puncher</h3></div>
-                        <p>A website I'm collaborating with some friends on. So far
-                        it can handle login sessions for the test user (u: test@test.test p: password)</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="contentdiv projectcontainer">
         <a class='flexFull' href="http://lightspeed.robertsworkspace.com">
             <div class='imagediv'>
-                <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
+                <div class="projectsquare">
                     <div class='contentdiv projectimage'>
                         <div class='flexFull'><h3>Light Speed!</h3></div>
                         <p>An animation I spent a little while making. It looks like
@@ -66,9 +67,22 @@ util::printheader("Robert's Project Portfolio");
         </a>
     </div>
     <div class="contentdiv projectcontainer">
+        <a class='flexFull'href="http://clockpuncher.robertsworkspace.com">
+            <div class='imagediv'>
+                <div class="projectsquare">
+                    <div class='contentdiv projectimage'>
+                        <div class='flexFull'><h3>Clock Puncher</h3></div>
+                        <p>A website I'm collaborating with some friends on. So far
+                        it can handle login sessions for the test user (u: test@test.test p: password)</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="contentdiv projectcontainer">
         <a class='flexFull' href="<?= util::$ROBERTSANALYTICS ?>">
             <div class='imagediv'>
-                <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
+                <div class="projectsquare">
                     <div class='contentdiv projectimage'>
                         <div class='flexFull'><h3>Robert's Analytics</h3></div>
                         <p>This page displays analytics information gathered on this website.
@@ -81,7 +95,7 @@ util::printheader("Robert's Project Portfolio");
     <div class="contentdiv projectcontainer">
         <a class='flexFull' href="<?= util::$IPDATA ?>">
             <div class='imagediv'>
-                <div class="projectsquare" style="background-image:url(<?= util::$BACKGROUND ?>);" align="center">
+                <div class="projectsquare">
                     <div class='contentdiv projectimage'>
                         <div class='flexFull'><h3>About You</h3></div>
                         <p>I've been playing around with some IP geolocating APIs.
@@ -91,27 +105,6 @@ util::printheader("Robert's Project Portfolio");
                 </div>
             </div>
         </a>
-    </div>
-    <div class="contentdiv projectcontainer">
-        <a class='flexFull'  href="http://web.archive.org/web/20160312232628/http://mymoneyfees.com/">
-            <div class="projectsquare" style="background-image:url(<?= util::$WWW ?>);" align="center">
-                <div class='contentdiv projectimage'>
-                    <div class='flexFull'><h3>MyMoneyFees.com</h3></div>
-                    <p>I did substantial work on this website before I had
-                        researched responsive design. The website was designed
-                        on a WordPress platform. The current version has been heavily
-                        modified since then. An archived version is linked here courtesy
-                        of archive.org.</p>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="titlediv contentdiv imagediv centered"style="height:250px;width:250px;">
-        <div class="projectsquare"style="background-image:url(<?= util::$UNDERCONSTRUCTION ?>);" align="center">
-        </div>
-        <div class="captionbox">
-            <p>More Coming Soon</p>
-        </div>
     </div>
 </div>
 <?php
