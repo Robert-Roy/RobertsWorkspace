@@ -273,9 +273,8 @@ textarea{
 .crispbutton{
     font-size:18px;
     color:white;
-    width:auto;
-    display:flex;
-    min-height:38px;
+    display:inline-block;
+    height:auto;
     margin:auto;
     padding:5px;
     border-radius:80px;
@@ -289,6 +288,15 @@ textarea{
 .crispbutton:hover{
     color:black;
     background:rgba(255,255,255,1);
+}
+.crispbutton>a{
+    color:inherit;
+    text-decoration:inherit;
+    /*position:absolute;
+    right:50%;
+    bottom:50%;
+    -webkit-transform: translate(50%, 50%);
+    transform:translate(50%, 50%);*/
 }
 .flexFull{
     width:100%;
@@ -313,21 +321,23 @@ textarea{
     margin-top:20px;
 }
 .projectcontainer{
-    border-radius:15px;
-    margin-bottom:5px;
-    max-width:400px;
-    margin-top:5px;
-    flex-wrap:wrap;
-    display:inline-flex;
-    vertical-align:middle;
-}
-.projectcontainer>a{
-    text-decoration:none;
-    border-radius:15px;
-}
-.projectcontainer>p{
-    margin-top:20px;
+    text-align:center;
     width:100%;
+    max-width:600px;
+    vertical-align:middle;
+    display:block;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+}
+.projectcontainer->.linkwrapper{
+    position:absolute;
+    display:block;
+    right:0;
+}
+.projectdescription{
+    width:100%;
+    text-align:left;
 }
 .imagediv{
     border-radius:15px;
