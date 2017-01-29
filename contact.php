@@ -7,7 +7,7 @@ All rights reserved. Copyright Robert Roy 2016.
 //TODO error hover messages
 
 include_once "util.php";
-util::printheader("Send Robert a Message");
+util::printheader("Leave Me a Message");
 ?>
 <div class="contentdiv contactdiv">  
     <form action="sendmail.php" method="post" onsubmit="return validateContactForm();">

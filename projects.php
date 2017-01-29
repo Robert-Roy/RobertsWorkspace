@@ -4,7 +4,7 @@ All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
 include_once "util.php";
-util::printheader("Robert's Project Portfolio");
+util::printheader("My Projects");
 //TODO: programatically generate list from some sort of database
 //TODO: Responsive images/load images
 ?>
