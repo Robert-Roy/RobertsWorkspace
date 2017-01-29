@@ -66,7 +66,7 @@ class Project {
             . "words. (10<sup>3007</sup>-1 to -10<sup>3007</sup>+1 with support "
             . "for up to 3006 characters after the decimal.");
     $projectClockPuncher = new Project(
-            "http://clockpuncher.robertsworkspace.com", "https://github.com/Robert-Roy/clockpuncher", "Clock Puncher", "A website I'm collaborating with some friedns on. So far it doesn't "
+            "http://clockpuncher.robertsworkspace.com", "https://github.com/Robert-Roy/clockpuncher", "Clock Puncher", "A website I'm collaborating with some friends on. So far it doesn't "
             . "do anything but handle login sessions.");
     $projectLightSpeed = new Project(
             "http://lightspeed.robertsworkspace.com", "https://github.com/Robert-Roy/lightspeed", "Light Speed!", "A javascript animation that looks like you're cruising through space. "
