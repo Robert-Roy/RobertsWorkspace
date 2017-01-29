@@ -17,9 +17,9 @@ a{
 a:hover{
     color:#DDD;
 }
-    a:hover{
-        
-    }
+a:hover{
+
+}
 p{
     max-width:450px;
 }
@@ -269,7 +269,6 @@ input[type="text"]:focus, textarea:focus{
 textarea{
     resize:none;
 }
-
 .crispbutton{
     font-size:18px;
     color:white;
@@ -298,25 +297,6 @@ textarea{
     -webkit-transform: translate(50%, 50%);
     transform:translate(50%, 50%);*/
 }
-.flexFull{
-    width:100%;
-    display:flex;
-}
-.projectimage{
-    margin-top:0px;background: rgba(0,0,0,.8);
-    background: -webkit-radial-gradient(); /* Safari 5.1 to 6.0 */
-    background: -o-radial-gradient(red, yellow, green); /* For Opera 11.6 to 12.0 */
-    background: -moz-radial-gradient(red, yellow, green); /* For Firefox 3.6 to 15 */
-    background: radial-gradient(rgba(0,0,0,.8), rgba(0,0,0,.4)); /* Standard syntax */
-    border-radius:15px;
-}
-.projectiframe{
-    width:calc(100% - 30px);
-    border:0px;
-    border-radius:5px;
-    height:50vh;
-    min-width:320px;
-}
 .titlediv{
     margin-top:20px;
 }
@@ -330,11 +310,6 @@ textarea{
     margin-left:auto;
     margin-right:auto;
 }
-.projectcontainer->.linkwrapper{
-    position:absolute;
-    display:block;
-    right:0;
-}
 .projectdescription{
     width:100%;
     text-align:left;
@@ -344,30 +319,6 @@ textarea{
     position:relative;
     display:inline-flex;
     width:100%;
-}
-.captionbox{
-    position:absolute;
-    bottom:0;
-    left:50%;
-    transform:translate(-50%,0);
-    background:rgba(0,0,0,.65);
-    width:100%;
-    padding:1px;
-    border-bottom-left-radius:5px;
-    border-bottom-right-radius:5px;
-}
-.captionbox>p{
-    padding:5px;
-    text-align:center;
-    vertical-align:middle;
-}
-.projectsquare{
-    display:flex;
-    width:100%;
-    height:250px;
-    border-radius:5px;
-    background-position:center;
-    background-size: cover;
 }
 div.centered{
     text-align:center;
