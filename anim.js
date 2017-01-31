@@ -21,18 +21,12 @@ $(document).ready(function () {
     var mp = 250;
     var particles = [];
     for (var i = 0; i < mp; i++) {
-        particles.push({
-            x: W / 2, //start X
-            y: H / 2, //start Y
-            r: Math.random() * 4 + 2, //radius
-            d: Math.random() * 25 + 2, //density
-            a: Math.random() * (Math.PI * 2), // angle
-        });
+        particles.push(makeParticle());
     }
 
     function draw() {
         context.clearRect(0, 0, W, H);
-        context.fillStyle = "rgba(0, 0, 0, 1)";
+        context.fillStyle = "rgba(13, 48, 110, 1)";
         context.beginPath();
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
@@ -43,25 +37,19 @@ $(document).ready(function () {
         update();
     }
 
-    var speed = 0;
     var runcounter = 0;
     function update() {
-        speed +=.05;
         runcounter++;
-        for (var i = 0; i < particles.length; i++) {
+        for (var i = 0; i < particles.length; i++, mp) {
             var p = particles[i];
-            p.y += speed * Math.cos(p.a) * p.d;//+ p.d + 1 + p.r / 2;
-
-            p.x += speed * Math.sin(p.a) * p.d;// * 2;
-
-            if (p.x > W || p.x < 0 || p.y > H || p.y < 0) {
-                /*particles[i] = {
-                 x: W / 2,
-                 y: H / 2,
-                 r: p.r,
-                 d: p.d,
-                 a: Math.random() * (Math.PI * 2)
-                 };*/
+            p.mx = p.mx * .99;
+            p.my = p.my * .99;
+            p.my += .001 * Math.cos(p.a) * p.d; //+ p.d + 1 + p.r / 2;
+            p.mx += .001 * Math.sin(p.a) * p.d; // * 2;
+            p.x += p.mx;
+            p.y += p.my;
+            p.a = Math.random() * (Math.PI * 2); // angle
+            if (p.x > W + p.r || p.x < 0 - p.r || p.y > H + p.r || p.y < 0 - p.r) {
                 particles.splice(i, 1);
                 i--;
             }
@@ -69,6 +57,18 @@ $(document).ready(function () {
         }
     }
     setTimeout(setInterval(draw, 33), 50);
+
+    function makeParticle() {
+        return {
+            x: Math.random() * W, //start X
+            y: Math.random() * H, //start Y
+            mx: Math.random() * .25 -.125, //momentum x
+            my: Math.random() * .25 -.125, //momentum y
+            r: Math.random() * 2 + 2, //radius
+            d: Math.random() * 25 + 2, //density
+            a: Math.random() * (Math.PI * 2) // angle
+        };
+    }
 });
 
 
