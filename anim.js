@@ -16,7 +16,6 @@ $(document).ready(function () {
     var context = canvas.getContext("2d");
     var W = $canvas.width();
     var H = $canvas.height();
-    
     var red = 13;
     var green = 110;
     var blue = 110;
@@ -25,12 +24,12 @@ $(document).ready(function () {
     red = Math.round(Math.random() * 100 + 50);
     canvas.width = W;
     canvas.height = H;
-    var mp = 250;
+    var mp = H * W / 2000;
     var particles = [];
     for (var i = 0; i < mp; i++) {
         particles.push(makeParticle());
     }
-    
+
     function draw() {
         context.clearRect(0, 0, W, H);
         // drift colors
@@ -93,11 +92,17 @@ $(document).ready(function () {
             y: Math.random() * H, //start Y
             mx: Math.random() * .25 - .125, //momentum x
             my: Math.random() * .25 - .125, //momentum y
-            r: Math.random() + 1, //radius
+            r: Math.random() + .3, //radius
             d: Math.random() * 25 + 2, //density
             a: Math.random() * (Math.PI * 2) // angle
         };
     }
+    $(window).resize(function () {
+        canvas.width = $(window).width();
+        canvas.height = $(window).height();
+        W = $canvas.width();
+        H = $canvas.height();
+    });
 });
 
 
