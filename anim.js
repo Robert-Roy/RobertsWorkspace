@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(window).load(function () {
 
     //canvas init
     var $canvas;
@@ -17,19 +17,20 @@ $(document).ready(function () {
     var context = canvas.getContext("2d");
     var W = $canvas.width();
     var H = $canvas.height();
-    canvas.width = W;
-    canvas.height = H;
+    canvas.width = W; 
+    canvas.height = H; 
     var mp = (H * W) / 2000; // max particles
+
     //color init
-    var red = 13;
-    var green = 110;
-    var blue = 110;
-    blue = Math.round(Math.random() * 250 + 30);
-    green = Math.round(Math.random() * 250 + 30);
-    red = Math.round(Math.random() * 250 + 30);
+    var red = Math.random() * 250 + 30;
+    var green = Math.random() * 250 + 30;
+    var blue = Math.random() * 250 + 30;
 
     //particle init
     var particles = makeParticles([], 0, 0, W, H, mp);
+    
+    //begin drawloop after 25ms (prevents lag)
+    setTimeout(setInterval(draw, 33), 25);
 
     function draw() {
         context.clearRect(0, 0, W, H);
@@ -89,7 +90,7 @@ $(document).ready(function () {
             ;
         }
     }
-    setTimeout(setInterval(draw, 33), 50);
+    
     $(window).resize(function () {
         // prevents canvas stretching.
         // TODO: add or remove particles according to resize (currently makes ugly lines)
@@ -134,6 +135,7 @@ $(document).ready(function () {
 
 
 function cleanEdges(particles, width, height) {
+    // clears the edge of particles
     for (var i = 0; i < particles.length; i++) {
         p = particles[i];
         if (p.x > width - 2 || p.x < 2 || p.y > height - 2 || p.y < 2) {
@@ -144,6 +146,7 @@ function cleanEdges(particles, width, height) {
 }
 
 function removeParticles(particles, blnYAxis, startVal, endVal) {
+    // removes particles in a given range
     for (var i = 0; i < particles.length; i++) {
         if (blnYAxis) {
             var currentValue = particles[i].y;
@@ -159,6 +162,7 @@ function removeParticles(particles, blnYAxis, startVal, endVal) {
 }
 
 function makeParticles(particles, startX, startY, endX, endY, makeThisManyParticles) {
+    // generates a bunch of particles in a given range
     for (var i = 0; i < makeThisManyParticles; i++) {
         particles.push(makeParticle(startX, startY, endX, endY));
     }
@@ -166,6 +170,7 @@ function makeParticles(particles, startX, startY, endX, endY, makeThisManyPartic
 }
 
 function makeParticle(startX, startY, endX, endY) {
+    // generates a particle in a given range
     return {
         x: Math.random() * (endX - startX) + startX, //start X
         y: Math.random() * (endY - startY) + startY, //start Y
