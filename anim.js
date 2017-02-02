@@ -22,9 +22,9 @@ $(window).load(function () {
     var mp = (H * W) / 2000; // max particles
 
     //color init
-    var red = Math.random() * 250 + 30;
-    var green = Math.random() * 250 + 30;
-    var blue = Math.random() * 250 + 30;
+    var red = Math.random() * 150 + 100;
+    var green = Math.random() * 150 + 100;
+    var blue = Math.random() * 150 + 100;
 
     //particle init
     var particles = makeParticles([], 0, 0, W, H, mp);
@@ -40,7 +40,7 @@ $(window).load(function () {
             red += -4 * Math.random();
             green += 4 * -4 * Math.random();
             blue += 4 * -4 * Math.random();
-        } else if (red + green + blue < 300) {
+        } else if (red + green + blue < 400) {
             red += 4 * Math.random();
             green += 4 * Math.random();
             blue += 4 * Math.random();
