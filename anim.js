@@ -19,14 +19,14 @@ $(document).ready(function () {
     var H = $canvas.height();
     canvas.width = W;
     canvas.height = H;
-    var mp = H * W / 2000; // max particles
+    var mp = (H * W) / 2000; // max particles
     //color init
     var red = 13;
     var green = 110;
     var blue = 110;
-    blue = Math.round(Math.random() * 200 + 25);
-    green = Math.round(Math.random() * 200 + 25);
-    red = Math.round(Math.random() * 200 + 25);
+    blue = Math.round(Math.random() * 250 + 30);
+    green = Math.round(Math.random() * 250 + 30);
+    red = Math.round(Math.random() * 250 + 30);
 
     //particle init
     var particles = makeParticles([], 0, 0, W, H, mp);
@@ -49,6 +49,7 @@ $(document).ready(function () {
             blue += Math.random() * 8 - 4;
         }
         context.fillStyle = "rgba(" + Math.round(red) + "," + Math.round(green) + "," + Math.round(blue) + ", 1)";
+        //context.fillText(particles.length + "/" + mp, 10, 50); //shows current particles and max particles
         context.beginPath();
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
@@ -60,7 +61,7 @@ $(document).ready(function () {
     }
 
     function update() {
-        for (var i = 0; i < particles.length; i++, mp) {
+        for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
             // gradually slow down movement to prevent very fast particles
             p.mx = p.mx * .99;
@@ -98,24 +99,49 @@ $(document).ready(function () {
         var oldH = H;
         W = $canvas.width();
         H = $canvas.height();
-        var oldmp = mp;
-        mp = H * W / 2000; // max particles
-        var newParticleCount = mp - oldmp;
-        var particlesRight = (W - oldW) * H / 2000;
-        var particlesBottom = (H - oldH) * oldW / 2000;
-        if (oldH < H) {
-            //draw new particles in new height, NOT including the corner of right and bottom added strip
-            particles = makeParticles(particles, 0, oldW, oldH, H, particlesBottom);
+        mp = (H * W) / 2000; // max particles
+        var addedWidth = W - oldW;
+        var addedHeight = H - oldH;
+        var particlesRight = ((addedWidth) * H) / 2000;
+        var particlesBottom = ((addedHeight) * oldW) / 2000;
+        // if a large change was made to dimensions, redraw. Otherwise, modify current)
+        if (Math.abs(addedWidth) > 25 || Math.abs(addedHeight > 25)) {
+            particles = makeParticles([], 0, 0, W, H, mp);
         } else {
-            particles = removeParticles(particles, true, oldH, H);
+            if (oldH < H) {
+                //draw new particles in new height, NOT including the corner of right and bottom added strip
+                particles = makeParticles(particles, 0, oldH, oldW, H, particlesBottom);
+            } else if (oldH > H) {
+                particles = removeParticles(particles, true, oldH, H);
+            }
+            if (oldW < W) {
+                //draw new particles between top and bottom of the screen in new width
+                particles = makeParticles(particles, oldW, 0, W, H, particlesRight);
+            } else if (oldW > W) {
+                particles = removeParticles(particles, false, oldW, W);
+            }
+            var particlesTooMany = particles.length - mp;
+            //removes particles if there are too many
+            for (i = 0; i < particlesTooMany; i++) {
+                particles.splice(Math.round(Math.random() * particles.length - 1), 1);
+            }
+            // Adds particles if there are too few
+            particles = makeParticles(particles, 0, 0, W, H, -particlesTooMany);
         }
-        if (oldW < W) {
-            particles = makeParticles(particles, oldW, W, 0, H, particlesRight);
-        } else {
-            particles = removeParticles(particles, false, oldW, W);
-        }
+
     });
 });
+
+
+function cleanEdges(particles, width, height) {
+    for (var i = 0; i < particles.length; i++) {
+        p = particles[i];
+        if (p.x > width - 2 || p.x < 2 || p.y > height - 2 || p.y < 2) {
+            p = makeParticle(0, 0, width, height);
+        }
+        return particles;
+    }
+}
 
 function removeParticles(particles, blnYAxis, startVal, endVal) {
     for (var i = 0; i < particles.length; i++) {
@@ -132,12 +158,13 @@ function removeParticles(particles, blnYAxis, startVal, endVal) {
     return particles;
 }
 
-function makeParticles(particles, startX, startY, endX, endY, maxParticles) {
-    for (var i = 0; i < maxParticles; i++) {
+function makeParticles(particles, startX, startY, endX, endY, makeThisManyParticles) {
+    for (var i = 0; i < makeThisManyParticles; i++) {
         particles.push(makeParticle(startX, startY, endX, endY));
     }
     return particles;
 }
+
 function makeParticle(startX, startY, endX, endY) {
     return {
         x: Math.random() * (endX - startX) + startX, //start X
