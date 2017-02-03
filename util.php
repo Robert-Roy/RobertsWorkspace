@@ -15,7 +15,7 @@ Class util {
     public static $ICO = "favicon.ico";
     public static $CONTACT = "contact.php";
     public static $PROJECTS = "projects.php";
-    public static $ROBERTSANALYTICS = "dashboard.php";
+    public static $ROBERTSANALYTICS = "dashbosard.php";
     public static $ANALYTICS = "analytics.php";
     public static $ABOUT = "about.php";
     public static $PHONE = "555-555-5555";
@@ -118,7 +118,7 @@ Class util {
                 <link rel="stylesheet" href=<?= util::$CSS; ?>>
                 <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-                <script src="jQueryTesting.js"></script>
+                <script src="javascript.js"></script>
                 <script src="anim.js"></script>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
             </head>
