@@ -1,36 +1,36 @@
 <?php
 include_once 'forcehttps.php';
 
-//TODO: Only show animation for first pageload of the day
-
 Class util {
 
     //If uninitialized, static functions are useful all over the website.
     //If initialized, creates a mysql connection ($conn) using sqlconnector.php
-    //For security reasons, sqlconnector.php is not included in this repository.
-    public static $BACKGROUND = "img/spiral.jpg";
-    public static $UNDERCONSTRUCTION = "img/sign.png";
-    public static $HAMBURGER = "img/hamburger.png";
-    public static $HOME = "index.php";
-    public static $ICO = "favicon.ico";
-    public static $CONTACT = "contact.php";
-    public static $PROJECTS = "projects.php";
-    public static $ROBERTSANALYTICS = "dashbosard.php";
+    //Pages
     public static $ANALYTICS = "analytics.php";
-    public static $ABOUT = "about.php";
-    public static $PHONE = "555-555-5555";
-    public static $TITLE = "Robert's Workspace";
-    public static $IPDATA = "ipdata.php";
-    public static $CSS = "default.css";
-    public static $WWW = "img/www.jpg";
     public static $PRIVACY = "privacy.php";
+    public static $PROJECTS = "projects.php";
+    public static $HOME = "index.php";
+    public static $CONTACT = "contact.php";
+    public static $ROBERTSANALYTICS = "dashbosard.php";
+    public static $IPDATA = "ipdata.php";
     public static $ADMIN = "admin/admin.php";
     public static $GITHUB = "github.php";
+    //Resources
+    public static $UNDERCONSTRUCTION = "img/sign.png";
+    public static $MAINSCRIPT = "script.js";
+    public static $ANIMSCRIPT = "anim.js";
+    public static $CSS = "default.css";
+    public static $ICO = "favicon.ico";
+    public static $SQLCONNECTOR = "sql/sqlconnector.php";
+    //Information
+    public static $PHONE = "555-555-5555";
+    public static $SITENAME = "Robert's Workspace";
+    public static $WWW = "img/www.jpg";
     public static $ADMINEMAIL = "robertproy@live.com";
     private $conn = false;
 
     public function __construct() {
-        include_once("sql/sqlconnector.php");
+        include_once(util::$SQLCONNECTOR);
         $this->conn = SQLConnector::Conn();
         if ($this->conn === null) {
             util::handleerror("Could not make SQL connection");
@@ -70,11 +70,6 @@ Class util {
         <?php
     }
 
-    //TODO: Language constants
-    //TODO: SQL Demonstration page
-    //TODO: admin page to delete sql posts
-
-
     public static function getUserIP() {
         return htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITIZE_STRING));
     }
@@ -95,6 +90,19 @@ Class util {
         }
     }
 
+    private static function generateFaviconHTML() {
+        ?>
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="favicon/png" href="image/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="favicon/png" href="image/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="favicon/manifest.json">
+        <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="favicon/favicon.ico">
+        <meta name="msapplication-config" content="favicon/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <?php
+    }
+
     public static function handleerror($errorcode) {
         util::mailadmin("Site Error", "Error " . $errorcode . " occurred on " . $_SERVER['PHP_SELF'] . ".");
     }
@@ -106,20 +114,13 @@ Class util {
         <html>
             <head>
                 <meta charset="UTF-8">
-                <title><?= util::$TITLE; ?></title>
-                <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-                <link rel="icon" type="favicon/png" href="image/favicon-32x32.png" sizes="32x32">
-                <link rel="icon" type="favicon/png" href="image/favicon-16x16.png" sizes="16x16">
-                <link rel="manifest" href="favicon/manifest.json">
-                <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-                <link rel="shortcut icon" href="favicon/favicon.ico">
-                <meta name="msapplication-config" content="favicon/browserconfig.xml">
-                <meta name="theme-color" content="#ffffff">
+                <title><?= util::$SITENAME; ?></title>
+                <?PHP util::generateFaviconHTML() ?>
                 <link rel="stylesheet" href=<?= util::$CSS; ?>>
                 <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-                <script src="javascript.js"></script>
-                <script src="anim.js"></script>
+                <script src="<?= util::$MAINSCRIPT ?>"></script>
+                <script src="<?= util::$ANIMSCRIPT ?>"></script>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
             </head>
             <body>
@@ -128,7 +129,7 @@ Class util {
                         <div id="navwrapper">
                             <canvas id="highlighter">                            </canvas>
                             <div id="namebar">
-                                <a id="sitename" href="<?= util::$HOME ?>"><?= util::$TITLE ?></a>
+                                <a id="sitename" href="<?= util::$HOME ?>"><?= util::$SITENAME ?></a>
 
                                 <a id="header_burger" href="#" onClick="navpop();return false;">
                                     <div class='burger'>Menu</div>
@@ -136,7 +137,6 @@ Class util {
                             </div>
                             <nav id="navtop">
                                 <a class="header_link" href="<?= util::$HOME ?>">Home</a>
-                                <!--<a class="header_link" href="<?= util::$ABOUT ?>">About</a>-->
                                 <a class="header_link" href="<?= util::$PROJECTS ?>">Projects</a>
                                 <a class="header_link" href="<?= util::$CONTACT ?>">Contact</a>
                             </nav>
