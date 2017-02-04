@@ -17,8 +17,8 @@ $(window).load(function () {
     var context = canvas.getContext("2d");
     var W = $canvas.width();
     var H = $canvas.height();
-    canvas.width = W; 
-    canvas.height = H; 
+    canvas.width = W;
+    canvas.height = H;
     var mp = (H * W) / 2000; // max particles
 
     //color init
@@ -28,14 +28,13 @@ $(window).load(function () {
 
     //particle init
     var particles = makeParticles([], 0, 0, W, H, mp);
-    
+
     //begin drawloop after 25ms (prevents lag)
     setTimeout(setInterval(draw, 33), 25);
 
     function draw() {
         context.clearRect(0, 0, W, H);
         // drift colors
-        //todo smooth random color changes and clean code
         if (red + green + blue > 500) {
             red += -4 * Math.random();
             green += 4 * -4 * Math.random();
@@ -49,21 +48,27 @@ $(window).load(function () {
             green += Math.random() * 8 - 4;
             blue += Math.random() * 8 - 4;
         }
-        context.fillStyle = "rgba(" + Math.round(red) + "," + Math.round(green) + "," + Math.round(blue) + ", 1)";
+        //todo smooth random color changes and clean code
         //context.fillText(particles.length + "/" + mp, 10, 50); //shows current particles and max particles
-        context.beginPath();
         for (var i = 0; i < particles.length; i++) {
+            context.beginPath();
             var p = particles[i];
+            context.fillStyle = "rgba(" + Math.round(p.red + red)
+                    + "," + Math.round(p.green + green) +
+                    "," + Math.round(p.blue + blue) + ", 1)";
             context.moveTo(p.x, p.y);
             context.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+            context.fill();
+            context.closePath();
         }
-        context.fill();
         update();
     }
 
     function update() {
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
+
+            //gradually shift color
             // gradually slow down movement to prevent very fast particles
             p.mx = p.mx * .99;
             p.my = p.my * .99;
@@ -90,7 +95,7 @@ $(window).load(function () {
             ;
         }
     }
-    
+
     $(window).resize(function () {
         // prevents canvas stretching.
         // TODO: add or remove particles according to resize (currently makes ugly lines)
@@ -178,6 +183,9 @@ function makeParticle(startX, startY, endX, endY) {
         my: Math.random() * .25 - .125, //momentum y
         r: Math.random() + .3, //radius
         d: Math.random() * 25 + 2, //density
-        a: Math.random() * (Math.PI * 2) // angle
+        a: Math.random() * (Math.PI * 2), // angle
+        red: Math.random() * 32 - 16,
+        green: Math.random() * 32 - 16,
+        blue: Math.random() * 32 - 16
     };
 }
