@@ -14,8 +14,8 @@ util::printheader("Robert's Analytics");
     <?php
     try {
         //Find out how many times IP has viewed current page
-        $statement = $conn->prepare('SELECT DISTINCT PAGE FROM PageViews WHERE IP = ?');
-        $statement->execute([$IP]);
+        $statement = $conn->prepare('SELECT DISTINCT PAGE FROM PageViews');
+        $statement->execute();
         ?>
         You have viewed the following pages:
         <ul>
@@ -23,16 +23,23 @@ util::printheader("Robert's Analytics");
             $totalViews = 0;
             // show user views of ALL pages by getting all pages then showing all views
             foreach ($statement as $row) {
-                $rowPage = $row['PAGE'];
-                $rowPageViews = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ? AND IP = ?');
-                $rowPageViews->execute([$rowPage, $IP]);
-                $rowViewCount = $rowPageViews->fetch(PDO::FETCH_NUM)[0];
-                $totalViews += $rowViewCount;
-                echo "<li>" . $rowPage . " (" . $rowViewCount . " views)</li>";
+                $currentPage = $row['PAGE'];
+                // get user's views on current page
+                $userPageViewsStatement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ? AND IP = ?');
+                $userPageViewsStatement->execute([$currentPage, $IP]);
+                $userPageViews = $userPageViewsStatement->fetch(PDO::FETCH_NUM)[0];
+                // get all user's views on current page
+                $totalPageViewsStatement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ?');
+                $totalPageViewsStatement->execute([$currentPage]);
+                $totalPageViews = $totalPageViewsStatement->fetch(PDO::FETCH_NUM)[0];
+                
+                $userTotalViews += $userPageViews;
+                $allUsersTotalViews += $totalPageViews;
+                echo "<li>" . $currentPage . " (" . $userPageViews . "/" . $totalPageViews . " views)</li>";
             }
             ?>
         </ul>
-        <p>You have a total of <?= $totalViews ?> page views.</p>
+        <p>You have a total of <?= $userTotalViews ?>/<?= $allUsersTotalViews ?> page views.</p>
         <?php
         //Find out how many times page has been viewed
         $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ?');
