@@ -41,21 +41,6 @@ util::printheader("Robert's Analytics");
         </ul>
         <p>You have a total of <?= $userTotalViews ?>/<?= $allUsersTotalViews ?> page views.</p>
         <?php
-        //Find out how many times page has been viewed
-        $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE PAGE = ?');
-        $statement->execute([$page]);
-        $allviewsonthispage = $statement->fetch(PDO::FETCH_NUM)[0];
-
-        //Find out how many times all pages have been viewed
-        $statement = $conn->prepare('SELECT COUNT(*) FROM PageViews WHERE IP = ?');
-        $statement->execute([$IP]);
-        $userviewsonallpages = $statement->fetch(PDO::FETCH_NUM)[0];
-
-        //Find out how many times page has been viewed
-        $statement = $conn->prepare('SELECT * FROM PageViews');
-        $statement->execute();
-        $allviewsonallpages = $statement->rowCount();
-        //TODO: Display this information somehow
     } catch (Exception $ex) {
         Echo "An error occurred. It has been reported.";
         util::handleerror("Error occurred on " .
