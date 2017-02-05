@@ -1,5 +1,6 @@
 $(window).load(function () {
-
+    var cursorX = -50;
+    var cursorY = -50;
     //canvas init
     var $canvas;
     $('#main').append("<canvas id='canvas'\n\style='\n\
@@ -57,40 +58,55 @@ $(window).load(function () {
                     + "," + Math.round(p.green + green) +
                     "," + Math.round(p.blue + blue) + ", 1)";
             context.moveTo(p.x, p.y);
-            context.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+            context.arc(p.x, p.y, p.r + p.extraRadius, 0, Math.PI * 2, true);
             context.fill();
             context.closePath();
         }
+        //circle mouse
+        //context.beginPath();
+        //context.moveTo(cursorX, cursorY);
+        //context.arc(cursorX, cursorY, 50, 0, Math.PI * 2, false);
+        //context.lineWidth = 1;
+        //context.strokeStyle = 'rgba(255, 255, 255, .2)';
+        //context.stroke();
+        //context.closePath();
         update();
     }
 
     function update() {
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
-
+            p.a = Math.random() * (Math.PI * 2); // angle
+            var distanceFromMouseX = cursorX - p.x;
+            var distanceFromMouseY = cursorY - p.y;
+            var distanceFromMouse = Math.sqrt(Math.pow(distanceFromMouseX, 2) + Math.pow(distanceFromMouseY, 2));
+            if (distanceFromMouse < 50) {
+                p.a = Math.PI + Math.atan2(distanceFromMouseX, distanceFromMouseY);
+                if (p.extraRadius < (50 - distanceFromMouse) / 10)
+                    p.extraRadius += .1;
+            } else if (p.extraRadius > 0) {
+                p.extraRadius -= .1;
+            }
             //gradually shift color
             // gradually slow down movement to prevent very fast particles
             p.mx = p.mx * .99;
             p.my = p.my * .99;
             //build momentum in random directions
-            p.a = Math.random() * (Math.PI * 2); // angle
             p.my += .001 * Math.cos(p.a) * p.d;
             p.mx += .001 * Math.sin(p.a) * p.d;
             //move according to momentum
             p.x += p.mx;
             p.y += p.my;
             // screen wrap (top and bottom)
-            if (p.x > W + p.r) {
-                p.x = 0 - p.r;
-            } else if (p.x < 0 - p.r) {
-                p.x = W + p.r;
-            } else if (p.y > H + p.r) {
-                p.y = 0 - p.r;
-            } else if (p.y < 0 - p.r) {
-                p.y = H + p.r;
-            } else if (false) {
-                particles.splice(i, 1);
-                i--;
+            var totalRadius = p.r + p.extraRadius;
+            if (p.x > W + totalRadius) {
+                p.x = 0 - totalRadius;
+            } else if (p.x < 0 - totalRadius) {
+                p.x = W + totalRadius;
+            } else if (p.y > H + totalRadius) {
+                p.y = 0 - totalRadius;
+            } else if (p.y < 0 - totalRadius) {
+                p.y = H + totalRadius;
             }
             ;
         }
@@ -136,6 +152,10 @@ $(window).load(function () {
         }
 
     });
+    $(document).mousemove(function (e) {
+        cursorX = e.pageX;
+        cursorY = e.pageY;
+    })
 });
 
 
@@ -182,10 +202,18 @@ function makeParticle(startX, startY, endX, endY) {
         mx: Math.random() * .25 - .125, //momentum x
         my: Math.random() * .25 - .125, //momentum y
         r: Math.random() + .3, //radius
+        extraRadius: 0, //extra radius added by being near mouse
         d: Math.random() * 25 + 2, //density
         a: Math.random() * (Math.PI * 2), // angle
         red: Math.random() * 32 - 16,
         green: Math.random() * 32 - 16,
         blue: Math.random() * 32 - 16
     };
+}
+
+function cot(x) {
+    return 1 / Math.tan(x);
+}
+function arctan(x) {
+    return Math.PI / 2 - Math.atan(x);
 }
