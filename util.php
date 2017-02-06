@@ -26,7 +26,7 @@ Class util {
     public static $PHONE = "555-555-5555";
     public static $SITENAME = "Robert's Workspace";
     public static $WWW = "img/www.jpg";
-    public static $ADMINEMAIL = "robertproy@live.com";
+    public static $ADMINEMAIL = "robert@robertsworkspace.com";
     private $conn = false;
 
     public function __construct() {
@@ -84,7 +84,7 @@ Class util {
 
     public static function mailadmin($subject, $message) {
         if ($_SERVER['SERVER_ADDR'] != "::1") {
-            mail(util::$ADMINEMAIL, $subject, $message);
+            mail(util::$ADMINEMAIL, $subject, $message, "From: <" . util::$ADMINEMAIL . ">");
         } else {
             echo $subject . "<br>" . $message . "<br>";
         }
