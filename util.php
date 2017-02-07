@@ -11,7 +11,7 @@ Class util {
     public static $PROJECTS = "projects.php";
     public static $HOME = "index.php";
     public static $CONTACT = "contact.php";
-    public static $ROBERTSANALYTICS = "dashbosard.php";
+    public static $ROBERTSANALYTICS = "dashboard.php";
     public static $IPDATA = "ipdata.php";
     public static $ADMIN = "admin/admin.php";
     public static $GITHUB = "github.php";
