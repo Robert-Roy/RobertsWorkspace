@@ -153,8 +153,8 @@ $(window).load(function () {
 
     });
     $(document).mousemove(function (e) {
-        cursorX = e.pageX;
-        cursorY = e.pageY;
+        cursorX = e.clientX;
+        cursorY = e.clientY;
     })
 });
 
