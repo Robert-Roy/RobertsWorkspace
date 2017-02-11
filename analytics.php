@@ -1,5 +1,5 @@
 <?php
-include_once "util.php";
+require_once "util.php";
 //TODO: Add a date to table so that if an IP visits again 6 months after the first
 //visit, it gets its information rechecked
 $util = new util();

@@ -4,7 +4,7 @@
  * All rights reserved. Copyright Robert Roy 2016.
  */
 
-include_once "util.php";
+require_once "util.php";
 $util = new util();
 //Initialize SQL Tables
 try {

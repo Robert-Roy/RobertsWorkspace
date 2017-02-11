@@ -3,7 +3,7 @@
 All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
-include_once "util.php";
+require_once "util.php";
 $util = new util();
 $conn = $util->getConn();
 $IP = $util->getUserIP();

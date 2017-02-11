@@ -3,7 +3,7 @@
 All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
-include_once "util.php";
+require_once "util.php";
 util::printheader("What your IP says about you:");
 $apierror = false; //this will tell me if i could not get the json file from ip-api.com
 $IP = htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITIZE_STRING));

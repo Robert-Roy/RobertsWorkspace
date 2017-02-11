@@ -4,7 +4,7 @@
  * All rights reserved. Copyright Robert Roy 2016.
  */
 
-include_once 'sqlconnector.php';
+require_once 'sqlconnector.php';
 
 class SQLUtil {
 

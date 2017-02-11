@@ -3,7 +3,7 @@
 /* 
  * All rights reserved. Copyright Robert Roy 2016.
  */
-include_once 'sqlutil.php';
+require_once 'sqlutil.php';
 
 //This page validates whether or not you can connect to your SQL server
 $SQLUtil = new SQLUtil();

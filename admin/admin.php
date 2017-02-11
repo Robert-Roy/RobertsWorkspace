@@ -3,7 +3,7 @@
 All rights reserved. Copyright Robert Roy 2016.
 -->
 <?php
-include_once('header.php')
+require_once('header.php')
 ?>
 
 <div class="centerxy">

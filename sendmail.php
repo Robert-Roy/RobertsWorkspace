@@ -7,7 +7,7 @@ All rights reserved. Copyright Robert Roy 2016.
 //TODO block banned IPs
 //TODO banip page
 //todo confirm send page
-include_once "util.php";
+require_once "util.php";
 util::printheader("Delivery");
 ?>                            
 <div class="contentdiv">

@@ -6,7 +6,7 @@ All rights reserved. Copyright Robert Roy 2016.
 <?php
 //TODO error hover messages
 
-include_once "util.php";
+require_once "util.php";
 util::printheader("Leave Me a Message");
 ?>
 <div class="contentdiv contactdiv">  
