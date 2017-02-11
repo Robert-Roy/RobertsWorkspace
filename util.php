@@ -6,26 +6,25 @@ Class util {
     //If uninitialized, static functions are useful all over the website.
     //If initialized, creates a mysql connection ($conn) using sqlconnector.php
     //Pages
-    public static $ANALYTICS = "analytics.php";
-    public static $PRIVACY = "privacy.php";
-    public static $PROJECTS = "projects.php";
-    public static $HOME = "index.php";
-    public static $CONTACT = "contact.php";
-    public static $ROBERTSANALYTICS = "dashboard.php";
-    public static $IPDATA = "ipdata.php";
-    public static $ADMIN = "admin/admin.php";
-    public static $GITHUB = "github.php";
+    public static $ANALYTICS = "analytics";
+    public static $PRIVACY = "privacy";
+    public static $PROJECTS = "projects";
+    public static $HOME = ".";
+    public static $CONTACT = "contact";
+    public static $ROBERTSANALYTICS = "dashboard";
+    public static $IPDATA = "ipdata";
+    public static $ADMIN = "admin/admin";
+    public static $GITHUB = "github";
     //Resources
-    public static $UNDERCONSTRUCTION = "img/sign.png";
-    public static $MAINSCRIPT = "script.js";
-    public static $ANIMSCRIPT = "anim.js";
-    public static $CSS = "default.css";
+    public static $UNDERCONSTRUCTION = "public_html/images/sign.png";
+    public static $MAINSCRIPT = "public_html/js/script.js";
+    public static $ANIMSCRIPT = "public_html/js/anim.js";
+    public static $CSS = "public_html/css/default.css";
     public static $ICO = "favicon.ico";
-    public static $SQLCONNECTOR = "sql/sqlconnector.php";
+    public static $SQLCONNECTOR = "core/sql/sqlconnector.php";
     //Information
     public static $PHONE = "555-555-5555";
     public static $SITENAME = "Robert's Workspace";
-    public static $WWW = "img/www.jpg";
     public static $ADMINEMAIL = "robert@robertsworkspace.com";
     private $conn = false;
 
@@ -83,7 +82,7 @@ Class util {
     }
 
     public static function mailadmin($subject, $message) {
-        if ($_SERVER['SERVER_ADDR'] != "::1") {
+        if ($_SERVER['SERVER_ADDR'] != "127.0.0.1") {
             mail(util::$ADMINEMAIL, $subject, $message, "From: <" . util::$ADMINEMAIL . ">");
         } else {
             echo $subject . "<br>" . $message . "<br>";
@@ -165,7 +164,7 @@ Class util {
 
 }
 
-if ($_SERVER['SERVER_ADDR'] != "::1") {
+if ($_SERVER['SERVER_ADDR'] != "127.0.0.1") {
     include_once util::$ANALYTICS;
 }
 ?>
