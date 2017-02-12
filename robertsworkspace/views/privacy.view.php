@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<!--
-All rights reserved. Copyright Robert Roy 2016.
--->
-<?php
-require_once "util.php";
-util::printheader("Privacy Policy");
-?>
+<?php include "partials/header.view.php"; ?>
+
 <div class="contentdiv">
     <p>As of 1/2/2017:</p>
     <br>
@@ -31,6 +25,5 @@ util::printheader("Privacy Policy");
     <p>No identifying information will be sold, rented, or given away except
         as required by government entities.</p>
 </div>
-<?php
-util::printfooter();
-?>
+
+<?php include "partials/footer.view.php"; ?>

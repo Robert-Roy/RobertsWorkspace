@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<!--
-All rights reserved. Copyright Robert Roy 2016.
--->
 <?php
 
 class Router {

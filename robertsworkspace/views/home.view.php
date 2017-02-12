@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<!--
-All rights reserved. Copyright Robert Roy 2016.
--->
-<?php
-util::printheader("<div style='display:inline-block'>Web Development</div> <div style='display:inline-block'>Done Right</div>");
-?>
+<?php include "partials/header.view.php"; ?>
+
 <div class="contentdiv">
     <p>I have used:</p>
     <ul class='shrink-list'>
@@ -21,7 +16,9 @@ util::printheader("<div style='display:inline-block'>Web Development</div> <div 
         <li>WordPress</li>
     </ul>
 </div>
+
 <br>
+
 <div class="contentdiv">
     <p>This website uses:</p>
     <ul>
@@ -32,10 +29,11 @@ util::printheader("<div style='display:inline-block'>Web Development</div> <div 
         <li>MySQL (PDO)</li>
     </ul>
 </div>
+
 <br>
+
 <div class="contentdiv">
-    <p><a href=<?= util::$GITHUB ?>>My code is available on GitHub</a></p>
+    <p><a href=<?= $GITHUB ?>>My code is available on GitHub</a></p>
 </div>
-<?php
-util::printfooter();
-?>
+
+<?php include "partials/footer.view.php"; ?>

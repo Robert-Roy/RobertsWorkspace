@@ -1,0 +1,11 @@
+#for local
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /RobertsWorkspace/index.php?q=$1 [L,QSA]
+
+#for website
+#RewriteEngine on
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]

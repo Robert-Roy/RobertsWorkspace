@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<!--
-All rights reserved. Copyright Robert Roy 2016.
--->
 <?php
-require "bootstrap.php";
+require "robertsworkspace/helpers/bootstrap.php";
 $router = new Router($routes);
 // For Local Testing
 $requestURI = $_SERVER["REQUEST_URI"];
