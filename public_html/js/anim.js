@@ -158,18 +158,6 @@ $(window).load(function () {
     })
 });
 
-
-function cleanEdges(particles, width, height) {
-    // clears the edge of particles
-    for (var i = 0; i < particles.length; i++) {
-        p = particles[i];
-        if (p.x > width - 2 || p.x < 2 || p.y > height - 2 || p.y < 2) {
-            p = makeParticle(0, 0, width, height);
-        }
-        return particles;
-    }
-}
-
 function removeParticles(particles, blnYAxis, startVal, endVal) {
     // removes particles in a given range
     for (var i = 0; i < particles.length; i++) {
@@ -211,9 +199,15 @@ function makeParticle(startX, startY, endX, endY) {
     };
 }
 
-function cot(x) {
-    return 1 / Math.tan(x);
+/*
+function cleanEdges(particles, width, height) {
+    // clears the edge of particles
+    for (var i = 0; i < particles.length; i++) {
+        p = particles[i];
+        if (p.x > width - 2 || p.x < 2 || p.y > height - 2 || p.y < 2) {
+            p = makeParticle(0, 0, width, height);
+        }
+        return particles;
+    }
 }
-function arctan(x) {
-    return Math.PI / 2 - Math.atan(x);
-}
+*/
