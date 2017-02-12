@@ -22,4 +22,13 @@ $SITENAME = "Robert's Workspace";
 $ADMINEMAIL = "robert@robertsworkspace.com";
 $VIEWROOT = "robertsworkspace/views/";
 $FAVICONROOT = "public_html/favicon/";
+
+$isLocalServer = true;
+if($_SERVER['SERVER_ADDR'] != "127.0.0.1" && $_SERVER['SERVER_ADDR'] != "::1"){
+    $isLocalServer = false;
+}
+$isTestServer = false;
+if(strpos($_SERVER['HTTP_HOST'], 'test.') !== false){
+    $isTestServer = true;
+}
 ?>

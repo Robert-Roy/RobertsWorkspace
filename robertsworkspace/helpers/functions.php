@@ -17,8 +17,8 @@ function handleerror($errorcode) {
 }
 
 function mailadmin($subject, $message) {
-    global $ADMINEMAIL;
-    if ($_SERVER['SERVER_ADDR'] != "127.0.0.1") {
+    global $ADMINEMAIL, $isLocalServer;
+    if (!$isLocalServer) {
         mail($ADMINEMAIL, $subject, $message, "From: <" . $ADMINEMAIL . ">");
     } else {
         echo $subject . "<br>" . $message . "<br>";
