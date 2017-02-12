@@ -1,4 +1,8 @@
 $(window).load(function () {
+    var PARTICLE_RATIO = 2000; // 1 particle per PARTICLE_RATIO pixels
+    var DRAW_SPEED = 33; //1 frame every X MS
+    var DRAW_WAIT = 25; //wait X MS to start drawing
+    
     var cursorX = -50;
     var cursorY = -50;
     //canvas init
@@ -20,7 +24,7 @@ $(window).load(function () {
     var H = $canvas.height();
     canvas.width = W;
     canvas.height = H;
-    var mp = (H * W) / 2000; // max particles
+    var maxParticles = (H * W) / PARTICLE_RATIO; // max particles
 
     //color init
     var red = Math.random() * 150 + 100;
@@ -28,27 +32,13 @@ $(window).load(function () {
     var blue = Math.random() * 150 + 100;
 
     //particle init
-    var particles = makeParticles([], 0, 0, W, H, mp);
+    var particles = addParticlesToArray([], 0, 0, W, H, maxParticles);
 
     //begin drawloop after 25ms (prevents lag)
-    setTimeout(setInterval(draw, 33), 25);
+    setTimeout(setInterval(draw, DRAW_SPEED), DRAW_WAIT);
 
     function draw() {
         context.clearRect(0, 0, W, H);
-        // drift colors
-        if (red + green + blue > 500) {
-            red += -4 * Math.random();
-            green += 4 * -4 * Math.random();
-            blue += 4 * -4 * Math.random();
-        } else if (red + green + blue < 400) {
-            red += 4 * Math.random();
-            green += 4 * Math.random();
-            blue += 4 * Math.random();
-        } else {
-            red += Math.random() * 8 - 4;
-            green += Math.random() * 8 - 4;
-            blue += Math.random() * 8 - 4;
-        }
         //todo smooth random color changes and clean code
         //context.fillText(particles.length + "/" + mp, 10, 50); //shows current particles and max particles
         for (var i = 0; i < particles.length; i++) {
@@ -74,6 +64,20 @@ $(window).load(function () {
     }
 
     function update() {
+        // drift colors
+        if (red + green + blue > 500) {
+            red += -4 * Math.random();
+            green += 4 * -4 * Math.random();
+            blue += 4 * -4 * Math.random();
+        } else if (red + green + blue < 400) {
+            red += 4 * Math.random();
+            green += 4 * Math.random();
+            blue += 4 * Math.random();
+        } else {
+            red += Math.random() * 8 - 4;
+            green += Math.random() * 8 - 4;
+            blue += Math.random() * 8 - 4;
+        }
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
             p.a = Math.random() * (Math.PI * 2); // angle
@@ -121,34 +125,34 @@ $(window).load(function () {
         var oldH = H;
         W = $canvas.width();
         H = $canvas.height();
-        mp = (H * W) / 2000; // max particles
+        maxParticles = (H * W) / PARTICLE_RATIO; // max particles
         var addedWidth = W - oldW;
         var addedHeight = H - oldH;
-        var particlesRight = ((addedWidth) * H) / 2000;
-        var particlesBottom = ((addedHeight) * oldW) / 2000;
+        var particlesRight = ((addedWidth) * H) / PARTICLE_RATIO;
+        var particlesBottom = ((addedHeight) * oldW) / PARTICLE_RATIO;
         // if a large change was made to dimensions, redraw. Otherwise, modify current)
         if (Math.abs(addedWidth) > 25 || Math.abs(addedHeight > 25)) {
-            particles = makeParticles([], 0, 0, W, H, mp);
+            particles = addParticlesToArray([], 0, 0, W, H, maxParticles);
         } else {
             if (oldH < H) {
                 //draw new particles in new height, NOT including the corner of right and bottom added strip
-                particles = makeParticles(particles, 0, oldH, oldW, H, particlesBottom);
+                particles = addParticlesToArray(particles, 0, oldH, oldW, H, particlesBottom);
             } else if (oldH > H) {
                 particles = removeParticles(particles, true, oldH, H);
             }
             if (oldW < W) {
                 //draw new particles between top and bottom of the screen in new width
-                particles = makeParticles(particles, oldW, 0, W, H, particlesRight);
+                particles = addParticlesToArray(particles, oldW, 0, W, H, particlesRight);
             } else if (oldW > W) {
                 particles = removeParticles(particles, false, oldW, W);
             }
-            var particlesTooMany = particles.length - mp;
+            var particlesTooMany = particles.length - maxParticles;
             //removes particles if there are too many
             for (i = 0; i < particlesTooMany; i++) {
                 particles.splice(Math.round(Math.random() * particles.length - 1), 1);
             }
             // Adds particles if there are too few
-            particles = makeParticles(particles, 0, 0, W, H, -particlesTooMany);
+            particles = addParticlesToArray(particles, 0, 0, W, H, -particlesTooMany);
         }
 
     });
@@ -174,7 +178,7 @@ function removeParticles(particles, blnYAxis, startVal, endVal) {
     return particles;
 }
 
-function makeParticles(particles, startX, startY, endX, endY, makeThisManyParticles) {
+function addParticlesToArray(particles, startX, startY, endX, endY, makeThisManyParticles) {
     // generates a bunch of particles in a given range
     for (var i = 0; i < makeThisManyParticles; i++) {
         particles.push(makeParticle(startX, startY, endX, endY));
@@ -200,14 +204,14 @@ function makeParticle(startX, startY, endX, endY) {
 }
 
 /*
-function cleanEdges(particles, width, height) {
-    // clears the edge of particles
-    for (var i = 0; i < particles.length; i++) {
-        p = particles[i];
-        if (p.x > width - 2 || p.x < 2 || p.y > height - 2 || p.y < 2) {
-            p = makeParticle(0, 0, width, height);
-        }
-        return particles;
-    }
-}
-*/
+ function cleanEdges(particles, width, height) {
+ // clears the edge of particles
+ for (var i = 0; i < particles.length; i++) {
+ p = particles[i];
+ if (p.x > width - 2 || p.x < 2 || p.y > height - 2 || p.y < 2) {
+ p = makeParticle(0, 0, width, height);
+ }
+ return particles;
+ }
+ }
+ */
