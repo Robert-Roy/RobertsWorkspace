@@ -13,12 +13,12 @@ class SQLConnector {
     private static function makeNewConnection() {
     global $CONFIG;
         try {
-            $conn = new PDO($CONFIG['database']['connection']
+            $newConnection = new PDO($CONFIG['database']['connection']
                     .";dbname=".$CONFIG['database']['name'], 
                     $CONFIG['database']['username'], 
-                    $CONFIG['database']['password']);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
+                    $CONFIG['database']['password'],
+                    $CONFIG['database']['options']);
+            return $newConnection;
         } catch (PDOException $e) {
             handleerror("Connection failed: " . $e->getMessage());
             return false;
