@@ -7,7 +7,8 @@ Class util {
     private $conn = false;
 
     public function __construct() {
-        $this->conn = SQLConnector::Conn();
+        $sqlconnector = new SQLConnector();
+        $this->conn = $sqlconnector->getConnection();
         if ($this->conn === null) {
             handleerror("Could not make SQL connection");
         }

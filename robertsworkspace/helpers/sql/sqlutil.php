@@ -12,7 +12,7 @@ class SQLUtil {
 
     public function __construct() {
         $SQLConn = new SQLConnector();
-        $this->Conn = $SQLConn->getConn();
+        $this->Conn = $SQLConn->getConnection();
     }
 
     public function addUser($email, $password) {
