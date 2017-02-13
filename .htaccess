@@ -1,11 +1,14 @@
 #for local
 RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ /RobertsWorkspace/index.php?q=$1 [L,QSA]
+RewriteCond %{REQUEST_URI} !/public_html/
+RewriteCond $1 !^(index\.php)
+RewriteRule ^(.*)$ /RobertsWorkspace/index.php?q=$1 [NC,L,QSA]
+
 
 #for website
 #RewriteEngine on
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_URI} !/public_html/
+#RewriteCond $1 !^(index\.php)
 #RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+
+#RewriteRule HTTP: HTTPS: [NC,L,QSA]
