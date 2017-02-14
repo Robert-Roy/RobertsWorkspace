@@ -1,8 +1,9 @@
 $(window).load(function () {
-    var PARTICLE_RATIO = 2000; // 1 particle per PARTICLE_RATIO pixels
-    var DRAW_SPEED = 33; //1 frame every X MS
+    var PARTICLE_RATIO = 2000; // 1 particle per PARTICLE_RATIO pixels 2000 default
+    var FPS = 30;
+    var DRAW_SPEED = 1000 / FPS;
     var DRAW_WAIT = 25; //wait X MS to start drawing
-    
+
     var cursorX = -50;
     var cursorY = -50;
     //canvas init
@@ -31,22 +32,49 @@ $(window).load(function () {
     var green = Math.random() * 150 + 100;
     var blue = Math.random() * 150 + 100;
 
+    //regulates particles
+    var timeThisLoop = new Date().getTime();
+    var lagThisManyLoopsInARow = 0;
+
     //particle init
     var particles = addParticlesToArray([], 0, 0, W, H, maxParticles);
 
     //begin drawloop after 25ms (prevents lag)
     setTimeout(setInterval(draw, DRAW_SPEED), DRAW_WAIT);
 
+    function checkFPS() {
+        var rightNow = new Date().getTime();
+        var loopTime = rightNow - timeThisLoop;
+        //context.fillText(loopTime + "/" + DRAW_SPEED, 10, 100); //shows current particles and max particles
+        if (loopTime < 1.25 * DRAW_SPEED) {
+            //PARTICLE_RATIO = PARTICLE_RATIO * .9;
+            //updateMaxParticles();
+            //particles = pushToMaxParticles(particles, maxParticles);
+            //add more particles
+        }
+        if (loopTime > DRAW_SPEED * 2) {
+            lagThisManyLoopsInARow++;
+            if (lagThisManyLoopsInARow > 5) {
+                PARTICLE_RATIO = PARTICLE_RATIO * 1.25;
+            }
+            if (loopTime > DRAW_SPEED * 6) {
+                PARTICLE_RATIO = PARTICLE_RATIO * 5;
+            }
+        }
+        timeThisLoop = rightNow;
+    }
+
     function draw() {
         context.clearRect(0, 0, W, H);
         //todo smooth random color changes and clean code
-        //context.fillText(particles.length + "/" + mp, 10, 50); //shows current particles and max particles
+        //context.fillText(particles.length + "/" + maxParticles, 10, 50); //shows current particles and max particles
         for (var i = 0; i < particles.length; i++) {
             context.beginPath();
             var p = particles[i];
             context.fillStyle = "rgba(" + Math.round(p.red + red)
                     + "," + Math.round(p.green + green) +
-                    "," + Math.round(p.blue + blue) + ", 1)";
+                    "," + Math.round(p.blue + blue) + ", "
+                    + p.opacity + ")";
             context.moveTo(p.x, p.y);
             context.arc(p.x, p.y, p.r + p.extraRadius, 0, Math.PI * 2, true);
             context.fill();
@@ -61,6 +89,7 @@ $(window).load(function () {
         //context.stroke();
         //context.closePath();
         update();
+        checkFPS();
     }
 
     function update() {
@@ -93,6 +122,9 @@ $(window).load(function () {
             }
             //gradually shift color
             // gradually slow down movement to prevent very fast particles
+            if (p.opacity < 1) {
+                p.opacity += .1;
+            }
             p.mx = p.mx * .99;
             p.my = p.my * .99;
             //build momentum in random directions
@@ -116,6 +148,13 @@ $(window).load(function () {
         }
     }
 
+    function updateMaxParticles() {
+        maxParticles = (H * W) / PARTICLE_RATIO; // max particles
+    }
+    function pushToMaxParticles(particles, maxParticles) {
+        return addParticlesToArray(particles, 0, 0, W, H, maxParticles - particles.length);
+    }
+
     $(window).resize(function () {
         // prevents canvas stretching.
         // TODO: add or remove particles according to resize (currently makes ugly lines)
@@ -125,7 +164,7 @@ $(window).load(function () {
         var oldH = H;
         W = $canvas.width();
         H = $canvas.height();
-        maxParticles = (H * W) / PARTICLE_RATIO; // max particles
+        updateMaxParticles();
         var addedWidth = W - oldW;
         var addedHeight = H - oldH;
         var particlesRight = ((addedWidth) * H) / PARTICLE_RATIO;
@@ -138,19 +177,18 @@ $(window).load(function () {
                 //draw new particles in new height, NOT including the corner of right and bottom added strip
                 particles = addParticlesToArray(particles, 0, oldH, oldW, H, particlesBottom);
             } else if (oldH > H) {
-                particles = removeParticles(particles, true, oldH, H);
+                particles = removeParticlesInRectangle(particles, true, oldH, H);
             }
             if (oldW < W) {
                 //draw new particles between top and bottom of the screen in new width
                 particles = addParticlesToArray(particles, oldW, 0, W, H, particlesRight);
             } else if (oldW > W) {
-                particles = removeParticles(particles, false, oldW, W);
+                particles = removeParticlesInRectangle(particles, false, oldW, W);
             }
-            var particlesTooMany = particles.length - maxParticles;
+            particles = removeExtraParticles(particles, maxParticles);
             //removes particles if there are too many
-            for (i = 0; i < particlesTooMany; i++) {
-                particles.splice(Math.round(Math.random() * particles.length - 1), 1);
-            }
+            var particlesTooMany = particles.length - maxParticles;
+            particles = removeRandomParticles(particles, particlesTooMany);
             // Adds particles if there are too few
             particles = addParticlesToArray(particles, 0, 0, W, H, -particlesTooMany);
         }
@@ -162,7 +200,16 @@ $(window).load(function () {
     })
 });
 
-function removeParticles(particles, blnYAxis, startVal, endVal) {
+function removeExtraParticles(particles, maxParticles) {
+    var particlesTooMany = particles.length - maxParticles;
+    for (i = 0; i < particlesTooMany; i++) {
+        particles.splice(Math.round(Math.random() * particles.length - 1), 1);
+    }
+    return particles;
+}
+
+
+function removeParticlesInRectangle(particles, blnYAxis, startVal, endVal) {
     // removes particles in a given range
     for (var i = 0; i < particles.length; i++) {
         if (blnYAxis) {
@@ -199,7 +246,8 @@ function makeParticle(startX, startY, endX, endY) {
         a: Math.random() * (Math.PI * 2), // angle
         red: Math.random() * 32 - 16,
         green: Math.random() * 32 - 16,
-        blue: Math.random() * 32 - 16
+        blue: Math.random() * 32 - 16,
+        opacity: 0
     };
 }
 
