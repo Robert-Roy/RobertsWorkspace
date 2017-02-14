@@ -1,5 +1,6 @@
 $(window).load(function () {
     var PARTICLE_RATIO = 2000; // 1 particle per PARTICLE_RATIO pixels 2000 default
+    var DEBUG = false;
     var FPS = 30;
     var DRAW_SPEED = 1000 / FPS;
     var DRAW_WAIT = 25; //wait X MS to start drawing
@@ -33,41 +34,30 @@ $(window).load(function () {
     var blue = Math.random() * 150 + 100;
 
     //regulates particles
-    var timeThisLoop = new Date().getTime();
+    var thisLoopMS;
     var lagThisManyLoopsInARow = 0;
 
     //particle init
     var particles = addParticlesToArray([], 0, 0, W, H, maxParticles);
 
     //begin drawloop after 25ms (prevents lag)
-    setTimeout(setInterval(draw, DRAW_SPEED), DRAW_WAIT);
+    setTimeout(setInterval(loop, DRAW_SPEED), DRAW_WAIT);
 
-    function checkFPS() {
-        var rightNow = new Date().getTime();
-        var loopTime = rightNow - timeThisLoop;
-        //context.fillText(loopTime + "/" + DRAW_SPEED, 10, 100); //shows current particles and max particles
-        if (loopTime < 1.25 * DRAW_SPEED) {
-            //PARTICLE_RATIO = PARTICLE_RATIO * .9;
-            //updateMaxParticles();
-            //particles = pushToMaxParticles(particles, maxParticles);
-            //add more particles
+    function loop() {
+        thisLoopMS = new Date().getTime();
+        draw();
+        update();
+        checkFPS();
+        if (DEBUG) {
+            showDebugText();
         }
-        if (loopTime > DRAW_SPEED * 2) {
-            lagThisManyLoopsInARow++;
-            if (lagThisManyLoopsInARow > 5) {
-                PARTICLE_RATIO = PARTICLE_RATIO * 1.25;
-            }
-            if (loopTime > DRAW_SPEED * 6) {
-                PARTICLE_RATIO = PARTICLE_RATIO * 5;
-            }
-        }
-        timeThisLoop = rightNow;
     }
-
+    function showDebugText() {
+        context.fillText(particles.length + "/" + maxParticles, 10, 50); //shows current particles and max particles
+    }
     function draw() {
         context.clearRect(0, 0, W, H);
         //todo smooth random color changes and clean code
-        //context.fillText(particles.length + "/" + maxParticles, 10, 50); //shows current particles and max particles
         for (var i = 0; i < particles.length; i++) {
             context.beginPath();
             var p = particles[i];
@@ -88,8 +78,6 @@ $(window).load(function () {
         //context.strokeStyle = 'rgba(255, 255, 255, .2)';
         //context.stroke();
         //context.closePath();
-        update();
-        checkFPS();
     }
 
     function update() {
@@ -145,6 +133,29 @@ $(window).load(function () {
                 p.y = H + totalRadius;
             }
             ;
+        }
+    }
+    function checkFPS() {
+        var rightNow = new Date().getTime();
+        var loopTime = rightNow - thisLoopMS;
+        if (loopTime < .1 * DRAW_SPEED) {
+            PARTICLE_RATIO = PARTICLE_RATIO * .95;
+            updateMaxParticles();
+            particles = pushToMaxParticles(particles, maxParticles);
+            //add more particles
+        }
+        if (loopTime > DRAW_SPEED * .5) {
+            lagThisManyLoopsInARow++;
+            if (lagThisManyLoopsInARow > 2) {
+                PARTICLE_RATIO = PARTICLE_RATIO * 1.05;
+                lagThisManyLoopsInARow=0;
+            }
+            if (loopTime > DRAW_SPEED * 6) {
+                PARTICLE_RATIO = PARTICLE_RATIO * 5;
+            }
+        }
+        if (DEBUG) {
+            context.fillText(loopTime + "/" + DRAW_SPEED, 10, 100); //shows current particles and max particles
         }
     }
 
