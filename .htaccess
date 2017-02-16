@@ -1,9 +1,13 @@
 #for local
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !/public_html/
+RewriteCond %{REQUEST_URI} !/public/
 RewriteCond $1 !^(index\.php)
-RewriteRule ^(.*)$ /RobertsWorkspace/index.php?q=$1 [NC,L,QSA]
+RewriteRule ^(.*)$ /RobertsWorkspace/public/index.php?q=$1 [NC,L,QSA]
 
+#laravel default
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^ index.php [L]
 
 #for website
 #RewriteEngine on
