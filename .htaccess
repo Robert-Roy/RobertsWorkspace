@@ -1,18 +1,11 @@
-#for local
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !/public/
-RewriteCond $1 !^(index\.php)
-RewriteRule ^(.*)$ /RobertsWorkspace/public/index.php?q=$1 [NC,L,QSA]
 
-#laravel default
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule ^ index.php [L]
+#for local
+RewriteCond %{REQUEST_URI} !/public/
+RewriteRule ^(.*)$ /RobertsWorkspace/public/index.php?q=$1 [NC]
 
 #for website
-#RewriteEngine on
-#RewriteCond %{REQUEST_URI} !/public_html/
-#RewriteCond $1 !^(index\.php)
-#RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+#RewriteCond %{REQUEST_URI} !/public/
+#RewriteRule ^(.*)$ public/index.php?path=$1 [NC,QSA]
 
-#RewriteRule HTTP: HTTPS: [NC,L,QSA]
+#RewriteRule HTTP: HTTPS: [NC]
