@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('RobertsWorkspace/', function () {
+Route::get('/robertsworkspace/', function () {
     return view('welcome');
 });
