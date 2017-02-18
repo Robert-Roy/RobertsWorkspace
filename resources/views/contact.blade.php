@@ -1,4 +1,4 @@
-<?php include "partials/header.view.php"; ?>
+@include("partials.header")
 
 <div class="contentdiv contactdiv">  
     <form action="sendmail" method="post" onsubmit="return validateContactForm();">
@@ -15,7 +15,7 @@
 </div>
 
 <div class='contentdiv'>
-    <a href='mailto:Robert@robertsworkspace.com'>Prefer to send an email?</a>
+    <a href='mailto:{{config("constants.ADMINEMAIL")}}'>Prefer to send an email?</a>
 </div>
 
-<?php include "partials/footer.view.php"; ?>
+@include("partials.footer")
