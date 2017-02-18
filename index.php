@@ -1,5 +1,5 @@
 <?php
-echo ".htacces is improperly configured:"
+echo ".htacces is improperly configured:";
 echo $_SERVER['REQUEST_URI'];
 die();
 //This is not used, it is here for reference.
