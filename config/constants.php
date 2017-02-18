@@ -9,7 +9,7 @@ return [
     "CONTACT" => "contact",
     "ROBERTSANALYTICS" => "dashboard",
     "IPDATA" => "ipdata",
-    //"ADMIN" => "admin/admin", // not currently in use
+    "ADMIN" => "admin/admin", // not currently in use
     "GITHUB" => "github",
     //Resources
     "UNDERCONSTRUCTION" => "public_html/images/sign.png",
