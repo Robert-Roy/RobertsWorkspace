@@ -1,16 +1,15 @@
 <div class="projectcontainer contentdiv">
-    <h2><?= $this->title ?></h2>
+    <h2>{{ $title }}</h2>
     <div class="projectdescription">
-        <?= $this->description ?>
+        {{ $description }}
     </div>
 </div>
-<div class="crispbutton"><a href=<?= $this->href ?>>See Project</a></div>
+<div class="crispbutton"><a href="{{ $href }}">See Project</a></div>
 <?php
-if ($this->githublink !== "") {
+if ($githublink !== "") {
     ?>
 
-    <div class="crispbutton"><a  href="<?= $this->githublink ?>">See Code</a>
-        <?php
-    }
-    ?>
-</div>
+    <div class="crispbutton"><a  href="{{ $githublink }}">See Code</a></div>
+    <?php
+}
+?>

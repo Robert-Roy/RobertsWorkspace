@@ -1,32 +1,14 @@
 <?php
+
 //TODO: programatically generate list from some sort of database
 //TODO: Responsive images/load images
+//
+// This is NOT the right way to implement this. Will separate concerns more after laravel refactor
+
 $title = "My Projects";
-class Project {
-
-    public $href;
-    public $githublink;
-    public $title;
-    public $description;
-
-    public function __construct($href, $githublink, $title, $description) {
-        // A blank github link may be passed if no github link is available.
-        $this->href = $href;
-        $this->githublink = $githublink;
-        $this->title = $title;
-        $this->description = $description;
-    }
-
-    public function printHTML() {
-        global $VIEWROOT;
-        require $VIEWROOT . "partials/project.view.php";
-    }
-
-}
 
 require $VIEWROOT . "partials/projectstop.view.php";
-// I don't like the way these are formatted, but it's a small price to pay for
-// autoformatting elsewhere.
+
 $projectRobertsWorkspace = new Project(
         $HOME, "https://github.com/Robert-Roy/RobertsWorkspace", "RobertsWorkspace.com", "This website was created to showcase my programming. 
             Code is available on Github.");
@@ -58,4 +40,5 @@ $projectLightSpeed->printHTML();
 $projectClockPuncher->printHTML();
 $projectAnalytics->printHTML();
 $projectIPData->printHTML();
+
 require $VIEWROOT . "partials/projectsbottom.view.php";

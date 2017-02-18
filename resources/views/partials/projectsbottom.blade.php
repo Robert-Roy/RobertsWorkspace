@@ -1,2 +1,2 @@
 </div>
-<?php include "footer.view.php"; ?>
+@include("partials.footer")
