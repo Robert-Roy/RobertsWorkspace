@@ -16,3 +16,4 @@ Route::get('/robertsworkspace/contact', 'ContactController@index');
 Route::get('/robertsworkspace/projects', 'ProjectsController@index');
 Route::get('/robertsworkspace/privacy', 'PrivacyController@index');
 Route::get('/robertsworkspace/github', 'GithubController@index');
+Route::get('/robertsworkspace/ipdata', 'IPDataController@index');
