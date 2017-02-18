@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/robertsworkspace/', function () {
-    return view('welcome');
-});
+Route::get('/robertsworkspace/', 'HomeController@index');
