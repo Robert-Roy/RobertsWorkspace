@@ -1,4 +1,4 @@
-<?php include "partials/header.view.php"; ?>
+@include("partials.header")
 
 <div class="contentdiv">
     <p>As of 1/2/2017:</p>
@@ -26,4 +26,4 @@
         as required by government entities.</p>
 </div>
 
-<?php include "partials/footer.view.php"; ?>
+@include("partials.footer")
