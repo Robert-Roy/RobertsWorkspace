@@ -1,4 +1,4 @@
-<?php include "partials/header.view.php"; ?>
+@include("partials.header")
 
 <div class="contentdiv">
     You have viewed the following pages:
@@ -11,5 +11,3 @@
     </ul>
     <p>You have a total of <?= $userTotalViews ?>/<?= $allUsersTotalViews ?> page views.</p>
 </div>
-
-<?php include "partials/footer.view.php"; ?>

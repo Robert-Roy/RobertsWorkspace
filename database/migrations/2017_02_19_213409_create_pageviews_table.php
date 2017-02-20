@@ -4,19 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePageviewsTable extends Migration
-{
+class CreatePageviewsTable extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('pageviews', function (Blueprint $table) {
-            $table->increments('ip_id');
+            $table->integer('ip_id');
             $table->string('page');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+        });
+
+        Schema::table('pageviews', function($table) {
+            $table->foreign('ip_id')->references('ip_id')->on('uniqueips');
         });
     }
 
@@ -25,8 +28,8 @@ class CreatePageviewsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('pageviews');
     }
+
 }
