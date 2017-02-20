@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Analytics;
 
 class ProjectsController extends Controller {
 
@@ -13,6 +14,8 @@ class ProjectsController extends Controller {
         //this is NOT the right way to implement this. Will improve after laravel refactor
 
         $title = "My Projects";
+        $analytics = new Analytics();
+        $analytics->recordView();
 
         echo view("partials.projectstop", ["title" => $title]);
         $projectRobertsWorkspace = new Project(

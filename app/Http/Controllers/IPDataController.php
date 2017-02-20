@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Analytics;
 
 class IPDataController extends Controller {
 
     public function index() {
         $title = "What your IP says about you:";
+        $analytics = new Analytics();
+        $analytics->recordView();
 
         $IP = htmlspecialchars(\filter_var(\trim($_SERVER['REMOTE_ADDR']), FILTER_SANITIZE_STRING));
         if ($IP === "127.0.0.1" || $IP === "::1") {
