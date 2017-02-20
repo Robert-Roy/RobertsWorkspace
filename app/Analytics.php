@@ -15,12 +15,8 @@ class Analytics {
     private $requestIP;
     private $now;
 
-    public function recordView() {
-        $this->requestPage = $_SERVER['REQUEST_URI'];
-        $this->requestPage = str_replace("/robertsworkspace/", "", $this->requestPage);
-        if ($this->requestPage === "") {
-            $this->requestPage = "home";
-        }
+    public function recordView($requestPage) {
+        $this->requestPage = $requestPage;
         $this->requestIP = Request::ip();
         $this->now = $this->getTime();
         $this->logUniqueIP($this->requestIP);

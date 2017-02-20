@@ -10,7 +10,7 @@ class PrivacyController extends Controller {
     public function index() {
         $title = "Privacy Policy";
         $analytics = new Analytics();
-        $analytics->recordView();
+        $analytics->recordView("privacy");
 
         return view('privacy', compact("title"));
     }

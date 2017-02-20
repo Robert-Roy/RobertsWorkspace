@@ -14,7 +14,7 @@ class ProjectsController extends Controller {
         //this is NOT the right way to implement this. Will improve after laravel refactor
 
         $title = "My Projects";
-        $analytics = new Analytics();
+        $analytics = new Analytics("projects");
         $analytics->recordView();
 
         echo view("partials.projectstop", ["title" => $title]);

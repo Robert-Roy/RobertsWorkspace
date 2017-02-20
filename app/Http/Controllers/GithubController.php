@@ -8,7 +8,7 @@ use App\Analytics;
 class GithubController extends Controller {
 
     public function index() {
-        $analytics = new Analytics();
+        $analytics = new Analytics("github");
         $analytics->recordView();
         //It would be possible to use post to have several different redirects in one
         //file.
