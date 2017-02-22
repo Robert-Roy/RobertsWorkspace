@@ -47,10 +47,10 @@ class SendmailController extends Controller {
         if ($blnvalidinput) {
             $mailer = new Mailer();
             $mailer->mailAdmin('Contact Form Inquiry', $finalmessage);
-            return view("sendmailsuccess");
+            return view("sendmailsuccess", compact("title"));
         }
         $title = "Delivery Failed";
-        return view("sendmailfailure", compact("strInvalidReasons"));
+        return view("sendmailfailure", compact("title", "strInvalidReasons"));
     }
 
 }
