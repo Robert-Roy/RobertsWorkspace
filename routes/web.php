@@ -18,3 +18,4 @@ Route::get('/robertsworkspace/privacy', 'PrivacyController@index');
 Route::get('/robertsworkspace/github', 'GithubController@index');
 Route::get('/robertsworkspace/ipdata', 'IPDataController@index');
 Route::get('/robertsworkspace/dashboard', 'DashboardController@index');
+Route::post('/robertsworkspace/sendmail', 'SendmailController@index');

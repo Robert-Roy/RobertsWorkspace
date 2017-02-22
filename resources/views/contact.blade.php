@@ -11,6 +11,7 @@
         <label class="label" for="message">What would you like to say to me?</label>
         <textarea type="text" rows="4" name="message" placeholder="Hey, Robert. Nice website!"></textarea><br>
         <input class="crispbutton" style="margin-top:3px" type="submit" value="Send Message">
+        {{csrf_field()}}
     </form>
 </div>
 
