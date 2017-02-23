@@ -47,6 +47,7 @@ class Analytics {
 
     private function logUniqueIP($IP) {
         $ipQuery = DB::table('uniqueips')->where("ip", "=", $this->requestIP);
+        //This may not be preventing multiple queries at the moment. Needs testing
         if ($ipQuery->count() === 0) {
             //Fetch json with information about the IP
             $json = file_get_contents("http://ip-api.com/json/$IP");
@@ -61,14 +62,14 @@ class Analytics {
                     $city = htmlspecialchars(\filter_var(\trim($array->city), FILTER_SANITIZE_STRING));
                     $org = htmlspecialchars(\filter_var(\trim($array->org), FILTER_SANITIZE_STRING));
                     //Insert into SQL
-                    $ip_id = $DB::table('uniqueips')->insertGetId(
+                    $ip_id = DB::table('uniqueips')->insertGetId(
                             ['ip' => $this->requestIP,
                                 'country' => $country,
-                                'state' => $region,
+                                'state' => $regionName,
                                 'city' => $city,
                                 "organization" => $org,
                                 "created_at" => $this->now,
-                                "updated_at()" => $this->now]);
+                                "updated_at" => $this->now]);
                     $this->setIPID($ip_id);
                     return;
                 }
