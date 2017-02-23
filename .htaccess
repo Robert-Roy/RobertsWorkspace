@@ -5,7 +5,20 @@ RewriteCond %{REQUEST_URI} !/public/
 RewriteRule ^(.*)$ /RobertsWorkspace/public/index.php?q=$1 [NC]
 
 #for website
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP_HOST} !^www.numbersinto [NC]
+#RewriteCond %{HTTP_HOST} !^test [NC]
+#RewriteCond %{HTTP_HOST} !^lightspeed [NC]
+#RewriteCond %{HTTP_HOST} !^clockpuncher [NC]
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+#RewriteCond %{HTTP_HOST} !^test [NC]
+#RewriteCond %{HTTP_HOST} !^www.numbersinto [NC]
+#RewriteCond %{HTTP_HOST} !^lightspeed [NC]
+#RewriteCond %{HTTP_HOST} !^clockpuncher [NC]
 #RewriteCond %{REQUEST_URI} !/public/
-#RewriteRule ^(.*)$ public/index.php?path=$1 [NC,QSA]
+#RewriteRule ^(.*)$ public/index.php?path=$1 [NC]
 
 #RewriteRule HTTP: HTTPS: [NC]
+
+#RewriteRule ^(r|w) HTTPS://$1 [NC]
