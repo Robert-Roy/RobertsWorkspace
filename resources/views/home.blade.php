@@ -24,6 +24,7 @@
     <p>This website uses:</p>
     <ul>
         <li>PHP (<?= phpversion(); ?>)</li>
+        <li>Laravel ({{ App::VERSION() }})</li>
         <li>JavaScript</li>
         <li>jQuery</li>
         <li>Git</li>
