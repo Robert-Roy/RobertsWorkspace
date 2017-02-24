@@ -148,7 +148,7 @@ $(window).load(function () {
             lagThisManyLoopsInARow++;
             if (lagThisManyLoopsInARow > 2) {
                 PARTICLE_RATIO = PARTICLE_RATIO * 1.05;
-                lagThisManyLoopsInARow=0;
+                lagThisManyLoopsInARow = 0;
             }
             if (loopTime > DRAW_SPEED * 6) {
                 PARTICLE_RATIO = PARTICLE_RATIO * 5;
@@ -171,38 +171,10 @@ $(window).load(function () {
         // TODO: add or remove particles according to resize (currently makes ugly lines)
         canvas.width = $(window).width();
         canvas.height = $(window).height();
-        var oldW = W;
-        var oldH = H;
         W = $canvas.width();
         H = $canvas.height();
         updateMaxParticles();
-        var addedWidth = W - oldW;
-        var addedHeight = H - oldH;
-        var particlesRight = ((addedWidth) * H) / PARTICLE_RATIO;
-        var particlesBottom = ((addedHeight) * oldW) / PARTICLE_RATIO;
-        // if a large change was made to dimensions, redraw. Otherwise, modify current)
-        if (Math.abs(addedWidth) > 25 || Math.abs(addedHeight > 25)) {
-            particles = addParticlesToArray([], 0, 0, W, H, maxParticles);
-        } else {
-            if (oldH < H) {
-                //draw new particles in new height, NOT including the corner of right and bottom added strip
-                particles = addParticlesToArray(particles, 0, oldH, oldW, H, particlesBottom);
-            } else if (oldH > H) {
-                particles = removeParticlesInRectangle(particles, true, oldH, H);
-            }
-            if (oldW < W) {
-                //draw new particles between top and bottom of the screen in new width
-                particles = addParticlesToArray(particles, oldW, 0, W, H, particlesRight);
-            } else if (oldW > W) {
-                particles = removeParticlesInRectangle(particles, false, oldW, W);
-            }
-            particles = removeExtraParticles(particles, maxParticles);
-            //removes particles if there are too many
-            var particlesTooMany = particles.length - maxParticles;
-            particles = removeRandomParticles(particles, particlesTooMany);
-            // Adds particles if there are too few
-            particles = addParticlesToArray(particles, 0, 0, W, H, -particlesTooMany);
-        }
+        particles = addParticlesToArray([], 0, 0, W, H, maxParticles);
 
     });
     $(document).mousemove(function (e) {
