@@ -5,17 +5,19 @@
 </div>
 <br>
 <div class="contentdiv">
-    <p>
-        Country: {{ $country }} {{ $countryCode }}<br>
-        Region: {{ $regionName }} {{ $region }})<br>
-        City: {{ $city }}<br>
-        Zip: {{ $zip }}<br>
-        Coordinates: {{ $lat }}, {{ $lon }})<br>
-        Time Zone: {{ $timezone }}<br>
-        Internet Service Provider: {{ $isp }}<br>
-        Organization: {{ $org }}<br>
-        As Number/Name: {{ $as }}
-    </p>
+    Your information:
+    <br>
+    <ul>
+        <li>Country: {{ $country }} {{ $countryCode }}</li>
+        <li>Region: {{ $regionName }} {{ $region }})</li>
+        <li>City: {{ $city }}</li>
+        <li>Zip: {{ $zip }}</li>
+        <li>Coordinates: {{ $lat }}, {{ $lon }})</li>
+        <li>Time Zone: {{ $timezone }}</li>
+        <li>Internet Service Provider: {{ $isp }}</li>
+        <li>Organization: {{ $org }}</li>
+        <li>As Number/Name: {{ $as }}</li>
+    </ul>
 </div>
 <br>
 <div class="contentdiv">

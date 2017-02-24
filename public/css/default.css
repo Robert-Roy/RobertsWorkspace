@@ -20,9 +20,6 @@ a:hover{
 a:hover{
 
 }
-p{
-    max-width:450px;
-}
 img{
     max-width:100%;
     max-height:100%;
@@ -32,14 +29,18 @@ img{
     text-align: center;
 }
 ul{
-    display:block;
+    display:inline-block;
     margin-top:1em;
     margin-bottom:1em;
-    margin-left:30px;
+    margin-right:auto;
     text-align:left;
+    align-self:center;
     /*width:calc(100% - 30px);*/
 }
 li{
+    max-width:300px;
+    align-self:center;
+    text-align:left;
     display:block;
 }
 html{
@@ -214,9 +215,10 @@ h3{
     margin-left:auto;
     margin-right:auto;
     margin-top:20px;
-    padding:10px;
+    padding:15px;
     font-size:18px;
-    text-align:left;
+    text-align:center;
+    width:calc(100% - 30px);
 }
 .absolutecontentdiv{
     width:calc(100% - 20px);
@@ -302,7 +304,6 @@ textarea{
 }
 .projectcontainer{
     text-align:center;
-    width:100%;
     max-width:600px;
     vertical-align:middle;
     display:block;

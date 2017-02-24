@@ -1,7 +1,7 @@
 @include("partials.header")
 
 <div class="contentdiv">
-    You have viewed the following pages:
+    You have viewed the following pages:<br>
     <ul>
         <?php
         foreach ($pageViewData as $viewData) {
