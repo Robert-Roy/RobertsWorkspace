@@ -15,12 +15,13 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('active');
-            $table->integer('priority'); // will be used to determine how high something is displayed on the list
+            $table->boolean('active')->default(true);
+            $table->integer('priority')->default(50); // will be used to determine how high something is displayed on the list
             $table->string('projectlink')->nullable();
             $table->string('codelink')->nullable();
             $table->string('title');
             $table->text('description');
+            $table->timestamps();
         });
     }
 
