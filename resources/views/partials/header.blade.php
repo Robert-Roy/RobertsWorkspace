@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -30,6 +31,6 @@
                 </div>
             </div>
             <div class="contentdiv titlediv">
-                <h1>{!!$title!!}</h1>
+                <h1>{!!$title ?? "Robert's Workspace"!!}</h1>
             </div>
             <br>

@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-@include("partials.header")
+@extends("layout")
+
+@section('content')
 
 <div class="contentdiv">
     <p>I have used:</p>
@@ -38,4 +39,4 @@
     <p><a href="{{ config('constants.GITHUB')}}"> My code is available on GitHub</a></p>
 </div>
 
-@include("partials.footer")
+@endsection

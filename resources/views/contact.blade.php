@@ -1,4 +1,6 @@
-@include("partials.header")
+@extends("layout")
+
+@section('content')
 
 <div class="contentdiv contactdiv">  
     <form action="sendmail" method="post" onsubmit="return validateContactForm();">
@@ -19,4 +21,4 @@
     <a href='mailto:{{config("constants.ADMINEMAIL")}}'>Prefer to send an email?</a>
 </div>
 
-@include("partials.footer")
+@endsection

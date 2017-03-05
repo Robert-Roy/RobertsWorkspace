@@ -1,4 +1,6 @@
-@include("partials.header")
+@extends("layout")
+
+@section('content')
 
 <div class="contentdiv">
     <p>As of 1/2/2017:</p>
@@ -30,4 +32,4 @@
         as required by government entities.</p>
 </div>
 
-@include("partials.footer")
+@endsection

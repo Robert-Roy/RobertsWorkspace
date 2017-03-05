@@ -1,4 +1,6 @@
-@include("partials.header")
+@extends("layout")
+
+@section('content')
 
 <div class="contentdiv">
     <p>Your message was not for the following reasons:
@@ -9,4 +11,4 @@
     </p>
 </div>
 
-@include("partials.footer")
+@endsection

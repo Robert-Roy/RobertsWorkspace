@@ -1,4 +1,6 @@
-@include("partials.header")
+@extends("layout")
+
+@section('content')
 
 <div class="contentdiv" style="text-align:center">
     <p>Your IP:<br><?= $IP ?></p>
@@ -24,4 +26,4 @@
     <p>Powered by: <a href="http://ip-api.com/">ip-api.com</a></p>
 </div>
 
-@include("partials.footer")
+@endsection

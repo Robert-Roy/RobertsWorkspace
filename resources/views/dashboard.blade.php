@@ -1,4 +1,6 @@
-@include("partials.header")
+@extends("layout")
+
+@section('content')
 
 <div class="contentdiv">
     You have viewed the following pages:<br>
@@ -11,3 +13,5 @@
     </ul>
     <p>You have a total of <?= $userTotalViews ?>/<?= $allUsersTotalViews ?> page views.</p>
 </div>
+
+@endsection
