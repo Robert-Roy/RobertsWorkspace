@@ -1,7 +1,9 @@
 $(window).load(function () {
     var PARTICLE_RATIO = 2000; // 1 particle per PARTICLE_RATIO pixels 2000 default
-    var DEBUG = false;
-    var FPS = 30;
+    var DEBUG = true;
+    var FPS = 60;
+    var TICKS_PER_SECOND = 60;
+    var UPDATE_SPEED = 1000 / TICKS_PER_SECOND;
     var DRAW_SPEED = 1000 / FPS;
     var DRAW_WAIT = 25; //wait X MS to start drawing
 
@@ -41,22 +43,40 @@ $(window).load(function () {
     var particles = addParticlesToArray([], 0, 0, W, H, maxParticles);
 
     //begin drawloop after 25ms (prevents lag)
-    setTimeout(setInterval(loop, DRAW_SPEED), DRAW_WAIT);
+    setTimeout(loop, DRAW_WAIT);
 
-    var isRunning = true;
+    var isRunning = false;
+    var lastUpdate = 0;
+    var lastRender = 0;
+    var loopRate = 1;
     function loop() {
+        console.log(isRunning);
         if(isRunning){
+            if(DEBUG){
+                console.log("Loop Blocked - Already Running");
+            }
             return;
         }
         isRunning = true;
+        console.log(isRunning);
+            if(DEBUG){
+                console.log("Running Loop");
+            }
         thisLoopMS = new Date().getTime();
-        draw();
-        update();
-        checkFPS();
+        if(lastUpdate + UPDATE_SPEED < thisLoopMS){
+            lastUpdate = thisLoopMS;
+            update();
+        }
+        if(lastRender + DRAW_SPEED < thisLoopMS){
+            lastRender = thisLoopMS;
+            draw();
+            checkFPS();
+        }
         if (DEBUG) {
             showDebugText();
         }
         isRunning = false;
+        setTimeout(loop, loopRate);
     }
     function showDebugText() {
         context.fillText(particles.length + "/" + maxParticles, 10, 50); //shows current particles and max particles
@@ -161,7 +181,7 @@ $(window).load(function () {
             }
         }
         if (DEBUG) {
-            context.fillText(loopTime + "/" + DRAW_SPEED, 10, 100); //shows current particles and max particles
+            context.fillText(loopTime + "/" + DRAW_SPEED, 10, 100); //shows current loop ms, then desired loop speed
         }
     }
 
