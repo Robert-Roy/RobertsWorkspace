@@ -43,7 +43,12 @@ $(window).load(function () {
     //begin drawloop after 25ms (prevents lag)
     setTimeout(setInterval(loop, DRAW_SPEED), DRAW_WAIT);
 
+    var isRunning = true;
     function loop() {
+        if(isRunning){
+            return;
+        }
+        isRunning = true;
         thisLoopMS = new Date().getTime();
         draw();
         update();
@@ -51,6 +56,7 @@ $(window).load(function () {
         if (DEBUG) {
             showDebugText();
         }
+        isRunning = false;
     }
     function showDebugText() {
         context.fillText(particles.length + "/" + maxParticles, 10, 50); //shows current particles and max particles
