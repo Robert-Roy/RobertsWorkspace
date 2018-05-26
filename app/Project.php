@@ -18,8 +18,8 @@ class Project extends Model {
     public function getViewData() {
         //TODO update this so that it makes more sense intuitively
         return[
-            "href" => $this->href,
-            "githublink" => $this->githublink,
+            "href" => $this->projectlink,
+            "githublink" => $this->codelink,
             "title" => $this->title,
             "description" => $this->description
         ];
