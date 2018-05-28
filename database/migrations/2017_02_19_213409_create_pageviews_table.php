@@ -13,13 +13,11 @@ class CreatePageviewsTable extends Migration {
      */
     public function up() {
         Schema::create('pageviews', function (Blueprint $table) {
-            $table->integer('ip_id');
-            $table->string('page');
-            $table->timestamp('created_at')->nullable();
-        });
-
-        Schema::table('pageviews', function($table) {
+            $table->integer('ip_id')->unsigned();
             $table->foreign('ip_id')->references('ip_id')->on('uniqueips');
+            $table->string('page');
+            $table->string('requested_page');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
