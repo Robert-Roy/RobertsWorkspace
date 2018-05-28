@@ -16,11 +16,11 @@ class Analytics {
     private $now;
     private $requestURI;
 
-    public function recordView($requestPage, $requestURI) {
+    public function recordView($requestPage) {
         $this->requestPage = $requestPage;
         $this->requestIP = Request::ip();
         $this->now = $this->getTime();
-        $this->requestURI = $requestURI;
+        $this->requestURI = htmlspecialchars(\filter_var(\trim($_SERVER['REQUEST_URI']), FILTER_SANITIZE_STRING));;
         $this->logUniqueIP($this->requestIP);
         $this->pageViewToSQL($this->requestPage, $this->ip_id, $this->requestURI);
     }
