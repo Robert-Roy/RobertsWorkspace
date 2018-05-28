@@ -10,7 +10,7 @@ class HomeController extends Controller {
     public function index() {
         $title = "<div style='display:inline-block'>Web Development</div> <div style='display:inline-block'>Done Right</div>";
         $analytics = new Analytics();
-        $analytics->recordView("home");
+        $analytics->recordView("home", $_SERVER['REQUEST_URI']);
 
         return view("home", ["title" => $title]);
     }

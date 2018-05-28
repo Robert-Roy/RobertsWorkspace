@@ -11,7 +11,7 @@ class DashboardController extends Controller {
     public function index() {
         $title = "Robert's Analytics";
         $analytics = new Analytics();
-        $analytics->recordView("dashboard");
+        $analytics->recordView("dashboard", $_SERVER['REQUEST_URI']);
         
         $IP = Request::ip();
         $ip_id = DB::table("uniqueips")->where("ip", "=", $IP)->get(["ip_id"]);

@@ -10,7 +10,7 @@ class ContactController extends Controller {
     public function index() {
         $title = "Leave Me a Message";
         $analytics = new Analytics();
-        $analytics->recordView("contact");
+        $analytics->recordView("contact", $_SERVER['REQUEST_URI']);
 
         return view("contact", ["title" => $title]);
     }

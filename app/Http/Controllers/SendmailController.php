@@ -14,7 +14,7 @@ class SendmailController extends Controller {
         //todo confirm send page
         $title = "Delivery";
         $analytics = new Analytics();
-        $analytics->recordView("sendmail");
+        $analytics->recordView("sendmail", $_SERVER['REQUEST_URI']);
 
         $name = htmlspecialchars(\filter_var(\trim($_POST["name"]), FILTER_SANITIZE_STRING));
         $email = htmlspecialchars(\filter_var(\trim($_POST["email"]), FILTER_SANITIZE_STRING));

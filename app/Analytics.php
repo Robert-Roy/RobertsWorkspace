@@ -14,23 +14,26 @@ class Analytics {
     private $requestPage;
     private $requestIP;
     private $now;
+    private $requestURI;
 
-    public function recordView($requestPage) {
+    public function recordView($requestPage, $requestURI) {
         $this->requestPage = $requestPage;
         $this->requestIP = Request::ip();
         $this->now = $this->getTime();
+        $this->requestURI = $requestURI;
         $this->logUniqueIP($this->requestIP);
-        $this->pageViewToSQL($this->requestPage, $this->ip_id, $this->requestIP);
+        $this->pageViewToSQL($this->requestPage, $this->ip_id, $this->requestURI);
     }
 
     function getTime() {
         return $time = date("Y-m-d H:i:s");
     }
 
-    private function pageViewToSQL($page, $ip_id) {
+    private function pageViewToSQL($page, $ip_id, $requestedURI) {
         DB::table('pageviews')->insert(
                 ['ip_id' => $ip_id,
                     'page' => $page,
+                    'requested_page' => $requestedURI,
                     'created_at' => $this->now]);
         //DB::table("pageviews")->;
 //        try {

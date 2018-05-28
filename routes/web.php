@@ -13,6 +13,7 @@
 
 if (Request::ip() === "::1") {
     Route::get('/robertsworkspace/', 'HomeController@index');
+    Route::get('/robertsworkspace/index', 'HomeController@index');
     Route::get('/robertsworkspace/contact', 'ContactController@index');
     Route::get('/robertsworkspace/projects', 'ProjectsController@index');
     Route::get('/robertsworkspace/privacy', 'PrivacyController@index');
@@ -22,6 +23,7 @@ if (Request::ip() === "::1") {
     Route::post('/robertsworkspace/sendmail', 'SendmailController@index');
 } else {
     Route::get('', 'HomeController@index');
+    Route::get('/index', 'HomeController@index');
     Route::get('/contact', 'ContactController@index');
     Route::get('/projects', 'ProjectsController@index');
     Route::get('/privacy', 'PrivacyController@index');

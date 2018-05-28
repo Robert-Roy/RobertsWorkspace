@@ -14,7 +14,7 @@ class ProjectsController extends Controller {
 
         $title = "My Projects";
         $analytics = new Analytics();
-        $analytics->recordView("projects");
+        $analytics->recordView("projects", $_SERVER['REQUEST_URI']);
         $projects = Project::all();
         echo view("partials.projectstop", ["title" => $title]);
         foreach ($projects as $thisProject) {
