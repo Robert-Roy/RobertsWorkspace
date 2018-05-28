@@ -8,7 +8,6 @@
         <li>PHP</li>
         <li>JavaScript</li>
         <li>SQL</li>
-        <li>Linux</li>
         <li>ASP</li>
         <li>Java</li>
         <li>Python</li>
@@ -22,10 +21,11 @@
     <p>I have used the following APIs, libraries, frameworks, and softwares:</p>
     <ul class='shrink-list'>
         <li>Laravel</li>
-        <li>Composer</li>
         <li>KnockoutJS</li>
         <li>jQuery</li>
+        <li>Jasmine</li>
         <li>MySQL</li>
+        <li>Composer</li>
         <li>Linux</li>
         <li>PHPMailer</li>
         <li>GIMP 2</li>
