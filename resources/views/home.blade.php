@@ -21,6 +21,8 @@
 <div class="contentdiv">
     <p>I have used the following APIs, libraries, frameworks, and softwares:</p>
     <ul class='shrink-list'>
+        <li>Laravel</li>
+        <li>Composer</li>
         <li>KnockoutJS</li>
         <li>jQuery</li>
         <li>MySQL</li>
