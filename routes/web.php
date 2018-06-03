@@ -21,6 +21,9 @@ if (Request::ip() === "::1") {
     Route::get('/robertsworkspace/ipdata', 'IPDataController@index');
     Route::get('/robertsworkspace/dashboard', 'DashboardController@index');
     Route::post('/robertsworkspace/sendmail', 'SendmailController@index');
+    Route::get('/robertsworkspace/signin', 'SignInController@index');
+    Route::post('/robertsworkspace/signin', 'SignInController@index');
+    Route::get('/robertsworkspace/signout', 'SignOutController@index');
 } else {
     Route::get('', 'HomeController@index');
     Route::get('/index', 'HomeController@index');
@@ -31,4 +34,7 @@ if (Request::ip() === "::1") {
     Route::get('/ipdata', 'IPDataController@index');
     Route::get('/dashboard', 'DashboardController@index');
     Route::post('/sendmail', 'SendmailController@index');
+    Route::get('/signin', 'SignInController@index');
+    Route::post('/signin', 'SignInController@index');
+    Route::get('/signout', 'SignOutController@index');
 }
