@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Analytics;
 
-class SendmailController extends Controller {
+class SignOutController extends Controller {
 
     public function index() {
         $title = "Sign Out";
@@ -12,9 +12,7 @@ class SendmailController extends Controller {
         $analytics = new Analytics();
         $analytics->recordView("signout");
         
-        session_start();
-        session_destroy();
-        $_SESSION = array();
+        session()->flush();
         
         return view("signout");
     }
