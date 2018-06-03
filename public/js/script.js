@@ -178,5 +178,12 @@ if (!String.prototype.includes) {
         'use strict';
         return String.prototype.indexOf.apply(this, arguments) !== -1;
     };
-}
-;
+};
+
+$(document).ready(function () {
+    $('.crispbutton').hover(function () {
+        $(this).css("background", "#0055ee");
+    }, function(){
+        $(this).css("background", "");
+    });
+});
