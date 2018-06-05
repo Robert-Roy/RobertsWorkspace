@@ -6,6 +6,6 @@
     <br>
     <p>Project Link: {{ $href }}</p>
     <br>
-    <p>Github Link:"{{ $githublink }}"</p>
+    <p>Github Link:{{ $githublink }}</p>
 </div>
 <br>
