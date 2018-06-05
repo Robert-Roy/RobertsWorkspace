@@ -21,9 +21,10 @@ if (Request::ip() === "::1") {
     Route::get('/robertsworkspace/ipdata', 'PortfolioController@ipdata');
     Route::get('/robertsworkspace/dashboard', 'PortfolioController@dashboard');
     Route::post('/robertsworkspace/sendmail', 'PortfolioController@sendmail');
-    Route::get('/robertsworkspace/signin', 'SignInController@index');
-    Route::post('/robertsworkspace/signin', 'SignInController@index');
-    Route::get('/robertsworkspace/signout', 'SignOutController@index');
+    Route::get('/robertsworkspace/admin', 'AdminController@index');
+    Route::get('/robertsworkspace/signin', 'AdminController@signin');
+    Route::post('/robertsworkspace/signin', 'AdminController@signin');
+    Route::get('/robertsworkspace/signout', 'AdminController@signout');
 } else {
     Route::get('', 'PortfolioController@home');
     Route::get('/index', 'PortfolioController@home');
@@ -34,7 +35,8 @@ if (Request::ip() === "::1") {
     Route::get('/ipdata', 'PortfolioController@ipdata');
     Route::get('/dashboard', 'PortfolioController@dashboard');
     Route::post('/sendmail', 'PortfolioController@sendmail');
-    Route::get('/signin', 'SignInController@index');
-    Route::post('/signin', 'SignInController@index');
-    Route::get('/signout', 'SignOutController@index');
+    Route::get('/robertsworkspace/admin', 'AdminController@index');
+    Route::get('/signin', 'AdminController@signin');
+    Route::post('/signin', 'AdminController@signin');
+    Route::get('/signout', 'AdminController@signout');
 }
