@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Analytics;
+use App\Project;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,13 @@ class AdminController extends Controller {
         $pagename = "admin";
         $this->logAnalytics($pagename);
 
-        return $this->signin();
+        $projects = Project::all();
+        echo view("partials.admineditheader");
+        foreach ($projects as $thisProject) {
+            echo view("partials.projectedit", $thisProject->getViewData());
+        }
+        return view("partials.admineditfooter");
+        //return $this->signin();
     }
 
     public function signout() {
