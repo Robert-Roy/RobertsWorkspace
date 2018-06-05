@@ -132,6 +132,35 @@ function validateContactForm() {
 }
 ;
 
+function validateProject() {
+    inputTitle = document.getElementsByName("title")[0];
+    strTitle = inputTitle.value;
+    inputCodeLink = document.getElementsByName("code-link")[0];
+    strCodeLink = inputCodeLink.value;
+    inputProjectLink = document.getElementsByName("project-link")[0];
+    strProjectLink = inputProjectLink.value;
+    inputDescription = document.getElementsByName("description")[0];
+    strDescription = inputDescription.value;
+
+    if (strTitle === "") {
+        blnvalidinput = false;
+        $(inputTitle).css("background", "#ffb3b3");
+    } else {
+        $(inputTitle).css("background", "#b3ffb3");
+    }
+    $(inputCodeLink).css("background", "#b3ffb3");
+    $(inputProjectLink).css("background", "#b3ffb3");
+    if (strDescription === "") {
+        blnvalidinput = false;
+        $(inputDescription).css("background", "#ffb3b3");
+    } else {
+        $(inputDescription).css("background", "#b3ffb3");
+    }
+    if (!blnvalidinput) {
+        return false;
+    }
+}
+
 function setHighlightedLink(blnSnapTo) {
     // function checks whether the highlighter should set $defaultHighlighted
     //to something other than the #sitename. blnSnapTo causes the function
@@ -165,7 +194,8 @@ function setHighlightedLink(blnSnapTo) {
             if (blnSnapTo) {
                 $('#highlighter').finish();
             }
-        };
+        }
+        ;
     } else {
         //checkpath later when the screen is bigger
         blnCorrectHighlight = false;
@@ -178,12 +208,13 @@ if (!String.prototype.includes) {
         'use strict';
         return String.prototype.indexOf.apply(this, arguments) !== -1;
     };
-};
+}
+;
 
 $(document).ready(function () {
     $('.crispbutton').hover(function () {
         $(this).css("background", "#0055ee");
-    }, function(){
+    }, function () {
         $(this).css("background", "");
     });
 });

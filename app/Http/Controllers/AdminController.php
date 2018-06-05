@@ -9,33 +9,79 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller {
 
+    private function loggedIn() {
+        // returns true or false depending on if somebody is logged in
+        if (null !== session('user')) {
+            return true;
+        }
+        return false;
+    }
+
+    private function checkLogIn() {
+        // if not logged in and trying to access a critical page, go to sign in page
+        if (!$this->loggedIn()) {
+            header('Location: signin');
+            die();
+        }
+    }
+
     private function logAnalytics($pageName) {
+        // Logs pageview to analytics
         $analytics = new Analytics();
         $analytics->recordView($pageName);
     }
 
     public function index() {
-        if (null !== session('user')) {
-            return $this->admindashboard();
-        } else {
-            return $this->signIn();
-        }
+        $this->checkLogIn();
+        return $this->admindashboard();
     }
 
     public function admindashboard() {
+        $this->checkLogIn();
         $pagename = "admin";
         $this->logAnalytics($pagename);
+        //return $this->signin();
+        return $this->project();
+    }
 
+    private function projectcreate() {
+        $this->checkLogIn();
+        return view("newproject");
+    }
+
+    public function project() {
+        $this->checkLogIn();
+        if (Input::has('title') && Input::has('description')) {
+            $title = Input::get('title');
+            $codeLink = "";
+            if (Input::has('code-link')) {
+                $codeLink = Input::get('code-link');
+            }
+            $projectLink = "";
+            if (Input::has('project-link')) {
+                $projectLink = Input::get('project-link');
+            }
+            $description = Input::get('description');
+            $project = new Project();
+            $project->create($projectLink, $codeLink, $title, $description);
+            return $this->projectcreate();
+        } else {
+            return $this->projectcreate();
+        }
+    }
+
+    private function projectviewall() {
+        $this->checkLogIn();
         $projects = Project::all();
         echo view("partials.admineditheader");
         foreach ($projects as $thisProject) {
             echo view("partials.projectedit", $thisProject->getViewData());
         }
         return view("partials.admineditfooter");
-        //return $this->signin();
     }
 
     public function signout() {
+        $this->checkLogIn();
         $pagename = "signout";
         $this->logAnalytics($pagename);
 
@@ -71,6 +117,7 @@ class AdminController extends Controller {
     }
 
     private function signedin() {
+        $this->checkLogIn();
         $sessionMinutes = ini_get('session.gc_maxlifetime') / 60;
         return view("signedin", compact("sessionMinutes"));
     }
