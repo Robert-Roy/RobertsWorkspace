@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="contentdiv centerxy">  
-    <form action="project" method="post" onsubmit="return validateProject();">
+    <form action="{{env('APP_URL')}}projects" method="post" onsubmit="return validateProject();">
         <label class="label" for="title">Project Title:</label>
         <input type="text" name="title" autofocus autocomplete="name" placeholder="John Doe" required>
         <label class="label" for="code-link">Code Link (Optional):</label>

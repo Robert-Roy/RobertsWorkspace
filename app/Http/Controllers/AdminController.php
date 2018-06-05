@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Analytics;
-use App\Project;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller {
 
-    private function loggedIn() {
+    public function loggedIn() {
         // returns true or false depending on if somebody is logged in
         if (null !== session('user')) {
             return true;
@@ -17,10 +16,10 @@ class AdminController extends Controller {
         return false;
     }
 
-    private function checkLogIn() {
+    public function checkLogIn() {
         // if not logged in and trying to access a critical page, go to sign in page
         if (!$this->loggedIn()) {
-            header('Location: signin');
+            header('Location: ' . config('constants.SIGNIN'));
             die();
         }
     }
@@ -41,43 +40,7 @@ class AdminController extends Controller {
         $pagename = "admin";
         $this->logAnalytics($pagename);
         //return $this->signin();
-        return $this->project();
-    }
-
-    private function projectcreate() {
-        $this->checkLogIn();
-        return view("newproject");
-    }
-
-    public function project() {
-        $this->checkLogIn();
-        if (Input::has('title') && Input::has('description')) {
-            $title = Input::get('title');
-            $codeLink = "";
-            if (Input::has('code-link')) {
-                $codeLink = Input::get('code-link');
-            }
-            $projectLink = "";
-            if (Input::has('project-link')) {
-                $projectLink = Input::get('project-link');
-            }
-            $description = Input::get('description');
-            $project = new Project();
-            $project->create($projectLink, $codeLink, $title, $description);
-            return $this->projectcreate();
-        } else {
-            return $this->projectcreate();
-        }
-    }
-
-    private function projectviewall() {
-        $this->checkLogIn();
-        $projects = Project::all();
-        echo view("partials.admineditheader");
-        foreach ($projects as $thisProject) {
-            echo view("partials.projectedit", $thisProject->getViewData());
-        }
-        return view("partials.admineditfooter");
+        return $this->signedin();
     }
 
     public function signout() {
@@ -109,11 +72,10 @@ class AdminController extends Controller {
                 $message = "Invalid Login. Please try again.";
                 return view("signin", compact("message"));
             }
-        } else {
-            // if first accessing the login page
-            $message = "";
-            return view("signin", compact("message"));
         }
+        // if first accessing the login page
+        $message = "";
+        return view("signin", compact("message"));
     }
 
     private function signedin() {
