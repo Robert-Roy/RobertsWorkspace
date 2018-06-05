@@ -4,7 +4,14 @@
         {!! $description !!}
     </div>
 </div>
-<div class="crispbutton"><a href="{{ $href }}">See Project</a></div>
+<?php
+if ($href !== "") {
+    ?>
+
+    <div class="crispbutton"><a href="{{ $href }}">See Project</a></div>
+    <?php
+}
+?>
 <?php
 if ($githublink !== "") {
     ?>
