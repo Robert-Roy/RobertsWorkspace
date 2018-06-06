@@ -106,6 +106,11 @@ class ProjectsController extends Controller {
      */
     public function destroy($id) {
         //
+        $adminController = new AdminController();
+        $adminController->checkLogIn();
+        $project = new Project();
+        $project->deleteById($id);
+        header('Location: ' . config('constants.PROJECTS'));
     }
 
 }

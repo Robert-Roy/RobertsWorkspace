@@ -18,11 +18,17 @@ class Project extends Model {
     public function getViewData() {
         //TODO update this so that it makes more sense intuitively
         return[
+            "id" => $this->id,
             "href" => $this->projectlink,
             "githublink" => $this->codelink,
             "title" => $this->title,
             "description" => $this->description
         ];
+    }
+    
+    public function deleteById($id){
+        $project = $this->find($id);
+        $project->delete();
     }
 
 }
