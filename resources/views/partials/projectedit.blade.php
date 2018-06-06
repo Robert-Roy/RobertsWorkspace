@@ -1,5 +1,5 @@
 <br>
-<div>
+<div class="contentdiv centerx">
     <h2>{{ $title }}</h2>
     <br>
     <p>Description: {!! $description !!}</p>

@@ -1,5 +1,6 @@
 @include('partials.adminheader')
-<div class="contentdiv">
-    <p>links to other options go here</p>
-</div>
-<div class="contentdiv">
+<div class="centerxy">
+    <div class="contentdiv">
+        <p>links to other options go here</p>
+    </div>
+    <div class="contentdiv">
