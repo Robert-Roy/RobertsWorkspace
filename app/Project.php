@@ -14,7 +14,27 @@ class Project extends Model {
         $this->description = $description;
         $this->save();
     }
+    
+    public function setCodeLink($codeLink){
+        $this->codelink = $codeLink;
+        $this->save();
+    }
 
+    public function setTitle($title){
+        $this->title = $title;
+        $this->save();
+    }
+    
+    public function setProjectLink($projectLink){
+        $this->projectlink = $projectLink;
+        $this->save();
+    }
+    
+    public function setDescription($description){
+        $this->description = $description;
+        $this->save();
+    }
+    
     public function getViewData() {
         //TODO update this so that it makes more sense intuitively
         return[

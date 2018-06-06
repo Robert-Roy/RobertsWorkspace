@@ -12,8 +12,8 @@
         <input class="crispbutton" style="margin-top:3px" type="submit" value="Delete">
         {{csrf_field()}}
     </form>
-    <form action="{{env('APP_URL')}}projects/edit" method="post">
-        <input name="_method" type="hidden" value="EDIT">
+    <form action="{{env('APP_URL')}}projects/{{$id}}/edit" method="post">
+        <input name="_method" type="hidden" value="get">
         <input class="crispbutton" style="margin-top:3px" type="submit" value="Edit">
         {{csrf_field()}}
     </form>

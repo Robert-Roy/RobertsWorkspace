@@ -61,7 +61,7 @@ class ProjectsController extends Controller {
             $description = Input::get('description');
             $project = new Project();
             $project->create($projectLink, $codeLink, $title, $description);
-            return $this->create();
+            $this->redirectToIndex();
         } else {
             return $this->create();
         }
@@ -93,7 +93,11 @@ class ProjectsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        // 
+        $adminController = new AdminController();
+        $adminController->checkLogIn();
+        $projectModel = new Project;
+        $project = $projectModel->find($id);
+        return view("editproject", $project->getViewData());  
     }
 
     /**
@@ -104,7 +108,29 @@ class ProjectsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $adminController = new AdminController();
+        $adminController->checkLogIn();
+        $projectModel = new Project;
+        $project = $projectModel->find($id);
+        if (Input::has('title') && Input::has('description')) {
+            $title = Input::get('title');
+            $codeLink = "";
+            if (Input::has('code-link')) {
+                $codeLink = Input::get('code-link');
+            }
+            $projectLink = "";
+            if (Input::has('project-link')) {
+                $projectLink = Input::get('project-link');
+            }
+            $description = Input::get('description');
+            $project->setTitle($title);
+            $project->setCodeLink($codeLink);
+            $project->setProjectLink($projectLink);
+            $project->setDescription($description);
+            return $this->show($id);
+        }else{
+            return view("editproject", $project->getViewData());  
+        }
     }
 
     /**
@@ -119,7 +145,9 @@ class ProjectsController extends Controller {
         $adminController->checkLogIn();
         $project = new Project();
         $project->deleteById($id);
+        $this->redirectToIndex();
+    }
+    private function redirectToIndex(){
         header('Location: ' . config('constants.PROJECTS'));
     }
-
 }

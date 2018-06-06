@@ -31,6 +31,7 @@ if (Request::ip() === "::1") {
     Route::delete('/robertsworkspace/projects/{id}', 'ProjectsController@destroy');
     Route::get('/robertsworkspace/projects/{id}', 'ProjectsController@show');
     Route::get('/robertsworkspace/projects/{id}/edit', 'ProjectsController@edit');
+    Route::patch('/robertsworkspace/projects/{id}', 'ProjectsController@update');
 } else {
     Route::get('', 'PortfolioController@home');
     Route::get('/index', 'PortfolioController@home');
