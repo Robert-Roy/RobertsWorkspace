@@ -29,6 +29,7 @@ if (Request::ip() === "::1") {
     Route::get('/robertsworkspace/projects/create', 'ProjectsController@create');
     Route::post('/robertsworkspace/projects', 'ProjectsController@store');
     Route::delete('/robertsworkspace/projects/{id}', 'ProjectsController@destroy');
+    Route::get('/robertsworkspace/projects/{id}', 'ProjectsController@show');
     Route::get('/robertsworkspace/projects/{id}/edit', 'ProjectsController@edit');
 } else {
     Route::get('', 'PortfolioController@home');

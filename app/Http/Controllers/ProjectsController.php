@@ -74,7 +74,16 @@ class ProjectsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        // get specific project
+        $adminController = new AdminController();
+        if ($adminController->loggedIn()) {
+            $projectModel = new Project;
+            $project = $projectModel->find($id);
+            echo view("partials.admineditheader");
+            echo view("partials.projectedit", $project->getViewData());
+            return view("partials.admineditfooter");
+        }
+        $portfolioController = new PortfolioController();
+        return $portfolioController->projects();
     }
 
     /**
