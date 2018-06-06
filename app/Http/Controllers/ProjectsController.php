@@ -18,11 +18,11 @@ class ProjectsController extends Controller {
         $adminController = new AdminController();
         if ($adminController->loggedIn()) {
             $projects = Project::all();
-            echo view("partials.admineditheader");
+            echo view("partials.adminheader");
             foreach ($projects as $thisProject) {
                 echo view("partials.projectedit", $thisProject->getViewData());
             }
-            return view("partials.admineditfooter");
+            return view("partials.adminfooter");
         }
         $portfolioController = new PortfolioController();
         return $portfolioController->projects();
@@ -149,5 +149,6 @@ class ProjectsController extends Controller {
     }
     private function redirectToIndex(){
         header('Location: ' . config('constants.PROJECTS'));
+        die();
     }
 }
