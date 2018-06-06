@@ -15,6 +15,7 @@ return [
     "UNDERCONSTRUCTION" => env('APP_URL') . "public_html/images/sign.png",
     "MAINSCRIPT" => env('APP_URL') . "public/js/script.js",
     "SIGNIN" => env('APP_URL') . "signin",
+    "SIGNOUT" => env('APP_URL') . "signout",
     "ANIMSCRIPT" => env('APP_URL') . "public/js/anim.js",
     "CSS" => env('APP_URL') . "public/css/default.css",
     "ADMINCSS" => env('APP_URL') . "public/css/admin.css",

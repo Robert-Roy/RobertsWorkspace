@@ -22,6 +22,7 @@ class ProjectsController extends Controller {
             foreach ($projects as $thisProject) {
                 echo view("partials.projectedit", $thisProject->getViewData());
             }
+            echo view("partials.projectotheroptions");
             return view("partials.adminfooter");
         }
         $portfolioController = new PortfolioController();
