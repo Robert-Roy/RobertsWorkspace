@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
-use Illuminate\Support\Facades\Input;
 
 class ProjectsController extends Controller {
 
@@ -49,17 +48,17 @@ class ProjectsController extends Controller {
     public function store(Request $request) {
         $adminController = new AdminController();
         $adminController->checkLogIn();
-        if (Input::has('title') && Input::has('description')) {
-            $title = Input::get('title');
+        if ($request->has('title') && $request->has('description')) {
+            $title = $request->get('title');
             $codeLink = "";
-            if (Input::has('code-link')) {
-                $codeLink = Input::get('code-link');
+            if ($request->has('code-link')) {
+                $codeLink = $request->get('code-link');
             }
             $projectLink = "";
-            if (Input::has('project-link')) {
-                $projectLink = Input::get('project-link');
+            if ($request->has('project-link')) {
+                $projectLink = $request->get('project-link');
             }
-            $description = Input::get('description');
+            $description = $request->get('description');
             $project = new Project();
             $project->create($projectLink, $codeLink, $title, $description);
             $this->redirectToIndex();
@@ -113,17 +112,17 @@ class ProjectsController extends Controller {
         $adminController->checkLogIn();
         $projectModel = new Project;
         $project = $projectModel->find($id);
-        if (Input::has('title') && Input::has('description')) {
-            $title = Input::get('title');
+        if ($request->has('title') && $request->has('description')) {
+            $title = $request->get('title');
             $codeLink = "";
-            if (Input::has('code-link')) {
-                $codeLink = Input::get('code-link');
+            if ($request->has('code-link')) {
+                $codeLink = $request->get('code-link');
             }
             $projectLink = "";
-            if (Input::has('project-link')) {
-                $projectLink = Input::get('project-link');
+            if ($request->has('project-link')) {
+                $projectLink = $request->get('project-link');
             }
-            $description = Input::get('description');
+            $description = $request->get('description');
             $project->setTitle($title);
             $project->setCodeLink($codeLink);
             $project->setProjectLink($projectLink);
